@@ -1,0 +1,303 @@
+
+
+
+#youtube_cont_id{
+    margin-left: 5vw;
+    margin-bottom: 5vw;
+    margin-top: 5vw;
+    width: 90Vw;
+    height: 60vw;
+}
+
+/* Album art */
+.albumArtContainer{
+    width: 100%;
+    margin-top: 7vw;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.albumArtImg{
+    width: 85%;
+    max-width: 1000px;
+    max-height: 1000px;
+    box-shadow: rgba(0, 0, 0, 0.322) 15px 15px 20px 5px;
+}
+
+.albumContainer{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* OTHER RELEASES */
+
+#previoustext{
+    color:grey;
+    text-align: center;
+}
+
+#other_releases_grid{
+display: flex;
+flex-direction: row;
+padding-bottom:10px;
+padding-left:2.5vw;
+}
+
+.other_release_grid_item img{
+    width: 40vw;
+    margin: 2.5vw;}
+
+.scroll-view{
+    height:78vh;
+}
+
+
+/* Preview Player */
+.previews{
+    background-color: rgba(22, 22, 22, 0.788);
+    border: 1px grey solid;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    width: 85%;
+    overflow-y:auto;
+}
+.songPreviewDiv{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    padding:15px;
+    border-bottom: 1px grey solid;
+}
+
+.songPreviewButtonsDiv{
+    position: relative;
+    border-radius: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 35px;
+    max-height: 35px;
+    margin-left: 5px;
+    border:5px solid;
+}
+
+.songPreviewButton{
+    cursor: pointer;
+    width: 45%;
+    padding-left: 4px;
+    padding-top:2px;
+}
+
+.songPreviewStopButton{
+    width: 40%;
+    padding-left: 0px;
+    padding-top:5px;
+    z-index: 1999;
+}
+
+.songPreviewTextDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding:10px;
+    margin-left: 10px;
+    font-size: 6vw !important;
+}
+.songPreviewTrackNumber{
+    margin-right: 10px;
+    filter:brightness(70%)
+}
+
+.playingCircle{
+    transform: rotate(-90deg);
+    fill: none;
+    position: absolute;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 35px;
+    max-height: 35px;
+    stroke:white;
+    stroke-width: 10px;
+    stroke-dasharray: 314; /* equal to circumference of circle 2 * 3.14 * 50 */
+    animation: wipe 20s linear;
+    z-index: 0;
+}
+
+.greyBorder{
+    border-color: gray !important;
+}
+
+/* COLOR THEMES */
+.white-text{
+    color:white;
+}
+.pink-text{
+    color: pink;
+}
+.pink-dark-back{
+    background-color:rgba(116, 2, 78, 0.322);
+}
+.pink-fill{
+    fill:pink;
+}
+.pink-border{
+     border-color:  pink;
+}
+.pink-stroke{
+    stroke:pink
+}
+.aqua-text{
+    color: rgb(0, 230, 230);
+}
+.aqua-fill{
+    fill: rgb(0, 230, 230);
+}
+.aqua-dark-back{
+    background-color:rgba(2, 64, 116, 0.322);
+}
+.aqua-border{
+    border-color: rgb(0, 230, 230);
+}
+.aqua-stroke{
+    stroke: rgb(0, 230, 230);
+}
+.gold-text{
+    color: rgb(230, 188, 0);
+}
+.gold-fill{
+    fill: rgb(230, 188, 0);
+}
+.gold-dark-back{
+    background-color:rgba(116, 89, 2, 0.322);
+}
+.gold-border{
+    border-color: rgb(230, 188, 0);
+}
+.gold-stroke{
+    stroke: rgb(230, 188, 0);
+}
+.lime-text{
+    color: rgb(0, 230, 69);
+}
+.lime-fill{
+    fill: rgb(0, 230, 50);
+}
+.lime-dark-back{
+    background-color:rgba(2, 116, 2, 0.322);
+}
+.lime-border{
+    border-color: rgb(8, 230, 0);
+}
+.lime-stroke{
+    stroke: rgb(0, 230, 12);
+}
+.ice-text{
+    color: rgb(49, 205, 252);
+}
+.ice-fill{
+    fill: rgb(49, 205, 252);
+}
+.ice-dark-back{
+    background-color:rgba(2, 51, 116, 0.322);
+}
+.ice-border{
+    border-color: rgb(49, 205, 252);
+}
+.ice-stroke{
+    stroke: rgb(49, 205, 252);
+}
+.white-text{
+    color: rgb(224, 227, 255);
+}
+.white-fill{
+    fill: rgb(224, 227, 255);
+}
+.white-dark-back{
+    background-color:rgba(14, 14, 14, 0.664);
+}
+.white-border{
+    border-color: rgb(224, 227, 255);
+}
+.white-stroke{
+    stroke: rgb(255, 255, 255);
+}
+
+/* ANIMATIONS */ 
+@keyframes wipe {
+    0% {
+      stroke-dashoffset: 314;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }  
+  }
+
+/* Stores Div */
+.storesDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 22vh;
+    width: 100%;
+    box-shadow: #0000006e 0px -20px 20px;
+    position: absolute;
+}
+
+.storesList{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-right: 20px;
+    height:100%;
+}
+
+.storeLink{
+    display: flex;
+    flex-direction: column;
+    color:white;
+    align-items: center;
+    justify-content: center;
+    min-width: 12vh;
+}
+
+.storeImage{
+   width: 17vw;
+   max-width: 100px;
+}
+
+.storeText{
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-top: 15px;
+    opacity: .8;
+    height: 32px;
+    font-size: 3.5vw;
+}
+
+.listenText{
+    font-size: 20px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+#other_releases_div{
+    width: 100vw;
+}
+
+hr{
+    width: 95%;
+}
+

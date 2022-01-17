@@ -1,0 +1,8 @@
+{% extends "_layout/site.twig" %}
+
+{% block content %}
+    <p>Latest Release: {{latest.title}}{{latest.subtitle ? ':': '' }} {{latest.subtitle }}</p>
+
+    <a href="{{route('music::release',[6])}}" >View This Release</a>
+    <a href="{{route('music::catalog')}}" >View All Releases</a>
+{% endblock %}

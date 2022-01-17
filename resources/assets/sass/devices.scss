@@ -1,0 +1,35 @@
+$breakpoint-mobile: 600px;
+$breakpoint-tablet: 768px;
+
+@media screen and (orientation:portrait) and (max-width:1000px) {
+    .mobile_content{
+        display: block;
+    }
+    .desktop_content{
+        display: none;
+    }
+}
+
+@media screen and (min-width:1000px) {
+    .mobile_content{
+        display: none;
+    }
+    .desktop_content{
+        display: block;
+    }
+    .tablet_content{
+        display: none;
+    }
+}
+
+@media screen and (orientation:landscape)   {
+    .mobile_content{
+        display: none;
+    }
+    .desktop_content{
+        display: block;
+    }
+    .tablet_content{
+        display: none;
+    }
+}

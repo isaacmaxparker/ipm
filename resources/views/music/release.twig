@@ -1,0 +1,265 @@
+{% extends "_layout/site.twig" %}
+
+{% block content %}
+    <div class="background {{release.theme_color}}-dark-back">
+    {% if release.background_type == 'video' %}
+        <video id="gallery_video" autoplay loop muted playsinline class="{{release.theme_color}}-border invisible slowload">
+            <source src="{{asset('img/releases/gallery/' ~ release.back_img_link)}}.webm" type="video/webm">
+            <source src="{{asset('img/releases/gallery/' ~ release.back_img_link)}}.mp4" type="video/mp4">
+        </video>
+    {% endif %}
+    </div>
+	<div class="mobile_content">
+		<div id="main-content" class="main-content {{release.background_type == 'image' ? release.back_img_link: ''}}">
+			<div class="scroll-view">
+				<div class="albumContainer">
+					<div class="albumArtContainer">
+						<img id="albumartImg" data-js="lowresimageload" class="albumArtImg" src="{{asset('img/releases/album_arts/' ~ release.img_link)}}">
+					</div>
+					<div id="previewsDiv" class="previews">
+						{% for song in songs %}
+							<div class="songPreviewDiv">
+								<div class="songPreviewButtonsDiv {{release.theme_color}}-border">
+									<div style="display: none;">
+										<audio controls="" class="songPreviewAudio">
+											<source src="../media/audio/previews/bewithyou_preview.mp3" type="audio/mpeg">
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+									<svg class="playingCircle hidden {{release.theme_color}}-stroke" viewbox="0 0 100 100">
+										<circle cx="50" cy="50" r="40"></circle>
+									</svg>
+									<div class="songPreviewButton songPreviewPlayButton {{release.theme_color}}-fill" onclick="playPreview(this.parentElement)">
+										<svg x="0px" y="0px" viewbox="0 0 17.804 17.804" style="enable-background:new 0 0 17.804 17.804;" xml:space="preserve">
+											<path d="M2.067,0.043C2.21-0.028,2.372-0.008,2.493,0.085l13.312,8.503c0.094,0.078,0.154,0.191,0.154,0.313    c0,0.12-0.061,0.237-0.154,0.314L2.492,17.717c-0.07,0.057-0.162,0.087-0.25,0.087l-0.176-0.04    c-0.136-0.065-0.222-0.207-0.222-0.361V0.402C1.844,0.25,1.93,0.107,2.067,0.043z"></path>
+										</svg>
+									</div>
+									<div class="songPreviewButton songPreviewStopButton {{release.theme_color}}-fill hidden" onclick="stopPreview(this.parentElement)">
+										<svg x="0px" y="0px" viewbox="0 0 10.334 10.334" style="enable-background:new 0 0 10.334 10.334;" xml:space="preserve">
+											<path d="M10.333,9.816c0,0.285-0.231,0.518-0.517,0.518H0.517C0.233,10.334,0,10.102,0,9.816V0.517   C0,0.232,0.231,0,0.517,0h9.299c0.285,0,0.517,0.231,0.517,0.517V9.816z"></path>
+										</svg>
+									</div>
+								</div>
+								<div class="songPreviewTextDiv {{release.theme_color}}-text">
+									<div class="songPreviewTrackNumber">{{song.track_number}}.</div>
+									{% if song.title|length > 15 %}
+										<div class="songPreviewTitle" style="font-size:75%;">{{song.title|raw}}</div>
+									{% else %}
+										<div class="songPreviewTitle" style="">{{song.title}}</div>
+									{% endif %}
+
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					{% if release.youtube_link %}
+						<div id="youtube_cont_id">
+							<iframe width="95%" height="100%" src="{{release.youtube_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+						</div>
+					{% endif %}
+
+					{% if other_releases %}
+						<hr style="margin-top:0px">
+						<div id="other_releases_div">
+							<div id="previoustext" class="listenText" style="justify-self: flex-start;margin-bottom: 20px;">Other Releases</div>
+							<div class="x-scroll-container">
+								<div id="other_releases_grid">
+									{% for item in other_releases %}
+										<div class="other_release_grid_item">
+											<a href="{{route('music::release',[item.id])}}"><img src="{{asset('img/releases/album_arts/' ~ item.img_link)}}"></a>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+						<hr style="margin-top:0px; margin-bottom:20px;">
+					{% endif %}
+				</div>
+			</div>
+			<div id="storesDiv" class="storesDiv {{release.theme_color}}-dark-back">
+				<div id="listentext" class="listenText {{release.theme_color}}-text" style="justify-self: flex-start;margin-bottom: 20px;">Listen on</div>
+				<div class="x-scroll-container">
+					<div id="storeLinksDiv" class="storesList">
+						<div class="storeLink">
+							<a class="storeImage" href="{{release.spotify_link}}" target="_blank">
+								<img style="width:100%" src="{{asset('img/releases/store_logos/spotify.png')}}">
+							</a>
+							<div class="storeText">Spotify</div>
+						</div>
+
+						<div class="storeLink">
+							<a class="storeImage" href="{{release.itunes_link}}" target="_blank">
+								<img style="width:100%" src="{{asset('img/releases/store_logos/appleMusic.png')}}">
+							</a>
+							<div class="storeText">Apple Music</div>
+						</div>
+
+						<div class="storeLink">
+							<a class="storeImage" href="{{release.youtube_music_link}}" target="_blank">
+								<img style="width:100%" src="{{asset('img/releases/store_logos/youtubeMusic.png')}}">
+							</a>
+							<div class="storeText">Youtube</div>
+						</div>
+
+						<div class="storeLink">
+							<a class="storeImage" href="{{release.amazon_link}}" target="_blank">
+								<img style="width:100%" src="{{asset('img/releases/store_logos/amazon.png')}}">
+							</a>
+							<div class="storeText">Amazon Music</div>
+						</div>
+
+						<div class="storeLink">
+							<a class="storeImage" href="{{release.distrokid_link}}" target="_blank">
+								<svg style="width:100%" class="{{release.theme_color}}-fill" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewbox="0 0 330 330" xml:space="preserve">
+									<path id="XMLID_22_" d="M165,0C74.019,0,0,74.019,0,165s74.019,165,165,165s165-74.019,165-165S255.981,0,165,0z M85,190  c-13.785,0-25-11.215-25-25s11.215-25,25-25s25,11.215,25,25S98.785,190,85,190z M165,190c-13.785,0-25-11.215-25-25  s11.215-25,25-25s25,11.215,25,25S178.785,190,165,190z M245,190c-13.785,0-25-11.215-25-25s11.215-25,25-25  c13.785,0,25,11.215,25,25S258.785,190,245,190z"></path>
+								</svg>
+							</a>
+							<div class="storeText">More</div>
+						</div>
+						<div style="width:5px;margin-right:10px">&nbsp;</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+    </div>
+    <div class="desktop_content">
+        <div id="main-content" class="main-content-release-desktop {{release.back_img_link}} scroll-x-view">
+            <div class="left-side-release">
+                <div class="albumArtContainer">
+                    <img id="albumartImg" data-js="lowresimageload" class="albumArtImg" src="{{asset('img/releases/album_arts/' ~ release.img_link)}}">
+                    <div class="storeText">{{release.title}}</div>
+                    <div class="storeText {{release.theme_color}}-text" style="font-size:100%;margin:10px;">{{release.subtitle}}</div>
+                </div>
+                {% if release.description %}
+                <div class="left-side-description">
+                    <p class="left-side-description-title {{release.theme_color}}-text">About The Album:</p>
+                    <p>{{release.description}}</p>
+                </div>
+                {% endif %}
+            </div>
+            <div class="middle-side-release">
+                <div class="scroll-y-view scroll">
+                    <div id="previewsDiv" class="previews">
+                        {% for song in songs %}
+                            <div class="songPreviewDiv">
+                                <div class="songPreviewButtonsDiv {{release.theme_color}}-border">
+                                    <div style="display: none;">
+                                        <audio controls="" class="songPreviewAudio">
+                                            <source src="../media/audio/previews/bewithyou_preview.mp3" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    </div>
+                                    <svg class="playingCircle hidden {{release.theme_color}}-stroke" viewbox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="40"></circle>
+                                    </svg>
+                                    <div class="songPreviewButton songPreviewPlayButton {{release.theme_color}}-fill" onclick="playPreview(this.parentElement)">
+                                        <svg x="0px" y="0px" viewbox="0 0 17.804 17.804" style="enable-background:new 0 0 17.804 17.804;" xml:space="preserve">
+                                            <path d="M2.067,0.043C2.21-0.028,2.372-0.008,2.493,0.085l13.312,8.503c0.094,0.078,0.154,0.191,0.154,0.313    c0,0.12-0.061,0.237-0.154,0.314L2.492,17.717c-0.07,0.057-0.162,0.087-0.25,0.087l-0.176-0.04    c-0.136-0.065-0.222-0.207-0.222-0.361V0.402C1.844,0.25,1.93,0.107,2.067,0.043z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="songPreviewButton songPreviewStopButton {{release.theme_color}}-fill hidden" onclick="stopPreview(this.parentElement)">
+                                        <svg x="0px" y="0px" viewbox="0 0 10.334 10.334" style="enable-background:new 0 0 10.334 10.334;" xml:space="preserve">
+                                            <path d="M10.333,9.816c0,0.285-0.231,0.518-0.517,0.518H0.517C0.233,10.334,0,10.102,0,9.816V0.517   C0,0.232,0.231,0,0.517,0h9.299c0.285,0,0.517,0.231,0.517,0.517V9.816z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="songPreviewTextDiv {{release.theme_color}}-text">
+                                    <div class="songPreviewTrackNumber">{{song.track_number}}.</div>
+                                    {% if song.title|length > 15 %}
+                                        <div class="songPreviewTitle" style="font-size:75%;">{{song.title|raw}}</div>
+                                    {% else %}
+                                        <div class="songPreviewTitle" style="">{{song.title}}</div>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div id="storesDiv" class="storesDiv">
+                        <div id="listentext" class="listenText {{release.theme_color}}-text" style="justify-self: flex-start;margin-bottom: 20px;">Listen on</div>
+                        <div class="scroll-y-view" style="width:90%;">
+                            <div id="storeLinksDiv" class="storesList">
+                                <div class="storeLink">
+                                    <a class="storeImage" href="{{release.spotify_link}}" target="_blank">
+                                        <img style="width:100%" src="{{asset('img/releases/store_logos/spotify.png')}}">
+                                    </a>
+                                     <a class="storeText {{release.theme_color}}-text" href="{{release.spotify_link}}" target="_blank">Spotify</a>
+                                </div>
+
+                                <div class="storeLink">
+                                    <a class="storeImage" href="{{release.itunes_link}}" target="_blank">
+                                        <img style="width:100%" src="{{asset('img/releases/store_logos/appleMusic.png')}}">
+                                    </a>
+                                    <a class="storeText {{release.theme_color}}-text" href="{{release.itunes_link}}" target="_blank">Apple Music</a>
+                                </div>
+
+                                <div class="storeLink">
+                                    <a class="storeImage" href="{{release.youtube_music_link}}" target="_blank">
+                                        <img style="width:100%" src="{{asset('img/releases/store_logos/youtubeMusic.png')}}">
+                                    </a>
+                                    <a class="storeText {{release.theme_color}}-text" href="{{release.youtube_music_link}}" target="_blank">Youtube Music</a>
+                                </div>
+
+                                <div class="storeLink">
+                                    <a class="storeImage" href="{{release.amazon_link}}" target="_blank">
+                                        <img style="width:100%" src="{{asset('img/releases/store_logos/amazon.png')}}">
+                                    </a>
+                                    <a class="storeText {{release.theme_color}}-text" href="{{release.amazon_link}}" target="_blank">Amazon</a>
+                                </div>
+
+                                <div class="storeLink">
+                                    <a class="storeImage" href="{{release.distrokid_link}}" target="_blank">
+                                        <svg style="width:100%" class="{{release.theme_color}}-fill" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewbox="0 0 330 330" xml:space="preserve">
+                                            <path id="XMLID_22_" d="M165,0C74.019,0,0,74.019,0,165s74.019,165,165,165s165-74.019,165-165S255.981,0,165,0z M85,190  c-13.785,0-25-11.215-25-25s11.215-25,25-25s25,11.215,25,25S98.785,190,85,190z M165,190c-13.785,0-25-11.215-25-25  s11.215-25,25-25s25,11.215,25,25S178.785,190,165,190z M245,190c-13.785,0-25-11.215-25-25s11.215-25,25-25  c13.785,0,25,11.215,25,25S258.785,190,245,190z"></path>
+                                        </svg>
+                                    </a>
+                                    <a class="storeText {{release.theme_color}}-text" href="{{release.distrokid_link}}" target="_blank">More</a>
+                                </div>
+                                <div style="width:5px;margin-right:10px">&nbsp;</div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-side-release">
+                {% if release.youtube_link %}
+                    <div id="youtube_cont_id">
+                        <iframe width="100%" height="100%" src="{{release.youtube_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                    </div>
+                {% else %}
+                    <div id="youtube_cont_id">
+                        <video id="gallery_video" autoplay loop muted playsinline class="{{release.theme_color}}-border invisible slowload"  width="100%" height="100%">
+                            <source src="{{asset('img/releases/gallery/' ~ release.gallery_img_link)}}.webm" type="video/webm">
+                            <source src="{{asset('img/releases/gallery/' ~ release.gallery_img_link)}}.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                {% endif %}
+                {% if other_releases %}
+                    <div id="other_releases_div">
+                        <div id="previoustext" class="listenText" style="justify-self: flex-start;margin-bottom: 20px;">Other Releases</div>
+                        <div class="x-scroll-container scroll">
+                            <div id="other_releases_grid">
+                                {% for item in other_releases %}
+                                    <div class="other_release_grid_item">
+                                        <a href="{{route('music::release',[item.id])}}"><img src="{{asset('img/releases/album_arts/' ~ item.img_link)}}" class="invisible visible" onload="this.classList.remove('invisible')"></a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+        </div>
+    </div>
+    <script>
+
+    var slowload = document.getElementsByClassName('slowload');
+    var arr = Array.from(slowload);
+
+    arr.forEach(element => {
+        element.onloadeddata = function() {
+            element.classList.remove('invisible')
+        };
+    });
+
+    </script>
+	{% endblock %}

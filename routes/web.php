@@ -11,6 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', ['as' => 'index', 'namespace' => 'Site', 'uses' => 'IndexController@viewHome']);
+
+Route::group([
+ 
+    'prefix' => 'music',
+    'as' => 'music::',
+    'namespace'=>'Site',
+
+], function () {
+
+    Route::get('catalog', ['as' => 'catalog', 'uses' => 'MusicController@viewAll']);
+    Route::get('release/{id}', ['as' => 'release', 'uses' => 'MusicController@viewRelease']);
+});
+
+Route::group([
+ 
+    'prefix' => 'store',
+    'as' => 'store::',
+
+], function () {
+
+    Route::get('/', ['as' => 'index', 'uses' => 'StoreController@view']);
+
 });
