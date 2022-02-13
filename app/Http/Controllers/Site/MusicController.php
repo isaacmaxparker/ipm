@@ -17,6 +17,10 @@ class MusicController extends Controller
     public function viewAll(Request $request){
 
         $latest = DB::table('releases')->orderBy('release_date','desc')->first();
+        
+        // TAKE THIS OUT LATER THIS IS A REDIRECT UNTIL I BUILD OUT CATALOG
+        return redirect('/music/release/' . $latest->id);
+
         $this->addTemplateVariables(compact('latest'));
 
         return view('music.catalog', $this->template_vars);

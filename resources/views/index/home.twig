@@ -1,8 +1,32 @@
 {% extends "_layout/site.twig" %}
 
 {% block content %}
-    <p>Latest Release: {{latest.title}}{{latest.subtitle ? ':': '' }} {{latest.subtitle }}</p>
-
-    <a href="{{route('music::release',[6])}}" >View This Release</a>
-    <a href="{{route('music::catalog')}}" >View All Releases</a>
+    <div class="homepage_mobile_cards">
+        <a href="{{route('music::release',[latest[0].id])}}">
+            <div class="homepage_mobile_card">
+                <div class="homepage_mobile_card_inner">
+                    <div class="listen_images">
+                        <div class="fake_image_spacer"></div>
+                        <a href="{{route('music::release',[latest[1].id])}}" class="first-child"><img src="{{asset('img/releases/album_arts/' ~ latest[1].img_link)}}"></a>
+                        <a href="{{route('music::release',[latest[0].id])}}" ><img src="{{asset('img/releases/album_arts/' ~ latest[0].img_link)}}">
+                        <a href="{{route('music::release',[latest[2].id])}}" class="last-child"><img src="{{asset('img/releases/album_arts/' ~ latest[2].img_link)}}">
+                    </div>
+                    <p>Listen</p>
+                </div>
+            </div>
+        </a>
+        <a href="{{route('music::release',[latest[0].id])}}">
+            <div class="homepage_mobile_card">
+                <div class="homepage_mobile_card_inner">
+                    <div class="listen_images">
+                        <div class="fake_image_spacer"></div>
+                        <a href="{{route('music::release',[latest[1].id])}}" class="first-child"><img src="{{asset('img/releases/album_arts/' ~ latest[1].img_link)}}"></a>
+                        <a href="{{route('music::release',[latest[0].id])}}" ><img src="{{asset('img/releases/album_arts/' ~ latest[0].img_link)}}">
+                        <a href="{{route('music::release',[latest[2].id])}}" class="last-child"><img src="{{asset('img/releases/album_arts/' ~ latest[2].img_link)}}">
+                    </div>
+                    <p>Shop</p>
+                </div>
+            </div>
+        </a>
+    </div>
 {% endblock %}

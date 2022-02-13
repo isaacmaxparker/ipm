@@ -1,7 +1,7 @@
 {% extends "_layout/site.twig" %}
 
 {% block content %}
-    <div class="background {{release.theme_color}}-dark-back">
+    <div class="background {{release.background_type == 'image' ? release.back_img_link: ''}}">
     {% if release.background_type == 'video' %}
         <video id="gallery_video" autoplay loop muted playsinline class="{{release.theme_color}}-border invisible slowload">
             <source src="{{asset('img/releases/gallery/' ~ release.back_img_link)}}.webm" type="video/webm">
@@ -10,7 +10,7 @@
     {% endif %}
     </div>
 	<div class="mobile_content">
-		<div id="main-content" class="main-content {{release.background_type == 'image' ? release.back_img_link: ''}}">
+		<div id="main-content" class="main-content ">
 			<div class="scroll-view">
 				<div class="albumContainer">
 					<div class="albumArtContainer">

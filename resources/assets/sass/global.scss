@@ -4,6 +4,9 @@ body, html{
     font-family: 'Renner';
 }
 
+$navHeight:50px;
+$navColor:rgba(0, 0, 0, 0.584);
+
 /* VISIBILITY */
 .hidden{
     display:none !important;
@@ -79,12 +82,15 @@ body, html{
     overflow-x: hidden;
     height: 100%;
 }
+.mobile_content, .desktop_content{
+    padding-top:$navHeight;
+}
+
 
 .main-content{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 }
-
 
 .x-scroll-container{
     width: 100%;
@@ -126,8 +132,10 @@ body, html{
 }
 
 .background{
-    min-width: 100%;
-    min-height: 100%;
+    min-width: 100vw;
+    min-height: 100vh;
+    top:0px;
+    left:0;
     position: absolute;
 }
 
@@ -135,3 +143,84 @@ body, html{
     position: fixed;
     z-index: 10;
 }
+
+//NAVIGATION
+nav{
+    height: $navHeight;
+    width:100vw;
+    z-index:1000;
+    position:fixed;
+    background-color:$navColor;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.82);
+}
+
+nav .menu{
+    float: right;
+    cursor: pointer;
+}
+
+.line {
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke: #ffffff;
+    transition: all 500ms;
+  }
+  
+  .top {
+    transform-origin: 26px 40px;
+  }
+  
+  .middle {
+    stroke-dasharray: 60 60;
+  }
+  
+  .bottom {
+    transform-origin: 26px 60px;
+  }
+  
+  .menu.clicked .line {
+    stroke: #a3a3a3;
+  }
+  
+  .menu.clicked .top {
+    transform: rotate(45deg);
+  }
+  
+  .menu.clicked .middle {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+  }
+  
+  .menu.clicked .bottom {
+    transform: rotate(-45deg);
+  }
+
+  .dropdownMenu{
+    max-height: 0px;
+    overflow-y: hidden;
+    transition: height .5s ease-in-out;
+    display: flex;
+    left:0;
+    width:100vw;
+    flex-direction: column;
+    background-color: $navColor;
+  }
+  .menu.clicked ~ .dropdownMenu{
+     max-height:100vh;
+     overflow-y: auto;
+     transition: max-height .8s ease-in-out;
+  }
+
+  .dropdownMenu a.menuLink{
+      font-size: 3rem;
+      color:white;
+      font-family: 'RennerLight';
+      font-weight: lighter;
+      margin:20px;
+      cursor:pointer;
+      text-decoration: none;
+  }
+
+  a.menuLink:hover{
+      opacity: .6;
+  }

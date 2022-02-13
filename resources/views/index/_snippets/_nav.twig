@@ -1,2 +1,17 @@
 <nav>
+<div class="mobile-content">
+    <div class="menu" onclick="toggleClass(this,'clicked')">
+    <svg width="45" height="45" viewBox="0 0 100 100">
+        <path class="line top" d="M 20,30 H 80"/>
+        <path class="line middle" d="M 20,50 H 80" />
+        <path class="line bottom" d="M 20,70 H 80"/>
+    </svg>
+    </div>
+    <div class="dropdownMenu">
+        <a href="{{route('index')}}" class="menuLink">Home</a>
+        <a href="{{route('music::catalog')}}" class="menuLink">Music</a>
+        <a class="menuLink">Store</a>
+    </div>
+</div>
+
 </nav>

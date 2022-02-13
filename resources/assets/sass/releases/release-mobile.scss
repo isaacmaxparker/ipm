@@ -55,7 +55,7 @@ padding-left:2.5vw;
     margin: 2.5vw;}
 
 .scroll-view{
-    height:78vh;
+    height:calc(85vh - 50px);
 }
 
 
@@ -164,7 +164,7 @@ padding-left:2.5vw;
     fill: rgb(0, 230, 230);
 }
 .aqua-dark-back{
-    background-color:rgba(2, 64, 116, 0.322);
+    background-color:rgba(3 , 62, 80, .88)
 }
 .aqua-border{
     border-color: rgb(0, 230, 230);
@@ -249,7 +249,7 @@ padding-left:2.5vw;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 22vh;
+    height: 15vh;
     width: 100%;
     box-shadow: #0000006e 0px -20px 20px;
     position: absolute;
@@ -281,7 +281,7 @@ padding-left:2.5vw;
     width: 100%;
     text-align: center;
     color: white;
-    margin-top: 15px;
+    margin-top: 2px;
     opacity: .8;
     height: 32px;
     font-size: 3.5vw;
@@ -291,6 +291,7 @@ padding-left:2.5vw;
     font-size: 20px;
     padding-bottom: 5px;
     padding-top: 10px;
+    margin-bottom: 1px !important;
 }
 
 #other_releases_div{

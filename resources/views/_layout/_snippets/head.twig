@@ -36,3 +36,12 @@
 
 <link rel="stylesheet" href="{{ mix('css/style.css') }}" type="text/css"/>
 <link rel="stylesheet" href="{{ asset('css/fonts.css') }}" type="text/css"/>
+<script>
+function toggleClass(div, className){
+    if(div.classList.contains(className)){
+        div.classList.remove(className)
+    }else{
+        div.classList.add(className)
+    }
+}
+</script>
