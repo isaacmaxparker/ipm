@@ -1,32 +1,36 @@
 {% extends "_layout/site.twig" %}
 
 {% block content %}
-    <div class="homepage_mobile_cards">
-        <a href="{{route('music::release',[latest[0].id])}}">
-            <div class="homepage_mobile_card">
-                <div class="homepage_mobile_card_inner">
-                    <div class="listen_images">
-                        <div class="fake_image_spacer"></div>
-                        <a href="{{route('music::release',[latest[1].id])}}" class="first-child"><img src="{{asset('img/releases/album_arts/' ~ latest[1].img_link)}}"></a>
-                        <a href="{{route('music::release',[latest[0].id])}}" ><img src="{{asset('img/releases/album_arts/' ~ latest[0].img_link)}}">
-                        <a href="{{route('music::release',[latest[2].id])}}" class="last-child"><img src="{{asset('img/releases/album_arts/' ~ latest[2].img_link)}}">
+<div class="background sd-back">
+    <div class="mobile_content">
+        <div class="homepage_mobile_cards">
+                <div class="homepage_mobile_card">
+                    <div class="homepage_mobile_card_inner">
+                        <div class="listen_images">
+                            <div class="fake_image_spacer"></div>
+                            <a href="{{route('music::release',[latest[1].id])}}" class="first-child"><img src="{{asset('img/releases/album_arts/' ~ latest[1].img_link)}}"></a>
+                            <a href="{{route('music::release',[latest[0].id])}}" ><img src="{{asset('img/releases/album_arts/' ~ latest[0].img_link)}}">
+                            <a href="{{route('music::release',[latest[2].id])}}" class="last-child"><img src="{{asset('img/releases/album_arts/' ~ latest[2].img_link)}}">
+                        </div>
+                        <a href="{{route('music::release',[latest[0].id])}}" class="homepage_text">
+                            <p class="homepage_text">Listen</p>
+                        </a>
                     </div>
-                    <p>Listen</p>
                 </div>
-            </div>
-        </a>
-        <a href="{{route('music::release',[latest[0].id])}}">
-            <div class="homepage_mobile_card">
-                <div class="homepage_mobile_card_inner">
-                    <div class="listen_images">
-                        <div class="fake_image_spacer"></div>
-                        <a href="{{route('music::release',[latest[1].id])}}" class="first-child"><img src="{{asset('img/releases/album_arts/' ~ latest[1].img_link)}}"></a>
-                        <a href="{{route('music::release',[latest[0].id])}}" ><img src="{{asset('img/releases/album_arts/' ~ latest[0].img_link)}}">
-                        <a href="{{route('music::release',[latest[2].id])}}" class="last-child"><img src="{{asset('img/releases/album_arts/' ~ latest[2].img_link)}}">
+            <a href="{{route('music::release',[latest[0].id])}}">
+                <div class="homepage_mobile_card" style="margin-bottom:auto">
+                    <div class="homepage_mobile_card_inner">
+                        <div class="listen_images">
+                            <div class="fake_image_spacer"></div>
+                            <a href="{{route('music::release',[latest[1].id])}}" class="first-child"><img src="{{asset('img/releases/album_arts/' ~ latest[1].img_link)}}"></a>
+                            <a href="{{route('music::release',[latest[0].id])}}" ><img src="{{asset('img/releases/album_arts/' ~ latest[0].img_link)}}">
+                            <a href="{{route('music::release',[latest[2].id])}}" class="last-child"><img src="{{asset('img/releases/album_arts/' ~ latest[2].img_link)}}">
+                        </div>
+                        <p>Shop</p>
                     </div>
-                    <p>Shop</p>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
+</div>
 {% endblock %}

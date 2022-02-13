@@ -1,0 +1,67 @@
+.desktop_content{
+    .catalog_grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        max-width: 100vw;
+    }
+    .catalog_grid a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .catalog_grid_card{
+        width:32vw;
+    }
+
+    .catalog_desc{
+        width:100%;
+        aspect-ratio: 1;
+        position: absolute;
+        z-index:1001;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: opacity .2s ease-in-out;
+        background-color: rgba(0, 0, 0, 0.616);
+    }
+
+    .catalog_grid_card .label{
+        transition: opacity .2s ease-in-out;
+    }
+
+    .catalog_grid a:hover .label{
+        opacity:0;
+        transition: opacity .2s ease-in-out;
+    }
+
+    .catalog_grid a:hover .catalog_desc{
+        opacity:1;
+        transition: opacity .2s ease-in-out;
+    }
+    
+    .catalog_desc p{
+        color:white;
+        text-align: center;
+        width:100%
+    }
+
+    .catalog_desc p:first-child{
+        font-size: 3rem;
+        margin-bottom:0px;
+    }
+
+    .catalog_desc p:last-child{
+        font-size: 1.3rem;
+        width:90%;
+        opacity: .8;
+        margin-top:5px;
+        
+    }
+
+    .catalog_desc hr{
+        background-color: white;
+        color:white;
+        width:84%
+    }
+}

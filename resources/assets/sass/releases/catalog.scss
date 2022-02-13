@@ -1,0 +1,44 @@
+.catalog_grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom:55px;
+    padding-top:15px;
+}
+
+.catalog_grid_card{
+    display: flex;
+    flex-direction:column;
+    width:90vw;
+    margin-bottom:20px;
+    position:relative;
+}
+.catalog_grid_card img{
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 0;
+}   
+.catalog_grid_card .card_spacer{
+    width:100%;
+    aspect-ratio: 1;
+}
+
+.catalog_grid_card .label{
+    position: absolute;
+    bottom:0;
+    right:0;
+    padding:10px;
+    font: size 1.5em;
+    z-index: 1000;
+    color:rgba(255, 255, 255, 0.829);
+    background-color: black;
+    margin:0px;
+    opacity: .78;
+}
+
+.catalog_grid_card .label span{
+    opacity: .8;
+}

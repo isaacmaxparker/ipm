@@ -133,7 +133,8 @@
                 {% if release.description %}
                 <div class="left-side-description">
                     <p class="left-side-description-title {{release.theme_color}}-text">About The Album:</p>
-                    <p>{{release.description}}</p>
+                    <p>{{release.description|raw}}</p>
+                    <p>© {{release.release_date|slice(0,4)}} Isaac McDougal, IEMG LLC</p>
                 </div>
                 {% endif %}
             </div>

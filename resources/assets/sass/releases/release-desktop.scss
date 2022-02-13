@@ -43,8 +43,15 @@
         width: 85%;
         overflow-y: scroll;
         margin-left: 7.5%;
-        margin-bottom:50px;
+        margin-bottom:125px;
         -webkit-mask-image: linear-gradient(180deg, transparent 1%, black 10%, black 87%, transparent 99%);
+    }
+
+    .left-side-description p:last-child{
+        font-size:70%;
+        text-align: center;
+        width:100%;
+        opacity: .7;
     }
 
     .left-side-description-title{
@@ -242,98 +249,7 @@
     .x-scroll-container.scroll{
         -webkit-mask-image: linear-gradient(90deg, transparent 1%, black 8%, black 95%, transparent 100%);
     }
-    /* COLOR THEMES */
-    .white-text{
-        color:white;
-    }
-    .pink-text{
-        color: pink;
-    }
-    .pink-dark-back{
-        background-color:rgba(116, 2, 78, 0.322);
-    }
-    .pink-fill{
-        fill:pink;
-    }
-    .pink-border{
-        border-color:  pink;
-    }
-    .pink-stroke{
-        stroke:pink
-    }
-    .aqua-text{
-        color: rgb(0, 230, 230);
-    }
-    .aqua-fill{
-        fill: rgb(0, 230, 230);
-    }
-    .aqua-dark-back{
-        background-color:rgba(2, 64, 116, 0.322);
-    }
-    .aqua-border{
-        border-color: rgb(0, 230, 230);
-    }
-    .aqua-stroke{
-        stroke: rgb(0, 230, 230);
-    }
-    .gold-text{
-        color: rgb(230, 188, 0);
-    }
-    .gold-fill{
-        fill: rgb(230, 188, 0);
-    }
-    .gold-dark-back{
-        background-color:rgba(116, 89, 2, 0.322);
-    }
-    .gold-border{
-        border-color: rgb(230, 188, 0);
-    }
-    .gold-stroke{
-        stroke: rgb(230, 188, 0);
-    }
-    .lime-text{
-        color: rgb(0, 230, 69);
-    }
-    .lime-fill{
-        fill: rgb(0, 230, 50);
-    }
-    .lime-dark-back{
-        background-color:rgba(2, 116, 2, 0.322);
-    }
-    .lime-border{
-        border-color: rgb(8, 230, 0);
-    }
-    .lime-stroke{
-        stroke: rgb(0, 230, 12);
-    }
-    .ice-text{
-        color: rgb(49, 205, 252);
-    }
-    .ice-fill{
-        fill: rgb(49, 205, 252);
-    }
-    .ice-dark-back{
-        background-color:rgba(2, 51, 116, 0.322);
-    }
-    .ice-border{
-        border-color: rgb(49, 205, 252);
-    }
-    .ice-stroke{
-        stroke: rgb(49, 205, 252);
-    }
-    .white-text{
-        color: rgb(224, 227, 255);
-    }
-    .white-fill{
-        fill: rgb(224, 227, 255);
-    }
-    .white-dark-back{
-        background-color:rgba(14, 14, 14, 0.664);
-    }
-    .white-border{
-        border-color: rgb(224, 227, 255);
-    }
-    .white-stroke{
-        stroke: rgb(255, 255, 255);
+    .albumArtContainer .storeText{
+        margin-top:15px;
     }
 }

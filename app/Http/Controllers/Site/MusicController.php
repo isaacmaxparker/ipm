@@ -16,12 +16,8 @@ class MusicController extends Controller
 
     public function viewAll(Request $request){
 
-        $latest = DB::table('releases')->orderBy('release_date','desc')->first();
-        
-        // TAKE THIS OUT LATER THIS IS A REDIRECT UNTIL I BUILD OUT CATALOG
-        return redirect('/music/release/' . $latest->id);
-
-        $this->addTemplateVariables(compact('latest'));
+        $releases = DB::table('releases')->orderBy('release_date','desc')->get();
+        $this->addTemplateVariables(compact('releases'));
 
         return view('music.catalog', $this->template_vars);
     }
@@ -29,7 +25,6 @@ class MusicController extends Controller
     public function viewRelease(Request $request, $id){
         $release = DB::table('releases')->where('id','=',$id)->first();
         $other_releases = DB::table('releases')->where('id','!=',$id)->orderBy('release_date','desc')->get();
-        
         $songs = DB::table('songs')->join('release_songs','songs.id','release_songs.song_id')->where('release_id','=',$release->id)->get();
         
         foreach($songs as $song){
