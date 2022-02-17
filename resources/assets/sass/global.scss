@@ -237,12 +237,13 @@ nav .menu{
       position:absolute;
       text-align: center;
       font-size:125%;
-      height:100%;
-      margin:50%;
+      height:$navHeight;
+      margin-left:50%;
       transform: translate(-50%);
       margin-top:15px;
-      opacity: .8;
+      opacity: .5;
       z-index: 0;
+      width:50%;
   }
 
   .mobile-content.clicked .mobile_page_title{
