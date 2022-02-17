@@ -17,7 +17,15 @@ class IndexController extends Controller
     public function viewHome(Request $request){
 
         $latest = DB::table('releases')->orderBy('release_date','desc')->limit(3)->get();
-        $this->addTemplateVariables(compact('latest'));
+
+        $featured = DB::table('products')
+        ->join('featured_products','products.id','featured_products.product_id')
+        ->join('product_images','products.id','product_images.product_id')
+        ->orderBy('featured_products.rank_order','asc')
+        ->get();
+
+
+        $this->addTemplateVariables(compact('latest','featured'));
 
         return view('index.home', $this->template_vars);
     }

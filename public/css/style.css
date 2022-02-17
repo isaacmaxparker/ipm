@@ -175,6 +175,7 @@ nav {
 nav .menu {
   float: right;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .line {
@@ -199,21 +200,21 @@ nav .menu {
           transform-origin: 26px 60px;
 }
 
-.menu.clicked .line {
+.mobile-content.clicked .line {
   stroke: #a3a3a3;
 }
 
-.menu.clicked .top {
+.mobile-content.clicked .top {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 
-.menu.clicked .middle {
+.mobile-content.clicked .middle {
   stroke-dasharray: 1 60;
   stroke-dashoffset: -30;
 }
 
-.menu.clicked .bottom {
+.mobile-content.clicked .bottom {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
@@ -235,7 +236,7 @@ nav .menu {
   background-color: rgba(0, 0, 0, 0.584);
 }
 
-.menu.clicked ~ .dropdownMenu {
+.mobile-content.clicked .dropdownMenu {
   max-height: 100vh;
   overflow-y: auto;
   -webkit-transition: max-height .8s ease-in-out;
@@ -254,6 +255,25 @@ nav .menu {
 
 a.menuLink:hover {
   opacity: .6;
+}
+
+.mobile_page_title {
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+  font-size: 125%;
+  height: 100%;
+  margin: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  margin-top: 15px;
+  opacity: .8;
+  z-index: 0;
+}
+
+.mobile-content.clicked .mobile_page_title {
+  opacity: .1;
 }
 
 /* SCROLLING */

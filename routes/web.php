@@ -29,9 +29,10 @@ Route::group([
  
     'prefix' => 'store',
     'as' => 'store::',
+    'namespace'=>'Site',
 
 ], function () {
 
-    Route::get('/', ['as' => 'index', 'uses' => 'StoreController@view']);
-
+    Route::get('/', ['as' => 'catalog', 'uses' => 'StoreController@viewCatalog']);
+    Route::get('product/{id}', ['as' => 'product', 'uses' => 'StoreController@viewProduct']);
 });
