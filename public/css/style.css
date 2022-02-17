@@ -274,10 +274,6 @@ a.menuLink:hover {
 
 /* COLOR THEMES */
 
-.white-text {
-  color: white;
-}
-
 .pink-text {
   color: pink;
 }
@@ -291,7 +287,7 @@ a.menuLink:hover {
 }
 
 .pink-border {
-  border-color: pink;
+  border-color: pink !important;
 }
 
 .pink-stroke {
@@ -311,7 +307,7 @@ a.menuLink:hover {
 }
 
 .aqua-border {
-  border-color: #00e6e6;
+  border-color: #00e6e6 !important;
 }
 
 .aqua-stroke {
@@ -331,7 +327,7 @@ a.menuLink:hover {
 }
 
 .gold-border {
-  border-color: #e6bc00;
+  border-color: #e6bc00 !important;
 }
 
 .gold-stroke {
@@ -351,7 +347,7 @@ a.menuLink:hover {
 }
 
 .lime-border {
-  border-color: #08e600;
+  border-color: #08e600 !important;
 }
 
 .lime-stroke {
@@ -371,7 +367,7 @@ a.menuLink:hover {
 }
 
 .ice-border {
-  border-color: #31cdfc;
+  border-color: #31cdfc !important;
 }
 
 .ice-stroke {
@@ -391,7 +387,7 @@ a.menuLink:hover {
 }
 
 .white-border {
-  border-color: #e0e3ff;
+  border-color: #e0e3ff !important;
 }
 
 .white-stroke {
@@ -707,10 +703,10 @@ a.menuLink:hover {
           transform: rotate(-90deg);
   fill: none;
   position: absolute;
-  min-width: 35px;
-  min-height: 35px;
-  max-width: 35px;
-  max-height: 35px;
+  min-width: 49px;
+  min-height: 49px;
+  max-width: 49px;
+  max-height: 49px;
   stroke: white;
   stroke-width: 10px;
   stroke-dasharray: 314;
@@ -1015,18 +1011,28 @@ hr {
   margin-bottom: 25px;
 }
 
-.desktop_content .playingCircle,
 .desktop_content .songPreviewButtonsDiv {
-  min-width: 20px;
-  max-width: 20px;
-  min-height: 20px;
-  max-height: 20px;
+  min-width: 25px;
+  max-width: 25px;
+  min-height: 25px;
+  max-height: 25px;
   border: 2px solid;
 }
 
-.desktop_content .songPreviewButton {
+.desktop_content .playingCircle {
+  min-width: 34px;
+  min-height: 34px;
+  max-width: 34px;
+  max-height: 34px;
+}
+
+.desktop_content .songPreviewPlayButton {
   padding: 0px;
   padding-left: 2.5px;
+}
+
+.desktop_content .songPreviewStopButton {
+  padding: 0px;
 }
 
 .desktop_content .storesDiv {

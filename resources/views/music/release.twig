@@ -19,22 +19,22 @@
 					<div id="previewsDiv" class="previews">
 						{% for song in songs %}
 							<div class="songPreviewDiv">
-								<div class="songPreviewButtonsDiv {{release.theme_color}}-border">
+								<div class="songPreviewButtonsDiv {{release.theme_color}}-border" data-module="audio">
 									<div style="display: none;">
 										<audio controls="" class="songPreviewAudio">
-											<source src="../media/audio/previews/bewithyou_preview.mp3" type="audio/mpeg">
+											<source src="{{asset('audio/previews/' ~ song.audio_link)}}" type="audio/mpeg">
 											Your browser does not support the audio element.
 										</audio>
 									</div>
 									<svg class="playingCircle hidden {{release.theme_color}}-stroke" viewbox="0 0 100 100">
 										<circle cx="50" cy="50" r="40"></circle>
 									</svg>
-									<div class="songPreviewButton songPreviewPlayButton {{release.theme_color}}-fill" onclick="playPreview(this.parentElement)">
+									<div class="songPreviewButton songPreviewPlayButton {{release.theme_color}}-fill">
 										<svg x="0px" y="0px" viewbox="0 0 17.804 17.804" style="enable-background:new 0 0 17.804 17.804;" xml:space="preserve">
 											<path d="M2.067,0.043C2.21-0.028,2.372-0.008,2.493,0.085l13.312,8.503c0.094,0.078,0.154,0.191,0.154,0.313    c0,0.12-0.061,0.237-0.154,0.314L2.492,17.717c-0.07,0.057-0.162,0.087-0.25,0.087l-0.176-0.04    c-0.136-0.065-0.222-0.207-0.222-0.361V0.402C1.844,0.25,1.93,0.107,2.067,0.043z"></path>
 										</svg>
 									</div>
-									<div class="songPreviewButton songPreviewStopButton {{release.theme_color}}-fill hidden" onclick="stopPreview(this.parentElement)">
+									<div class="songPreviewButton songPreviewStopButton {{release.theme_color}}-fill hidden">
 										<svg x="0px" y="0px" viewbox="0 0 10.334 10.334" style="enable-background:new 0 0 10.334 10.334;" xml:space="preserve">
 											<path d="M10.333,9.816c0,0.285-0.231,0.518-0.517,0.518H0.517C0.233,10.334,0,10.102,0,9.816V0.517   C0,0.232,0.231,0,0.517,0h9.299c0.285,0,0.517,0.231,0.517,0.517V9.816z"></path>
 										</svg>
@@ -143,22 +143,22 @@
                     <div id="previewsDiv" class="previews">
                         {% for song in songs %}
                             <div class="songPreviewDiv">
-                                <div class="songPreviewButtonsDiv {{release.theme_color}}-border">
+                                <div class="songPreviewButtonsDiv {{release.theme_color}}-border" data-module="audio">
                                     <div style="display: none;">
                                         <audio controls="" class="songPreviewAudio">
-                                            <source src="../media/audio/previews/bewithyou_preview.mp3" type="audio/mpeg">
+                                            <source src="{{asset('audio/previews/' ~ song.audio_link)}}" type="audio/mpeg">
                                             Your browser does not support the audio element.
                                         </audio>
                                     </div>
                                     <svg class="playingCircle hidden {{release.theme_color}}-stroke" viewbox="0 0 100 100">
                                         <circle cx="50" cy="50" r="40"></circle>
                                     </svg>
-                                    <div class="songPreviewButton songPreviewPlayButton {{release.theme_color}}-fill" onclick="playPreview(this.parentElement)">
+                                    <div class="songPreviewButton songPreviewPlayButton {{release.theme_color}}-fill">
                                         <svg x="0px" y="0px" viewbox="0 0 17.804 17.804" style="enable-background:new 0 0 17.804 17.804;" xml:space="preserve">
                                             <path d="M2.067,0.043C2.21-0.028,2.372-0.008,2.493,0.085l13.312,8.503c0.094,0.078,0.154,0.191,0.154,0.313    c0,0.12-0.061,0.237-0.154,0.314L2.492,17.717c-0.07,0.057-0.162,0.087-0.25,0.087l-0.176-0.04    c-0.136-0.065-0.222-0.207-0.222-0.361V0.402C1.844,0.25,1.93,0.107,2.067,0.043z"></path>
                                         </svg>
                                     </div>
-                                    <div class="songPreviewButton songPreviewStopButton {{release.theme_color}}-fill hidden" onclick="stopPreview(this.parentElement)">
+                                    <div class="songPreviewButton songPreviewStopButton {{release.theme_color}}-fill hidden">
                                         <svg x="0px" y="0px" viewbox="0 0 10.334 10.334" style="enable-background:new 0 0 10.334 10.334;" xml:space="preserve">
                                             <path d="M10.333,9.816c0,0.285-0.231,0.518-0.517,0.518H0.517C0.233,10.334,0,10.102,0,9.816V0.517   C0,0.232,0.231,0,0.517,0h9.299c0.285,0,0.517,0.231,0.517,0.517V9.816z"></path>
                                         </svg>

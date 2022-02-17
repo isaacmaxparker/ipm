@@ -154,17 +154,28 @@
         margin-bottom:25px;
     }
     
-    .playingCircle, .songPreviewButtonsDiv{
-        min-width: 20px;
-        max-width: 20px;
-        min-height: 20px;
-        max-height: 20px;
+    .songPreviewButtonsDiv{
+        min-width: 25px;
+        max-width: 25px;
+        min-height: 25px;
+        max-height: 25px;
         border: 2px solid;
     }
+
+    .playingCircle{
+        min-width: 34px;
+        min-height: 34px;
+        max-width: 34px;
+        max-height: 34px;
+    }
     
-    .songPreviewButton{
+    
+    .songPreviewPlayButton{
         padding:0px;
         padding-left:2.5px;
+    }
+    .songPreviewStopButton{
+        padding:0px;
     }
     
     .storesDiv{

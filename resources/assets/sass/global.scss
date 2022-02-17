@@ -246,9 +246,6 @@ nav .menu{
   }
 
   /* COLOR THEMES */
-  .white-text{
-    color:white;
-}
 .pink-text{
     color: pink;
 }
@@ -259,10 +256,10 @@ nav .menu{
     fill:pink;
 }
 .pink-border{
-    border-color:  pink;
+    border-color:  pink !important;
 }
 .pink-stroke{
-    stroke:pink
+    stroke:pink;
 }
 .aqua-text{
     color: rgb(0, 230, 230);
@@ -274,7 +271,7 @@ nav .menu{
     background-color:rgba(7, 44, 61, 0.322);
 }
 .aqua-border{
-    border-color: rgb(0, 230, 230);
+    border-color: rgb(0, 230, 230) !important;
 }
 .aqua-stroke{
     stroke: rgb(0, 230, 230);
@@ -289,7 +286,7 @@ nav .menu{
     background-color:rgba(56, 43, 0, 0.418);
 }
 .gold-border{
-    border-color: rgb(230, 188, 0);
+    border-color: rgb(230, 188, 0) !important;
 }
 .gold-stroke{
     stroke: rgb(230, 188, 0);
@@ -304,7 +301,7 @@ nav .menu{
     background-color:rgba(5, 51, 5, 0.322);
 }
 .lime-border{
-    border-color: rgb(8, 230, 0);
+    border-color: rgb(8, 230, 0) !important;
 }
 .lime-stroke{
     stroke: rgb(0, 230, 12);
@@ -319,7 +316,7 @@ nav .menu{
     background-color:rgba(2, 51, 116, 0.322);
 }
 .ice-border{
-    border-color: rgb(49, 205, 252);
+    border-color: rgb(49, 205, 252) !important;
 }
 .ice-stroke{
     stroke: rgb(49, 205, 252);
@@ -334,7 +331,7 @@ nav .menu{
     background-color:rgba(37, 37, 37, 0.664);
 }
 .white-border{
-    border-color: rgb(224, 227, 255);
+    border-color: rgb(224, 227, 255) !important;
 }
 .white-stroke{
     stroke: rgb(255, 255, 255);
