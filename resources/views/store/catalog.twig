@@ -1,11 +1,22 @@
-{% set pageTitle = "Shop" %}
+{% set pageTitle = "Store" %}
 
 {% extends "_layout/site.twig" %}
 
 {% block content %}
 <div class="background sd-back">
-    <div class="mobile_content">
-        
+    <div class="mobile_content fullscreen">
+        <div class="y-scroll-div back-white">
+            <div class="shop_catalog_grid">
+                {% for product in products %}
+                    <div class="product_tile">
+                        <a href="{{route('store::product',[product.prod_id])}}" class="first-child">
+                            <img src="{{asset('img/store/' ~ product.type ~ '/' ~ product.img_link)}}">
+                            <p>{{product.name}}{{product.type == 'tshirt' ? ' Shirt' : ''}}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

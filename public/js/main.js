@@ -65,7 +65,7 @@
 /************************************************************************/
 /******/ ({
 
-/***/ 14:
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10963,25 +10963,49 @@ module.exports = __webpack_require__(45);
 /***/ }),
 
 /***/ 45:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 var modules = Array.from(document.querySelectorAll('[data-module]'));
 
 modules.forEach(function (module) {
   var componentName = module.getAttribute('data-module');
-  var jsmodule = __webpack_require__(52)("./" + componentName + '.js');
+  var jsmodule = __webpack_require__(46)("./" + componentName + '.js');
   jsmodule.default.init(module);
 });
 
 /***/ }),
 
-/***/ 50:
+/***/ 46:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./audio.js": 47,
+	"./slowload.js": 48
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 46;
+
+/***/ }),
+
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 
@@ -11025,32 +11049,7 @@ var stopPreview = function stopPreview(songDiv) {
 
 /***/ }),
 
-/***/ 52:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./audio.js": 50,
-	"./slowload.js": 53
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 52;
-
-/***/ }),
-
-/***/ 53:
+/***/ 48:
 /***/ (function(module, exports) {
 
 

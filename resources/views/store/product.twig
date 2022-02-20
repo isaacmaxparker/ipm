@@ -1,0 +1,31 @@
+{% set pageTitle = "Store" %}
+
+{% extends "_layout/site.twig" %}
+
+{% block content %}
+<div class="background sd-back">
+    <div class="mobile_content">
+        <div class="y-scroll-div">
+            <div>
+                    <a href="{{route('store::catalog')}}" class="back_link"><p>< Catalog</p></a>
+                                    <div style="color:white;">Product Name:{{product.name}} - {{product.design_name}} </div>
+                                    <br><Br><Br>
+
+                {% for color in product_colors %}
+                    <div style="color:white;">Product Color:{{color.color_name}}</div>
+                {% endfor %}
+<br>
+
+                {% for var in product_variants %}
+                    <div style="color:white;">Product Variant:{{var.name}} - {{var.design_name}}</div>
+                {% endfor %}
+<br>
+                {% for size in product_sizes %}
+                    <div style="color:white;">Product Size:{{size.size}}</div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

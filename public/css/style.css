@@ -167,7 +167,7 @@ nav {
   width: 100vw;
   z-index: 1000;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.584);
+  background-color: rgba(0, 0, 0, 0.784);
   -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.82);
           box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.82);
 }
@@ -233,7 +233,7 @@ nav .menu {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.584);
+  background-color: rgba(0, 0, 0, 0.784);
 }
 
 .mobile-content.clicked .dropdownMenu {
@@ -1318,5 +1318,50 @@ hr {
   background-color: white;
   color: white;
   width: 84%;
+}
+
+.shop_catalog_grid {
+  display: grid;
+  width: 100vw;
+  height: 100%;
+  grid-template-columns: 1fr 1fr;
+}
+
+.product_tile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.product_tile img {
+  width: 90%;
+  height: 90%;
+}
+
+.product_tile p,
+.product_tile a {
+  text-align: center;
+  color: black;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.back-white {
+  background-color: rgba(255, 255, 255, 0.897);
+}
+
+.back_link {
+  text-align: left;
+  width: 100%;
+  margin: 20px;
+  color: white;
+  opacity: .6;
+  text-decoration: none;
 }
 
