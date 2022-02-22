@@ -10980,7 +10980,8 @@ modules.forEach(function (module) {
 
 var map = {
 	"./audio.js": 47,
-	"./slowload.js": 48
+	"./slowload.js": 48,
+	"./thumbnail.js": 49
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -11053,6 +11054,41 @@ var stopPreview = function stopPreview(songDiv) {
 /***/ (function(module, exports) {
 
 
+
+/***/ }),
+
+/***/ 49:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
+
+
+var init = function init(selector) {
+   selector.addEventListener('click', function () {
+      switchImage(selector);
+   });
+};
+
+var switchImage = function switchImage(thumbnail) {
+   var id = thumbnail.getAttribute('data-image-id');
+   var images = document.getElementsByClassName('product-image');
+
+   var img = void 0;
+
+   for (var i = 0; i < images.length; i++) {
+      img = images[i];
+      if (img.getAttribute('data-image-id') == id) {
+         img.classList.remove('hidden-image');
+      } else {
+         img.classList.add('hidden-image');
+      }
+   }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({ init: init });
 
 /***/ })
 

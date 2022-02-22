@@ -1,6 +1,6 @@
 {% extends "_layout/site.twig" %}
 {% set pageTitle = release.title %}
-
+{% set customFooter = true %}
 
 {% block content %}
     <div class="background {{release.background_type == 'image' ? release.back_img_link: ''}}">

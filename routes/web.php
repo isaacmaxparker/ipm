@@ -35,4 +35,7 @@ Route::group([
 
     Route::get('/', ['as' => 'catalog', 'uses' => 'StoreController@viewCatalog']);
     Route::get('product/{id}', ['as' => 'product', 'uses' => 'StoreController@viewProduct']);
+    Route::get('cart', ['as' => 'cart', 'uses' => 'StoreController@ViewCart']);
+    Route::get('addtocart/{id}', ['as' => 'addtocart', 'uses' => 'StoreController@addToCart']);
+    Route::get('deletecart', ['as' => 'deletecart', 'uses' => 'StoreController@deleteCart']);
 });

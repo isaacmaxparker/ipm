@@ -1,0 +1,113 @@
+.desktop_content{
+   .horizontal_div{
+       width:100vw;
+       align-items: flex-start;
+   }
+   .product-image-div{
+       width:50vw;
+       margin-top:75px;
+       flex-direction: row-reverse;
+       padding-left:5px;
+       margin-left:0px;
+   }
+    .product-div{
+        width:50vw;
+    }
+    .desktop-product-description-div{
+        width:40vw;
+        margin-top:100px;
+    }
+    .details-div{
+        width:100%;
+    }
+    hr.grey-line{
+        width:85% !important;
+        margin-left:unset;
+    }
+    .product-description{
+        width:95%;
+        -webkit-mask-image:unset;
+        max-height: unset;
+        padding-left:25px;
+        padding-right:25px;
+    }
+    .product-image{
+        max-width: calc(100% - 15px);
+        border: 1px solid rgba(0, 0, 0, 0.774);
+        border-radius: 3px;
+        padding: 5px;
+        max-height: 80vh;
+        transform:unset;
+        margin:unset;
+    }
+    .product-buttons-description{
+        margin:20px;
+        color:grey;
+        align-items: flex-end;
+    }
+
+    .product-button{
+        margin-left:50px;
+        border-radius: 5px;
+        height:34px;
+        background-color: rgba(0, 0, 0, 0.459);
+        border: solid 1px $footer_white;
+        color:$footer_white;
+        padding-left:33px;
+        padding-right:33px;
+        font-size: 18px;
+    }
+
+    .product-button p{
+        margin:0px;
+    }
+    .product-buttons-description  .product-quantity-buttons input{
+        color: black;
+    }
+    .product-buttons p{
+        color:$footer_dark_grey;
+    }
+     .product-quantity-buttons input{
+        height:30px;
+        width:30px;
+        font-size: 18px;
+        text-align: center;
+        border: solid 1px darkgrey;
+        border-radius: 0px;
+        font-family: 'Renner';
+        background-color: $footer_black;
+    }
+    
+    .product-quantity-buttons div{
+        height:30px;
+        width:25px;
+        text-align: center;
+        border: solid 1px darkgrey;
+        background-color: $footer_black;
+        padding:1px;
+        font-weight: bold;
+        font-size: 16px;
+        color:grey;
+    }
+    
+    .product-name{
+        // margin-left: calc(-5vw - 15px);
+        font-weight: bold;
+        text-align: center;
+        margin-top:0px;
+        font-size: 190%;
+        margin-bottom: 0px;
+    }
+    
+    .product-price{
+        // margin-left: calc(-5vw - 15px);
+        font-weight: normal;
+        color:rgba(0, 0, 0, 0.63);
+        text-align: center;
+        margin-top:7px;
+        font-size: 140%;
+    }
+    .product-alert{
+        font-size: 120%;;
+    }
+}

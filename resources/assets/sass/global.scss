@@ -54,7 +54,13 @@ $navColor:rgba(0, 0, 0, 0.784);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y:center;
-    background-position-x: center;
+}
+
+.sd-white-back{
+    //background-image: url("../../../public/img/backgrounds/sd-back-white.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y:center;
 }
 
 .cn-back{
@@ -150,6 +156,22 @@ $navColor:rgba(0, 0, 0, 0.784);
 }
 
 //NAVIGATION
+
+.back_link{
+    float:left;
+    transform: translate(0,-50%);
+    margin-top:23px;
+    margin-left:5px;
+}
+
+.back_link a{
+    color: white;
+    opacity: .8;
+    font-size: 36px;
+    text-decoration: none;
+    font-family: 'Arial','Renner';
+}
+
 nav{
     height: $navHeight;
     width:100vw;
@@ -250,7 +272,17 @@ nav .menu{
     opacity:.1;
   }
 
-  /* SCROLLING */
+  .footer{
+    position:absolute;
+    bottom:0;
+    left:0;
+    background-color: $navColor;
+    height:50px;
+    width: 100vw;
+    box-shadow: -2px -2px 5px 0px rgba(0, 0, 0, 0.82);
+  }
+
+  /* LAYOUTS */
   .x-scroll-div{
     width:100%;
     height:100%;
@@ -262,6 +294,31 @@ nav .menu{
     height:100%;
     overflow-x: hidden;
     overflow-y: auto !important;
+  }
+
+  .full_screen_scroll{
+    width:100vw;
+    height:calc(100vh - 50px);
+}
+
+.full_screen_scroll_footer{
+    width:100vw;
+    height:calc(100vh - 100px);
+}
+
+
+  .flex-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flex-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
   /* COLOR THEMES */

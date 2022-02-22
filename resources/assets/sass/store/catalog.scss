@@ -25,5 +25,7 @@
 }
 
 .back-white{
-    background-color: rgba(255, 255, 255, 0.897); 
+    background-color: rgba(255, 255, 255, 0.797); 
+    min-height: calc(100vh - 50px);
+    max-height: calc(100vh - 50px);
 }
