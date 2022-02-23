@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Controllers\Controller;
 use DB;
 use stdClass;
+use DateTime;
 
 use Illuminate\Http\Request;
 
@@ -65,32 +66,21 @@ class StoreController extends Controller
         return view('store.product', $this->template_vars);
     }
 
-    public function viewCart(Request $request){
-        $cart = session('cart');
-        if(count($cart) < 1){
-            $cart = [];
+    public function viewCheckout(Request $request){
+
+        if(session('promo')){
+            $this->validatePromo($request);
+        }else{
+            session(['shipping'=>10]);
         }
-        $cart_items = [];
-        foreach ($cart as $item){
-            $product = DB::table('product_catalog')
-            ->join('products','products.id','product_catalog.product_id')
-            ->where('product_catalog.id','=',$item[0])->first();
 
-             $img = DB::table('product_images')->where('product_id','=',$item[0])->orderBy('sort_order','desc')->first();
-
-            $new_item = new StdClass;
-            $new_item->cart_item_id = $item[2];
-            $new_item->name = $product->name;
-            $new_item->price = $product->price;
-            $new_item->total = $product->price * $item[1];
-            $new_item->quantity = $item[1];
-            $new_item->img_link = $img->img_link;
-
-            array_push($cart_items,$new_item);
-        }
-        return $cart_items;
-        $this->addTemplateVariables(compact('cart_items'));
-        return view('store.cart', $this->template_vars);
+        $shipping = session('shipping');
+        $cart_items = $this->createCartItems()[0];
+        $cart_total = $this->createCartItems()[1];
+        $total_discount = $this->createCartItems()[2];
+        $promo = session('promo');
+        $this->addTemplateVariables(compact('cart_items','cart_total','promo','total_discount', 'shipping'));
+        return view('store.checkout', $this->template_vars);
     }
 
     public function addToCart(Request $request, $id){
@@ -101,15 +91,164 @@ class StoreController extends Controller
             $cart = session('cart');
         }
 
-        $cart_item = array($id, $quant, $this->generateRandomString());
+        $cart_item = new StdClass;
+        $cart_item->cart_item_id = $this->generateRandomString();
+        $cart_item->product_id = $id;
+        $cart_item->quantity = $quant;
+        $cart_item->discount = 0;
 
         $request->session()->push('cart', $cart_item);
-        return redirect('/store/cart');
+        return redirect('/store/checkout');
+    }
+
+    //AJAX FUNCTIONS
+    public function deleteFromCart(Request $request){
+        $cart_obj_id = $request->input('id');
+        $new_array = [];
+        $cart = session('cart');
+
+        foreach( $cart as $item){
+            if($item->cart_item_id != $cart_obj_id){
+                array_push($new_array, $item);
+            }
+        }
+
+        session(['cart'=>$new_array]);
+
+        $response = new StdClass();
+        $response->type = 'Success';
+        return [$response, $new_array, session('shipping')];
     }
 
     public function deleteCart(Request $request){
         $request->session()->pull('cart');
+        $request->session()->pull('promo');
         return redirect::back();
+    }
+
+    public function validatePromo(Request $request){
+        $promocode = strtolower($request->input('code'));
+        $response = new StdClass();
+
+        if($promocode == 'inpersonpickup'){
+            session(['shipping'=>0]);
+            $response->message = 'Code: ' . strtoupper($promocode) . ' Applied';
+            $response->type = 'Success';
+            session(['promo'=>strtoupper($promocode)]);
+            return [$response, session('cart'), session('shipping')];
+        }else{
+            if(!$promocode){
+                $promocode = session('promo');
+            }
+    
+            $code = DB::table('promos')
+            ->where('code','=',$promocode)
+            ->first();
+    
+
+            if(count($code) < 1){
+                $response->message = 'Promo Code is not valid';
+                $response->type = 'Error';
+                return [$response];
+            }
+    
+            $date_now = new DateTime();
+            $start_date = new DateTime($code->start_date);
+            $end_date = new DateTime($code->end_date);
+    
+            
+            if($date_now < $start_date ){
+                $response->message = 'Promo has not begun yet';
+                $response->type = 'Error';
+                return [$response];
+            }
+            if($date_now > $end_date){
+                $response->message = 'Promo has expired';
+                $response->type = 'Error';
+                return [$response];
+            }
+    
+            $cart_items = session('cart');
+            foreach($cart_items as $item){
+                $item->price = DB::table('products')->join('product_catalog','products.id','product_catalog.product_id')->where('product_catalog.id',$item->product_id)->first()->price;
+                
+                if($code->dollar_discount){
+                    $item->discount = $code->dollar_discount;
+                }
+                else if($code->percentage_discount){
+                    $item->discount = $item->price * $code->percentage_discount;
+                }
+                $item->price = $item->price - $item->discount;
+                $item->total = $item->price * $item->quantity;
+            }
+
+            session(['cart'=>$cart_items]);
+            session(['promo'=>strtoupper($promocode)]);
+    
+            $response->message = 'Code: ' . strtoupper($promocode) . ' Applied';
+            $response->type = 'Success';
+            return [$response, $cart_items, session('shipping')];
+        }
+
+        
+
+
+    }
+
+    public function removePromo(Request $request){
+        $response = new StdClass();
+
+        session(['shipping'=>10]);
+
+        $request->session()->pull('promo');
+
+        $cart_items = session('cart');
+
+        foreach($cart_items as $item){
+            $item->price = DB::table('products')->join('product_catalog','products.id','product_catalog.product_id')->where('product_catalog.id',$item->product_id)->first()->price;
+            $item->discount = 0;
+        }
+
+        session(['cart'=>$cart_items]);
+        $response->type = 'Success';
+
+        return [$response, $cart_items, session('shipping')];
+    }
+
+    // HELPER FUNCTIONS 
+    public function createCartItems(){
+        $cart = session('cart');
+        $cart_total = 0;
+        $discount_total = 0;
+        if(count($cart) < 1){
+            $cart = [];
+        }
+        $cart_items = [];
+        foreach ($cart as $item){
+            $product = DB::table('product_catalog')
+            ->join('products','products.id','product_catalog.product_id')
+            ->where('product_catalog.id','=',$item->product_id)->first();
+
+             $img = DB::table('product_images')->where('product_id','=',$item->product_id)->orderBy('sort_order','desc')->first();
+
+            $new_item = new StdClass;
+            $new_item->cart_item_id = $item->cart_item_id;
+            $new_item->product_id = $item->product_id;
+            $new_item->name = $product->name;
+            $new_item->price = $product->price;
+            $new_item->product_price = $product->price;
+            $new_item->discount = ($item->discount * $item->quantity);
+            $new_item->total = ($product->price * $item->quantity);
+            $new_item->quantity = $item->quantity;
+            $new_item->img_link = $product->type . "/" . $img->img_link;
+
+            $cart_total = $cart_total + $new_item->total - $new_item->discount;
+            $discount_total = $discount_total + $new_item->discount;
+
+            array_push($cart_items,$new_item);
+        }
+
+        return [$cart_items,$cart_total,$discount_total];
     }
 
     public function generateRandomString($length = 5) {

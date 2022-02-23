@@ -1,5 +1,6 @@
 {% set pageTitle = "Store" %}
-{% set pageBackLink = true %}
+{% set pageBackLink = false %}
+{% set backLinkURL = "route('index')" %}
 {% set customFooter = true %}
 
 {% extends "_layout/site.twig" %}
@@ -49,8 +50,8 @@
                         <input id="quantity_input" type="number" value="1" min="1" max="{{catalog_item.amount_left}}" onchange="validateQuantity(this)">
                         <div onclick="incrementQuantity(this.parentElement.children[1],true)" class="flex-column"><p>+</p></div>
                     </div>
-                    <div class="product-button flex-row">
-                        <p onclick="addToCart()">Add To Cart</p>
+                    <div onclick="addToCart('')" class="product-button flex-row">
+                        <p >Add To Cart</p>
                     </div>
                 </div>
             </div>
@@ -95,8 +96,8 @@
                             <input id="quantity_input_desktop" type="number" value="1" min="1" max="{{catalog_item.amount_left}}" onchange="validateQuantity(this)">
                             <div onclick="incrementQuantity(this.parentElement.children[1],true)" class="flex-column"><p>+</p></div>
                         </div>
-                        <div class="product-button flex-row">
-                            <p onclick="addToCart('_desktop')">Add To Cart</p>
+                        <div class="product-button flex-row" onclick="addToCart('_desktop')">
+                            <p >Add To Cart</p>
                         </div>
                     </div>
                     <hr class="grey-line">
@@ -117,7 +118,6 @@
 <script>
     function addToCart(string=null){;
         let quantity = document.getElementById('quantity_input'+string).value;
-       alert(quantity)
         let url = window.location.href.replace('product','addtocart') + `?quantity=${quantity}`;
         window.location = url;
     }

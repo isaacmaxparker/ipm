@@ -35,7 +35,11 @@ Route::group([
 
     Route::get('/', ['as' => 'catalog', 'uses' => 'StoreController@viewCatalog']);
     Route::get('product/{id}', ['as' => 'product', 'uses' => 'StoreController@viewProduct']);
-    Route::get('cart', ['as' => 'cart', 'uses' => 'StoreController@ViewCart']);
     Route::get('addtocart/{id}', ['as' => 'addtocart', 'uses' => 'StoreController@addToCart']);
+    Route::get('cart', ['as' => 'cart', 'uses' => 'StoreController@ViewCart']);
+    Route::get('checkout', ['as' => 'checkout', 'uses' => 'StoreController@ViewCheckout']);
+    Route::get('addpromo', ['as' => 'addpromo', 'uses' => 'StoreController@ValidatePromo']);
+    Route::get('removepromo', ['as' => 'removedpromo', 'uses' => 'StoreController@RemovePromo']);
+    Route::get('removefromcart', ['as' => 'removefromcart', 'uses' => 'StoreController@deleteFromCart']);
     Route::get('deletecart', ['as' => 'deletecart', 'uses' => 'StoreController@deleteCart']);
 });

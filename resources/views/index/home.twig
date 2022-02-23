@@ -24,9 +24,9 @@
                     <div class="homepage_mobile_card_inner">
                         <div class="listen_images">
                             <div class="fake_image_spacer"></div>
-                            <a href="{{route('store::product',[featured[1].id])}}" class="first-child"><img src="{{asset('img/store/' ~ featured[1].type ~ '/' ~ featured[1].img_link)}}"></a>
+                            {# <a href="{{route('store::product',[featured[1].id])}}" class="first-child"><img src="{{asset('img/store/' ~ featured[1].type ~ '/' ~ featured[1].img_link)}}"></a> #}
                             <a href="{{route('store::product',[featured[0].id])}}"> <img src="{{asset('img/store/' ~ featured[0].type ~ '/' ~ featured[0].img_link)}}">
-                            <a href="{{route('store::product',[featured[2].id])}}" class="last-child"><img src="{{asset('img/store/'  ~  featured[2].type ~ '/' ~ featured[2].img_link)}}">
+                            {# <a href="{{route('store::product',[featured[2].id])}}" class="last-child"><img src="{{asset('img/store/'  ~  featured[2].type ~ '/' ~ featured[2].img_link)}}"> #}
                         </div>
                         <a href="{{route('store::catalog')}}" class="homepage_text">
                             <p class="homepage_text">Shop</p>

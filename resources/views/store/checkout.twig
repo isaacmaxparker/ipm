@@ -1,0 +1,103 @@
+{% set pageTitle = "Checkout" %}
+{% set pageBackLink = true %}
+{% set backLinkURL = "route('store::index')"  %}
+{% set customFooter = false %}
+
+{% extends "_layout/site.twig" %}
+
+{% block content %}
+<div class="background sd-white-back">
+    <div class="mobile_content back-white">
+        <div class="y-scroll-div full_screen_scroll_footer">
+            <div class="flex-column checkout_div">
+                <div class="checkout-cart-div flex-column">
+                <div class="top_border"></div>
+                {% if cart_items|length > 0 %}
+                <div class="checkout-cart-items-div">
+                    {% for item in cart_items %}
+                        <div data-viewmode="-mobile" data-module="deletecart" data-id="{{item.cart_item_id}}" id="cart_item-{{item.cart_item_id}}-mobile" class="checkout-cart-item flex-row">
+                            <div class="checkout-cart-item-buttons">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/></svg>
+                            </div>
+                            <img src="{{asset('img/store/' ~ item.img_link)}}">
+                            <div class="flex-column checkout-cart-name-div">
+                                <p>{{item.name}}<br><span style="opacity:.7;font-size:80%"><i>+ FREE Signed Poster</i></span></p>
+                                <p>{{item.quantity > 1 ? item.quantity ~ ' x $' ~ item.price : ''}}</p>
+                            </div>
+                            <div class="checkout-cart-item-total-div flex-column">
+                                <p>${{item.total|number_format(2,'.',',')}}</p>
+                                {% if item.discount %}<p>- ${{item.discount|number_format(2,'.',',')}}</p>{% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr class="dark-grey-line" style="margin-top:auto">
+                    <div class="checkout-cart-totals-div flex-column">
+                        <p><b>Cart Total: </b><span class="cart_total-mobile">${{cart_total|number_format(2,'.',',')}}</span></p>
+                    </div>
+                    <div id="shipping-mobile" class="checkout-shipping-totals-div flex-column">
+                        <p><b>Shipping: </b><span class="shipping_total-mobile">${{shipping|number_format(2,'.',',')}}</span></p>
+                    </div>
+                    <div class="checkout-full-total-div flex-column">
+                        <p><b>Order Total: </b><span class="order_total-mobile">${{(cart_total + shipping)|number_format(2,'.',',')}}</span></p>
+                    </div>
+                </div>
+                <hr class="dark-grey-line">
+                <div data-module="promocode" data-viewmode="-mobile">
+                    <div id="checkout-promos-applied-mobile" class="{{promo ? '' : 'hidden'}} checkout-promos-div flex-row">
+                        <div class="checkout-cart-item-buttons">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/></svg>
+                        </div>
+                        <p id="checkout-promos-applied-message-mobile" class="checkout-promos-message">Code: {{promo}} has been applied</p>
+                    </div>
+                    <div id="checkout-promos-div-mobile" class="{{promo ? 'hidden' : ''}} checkout-promos-div flex-row">
+                        <input id="checkout-cart-promo" type="text" placeholder="Enter Promo Code"><div data-viewmode="-mobile" class="product-button flex-row" data-inputid="checkout-cart-promo"><p>Add Promo</p></div>
+                    </div>
+                    <div class="checkout-promos-message-div-mobile flex-row hidden">
+                        <p id="checkout-promos-message-mobile" class="checkout-promos-message"></p>
+                    </div>
+                </div>
+                {# <hr class="dark-grey-line">
+                <div class="checkout-shipping-div">
+                </div> #}
+                <hr class="dark-grey-line">
+                <div class="checkout-billing-div flex-column" data-module="paypal">
+                    <div id="paypal-button-container"></div>
+                </div>
+                <hr class="dark-grey-line">
+                {% else %}
+                    <p>No items in cart</p>
+                    <a href="{{route('store::catalog')}}">Browse Shop</a>
+                 {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function addToCart(string=null){;
+        let quantity = document.getElementById('quantity_input'+string).value;
+       alert(quantity)
+        let url = window.location.href.replace('product','addtocart') + `?quantity=${quantity}`;
+        window.location = url;
+    }
+    function validateQuantity(input){
+        let newval = parseInt(input.value);
+
+        if(newval > input.getAttribute('max')){
+            input.value = parseInt(input.getAttribute('max'));
+        }else if (newval < 1){
+            input.value = 1;
+        }
+    }
+    function incrementQuantity(input,adding){
+        let newval = parseInt(input.value);
+        if(adding){
+            newval = newval + 1;
+        }else{
+            newval = newval - 1;
+        }
+        input.value = newval;
+        validateQuantity(input)
+    }
+</script>
+{% endblock %}

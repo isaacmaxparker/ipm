@@ -19,10 +19,15 @@ class IndexController extends Controller
         $latest = DB::table('releases')->orderBy('release_date','desc')->limit(3)->get();
 
         $featured = DB::table('products')
-        ->join('featured_products','products.id','featured_products.product_id')
-        ->join('product_images','products.id','product_images.product_id')
-        ->orderBy('featured_products.rank_order','asc')
+        ->join('product_catalog','products.id','product_catalog.product_id')
+        ->where('product_catalog.available','=','1')
+        ->orderBy('products.rank_order','desc')
+        ->limit(1)
         ->get();
+
+        foreach($featured as $product){
+            $product->img_link = DB::table('product_images')->where('product_id','=',$product->id)->orderBy('sort_order', 'desc')->first()->img_link;
+        }
 
 
         $this->addTemplateVariables(compact('latest','featured'));

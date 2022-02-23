@@ -273,13 +273,19 @@ nav .menu{
   }
 
   .footer{
-    position:absolute;
-    bottom:0;
+    position: fixed;
+    bottom: 0;
+    z-index: 109;
     left:0;
     background-color: $navColor;
     height:50px;
     width: 100vw;
     box-shadow: -2px -2px 5px 0px rgba(0, 0, 0, 0.82);
+  }
+
+  .footer p{
+      color:rgba(105, 105, 105, 0.767);
+      
   }
 
   /* LAYOUTS */
