@@ -5,69 +5,120 @@
 {% extends "_layout/site.twig" %}
 
 {% block content %}
-<div class="background sd-white-back">
-    <div class="mobile_content white">
-        <div class="y-scroll-div full_screen_scroll_footer">
-            <div class="flex-column order-columns">
-                <h1>Congratulations!</h1>
-                <h2>Your order has been placed!</h2>
-                <hr class="dark-grey-line">
-                <h3>Thank You {{order.first_name}} for your support!</h3>
-                <hr class="dark-grey-line">
-                <p>Save this page as confirmation. </p>
-                <div class="order-summary flex-column">
-                    <p>Order #: {{order.order_number}}</p>
-                    <p>Total: ${{order.amount}}</p>
-                    <br>
-                    <p>Items: </p>
-                    <div class="y-scroll-div" style="max-height:30vh">
-                    {% for item in order_items %}
-                         <div class="flex-row order-item-row">
-                         <img src="{{asset('img/store/' ~ item.img_link)}}">
-                         <p style="margin-left:10px;">{{item.name}}</p>
-                         <p style="margin-left:auto;margin-right:10px;opacity:.6">{{item.quantity > 1 ? 'x' ~ item.quantity : ''}}</p>
-                         </div>
-                    {% endfor %}
-                    </div>
-                </div>
-                <hr class="dark-grey-line" style="margin-top:auto;">
-                <p style="width:85vw;font-style:italic;font-weight:normal;margin-top:20px;">Making music has always been my passion, and now you are part of the reason I get to keep doing it, so thank you!<br> <br> Every order is hand-packed and shipped by me personally so I look forward to sending you yours! Keep on keeping on :) <br><br><span style="font-family:script;float:right;margin-right:10vw;font-size:150%;">- Isaac</span> </p>
-                <hr class="dark-grey-line" style="margin-top:20px;margin-bottom:25px;">
-            </div>
-        </div>
-    </div>
-    <div class="desktop_content back-white">
-    	<img class="back_img" src="{{asset('img/backgrounds/sd-back-rainbow.png')}}">
-        <div class="desktop-scroll">
-            <div class="y-scroll-div order_info_div">
-                <div class="flex-column order-columns">
-                    <h1>Congratulations!</h1>
-                    <h2>Your order has been placed!</h2>
-                    <hr class="dark-grey-line">
-                    <h3>Thank You {{order.first_name}} for your support!</h3>
-                    <hr class="dark-grey-line">
-                    <p>Save this page as confirmation. </p>
-                    <div class="order-summary flex-column">
-                        <p>Order #: {{order.order_number}}</p>
-                        <p>Total: ${{order.amount}}</p>
-                        <br>
-                        <p>Items: </p>
-                        <div class="y-scroll-div" style="max-height:30vh">
-                        {% for item in order_items %}
-                            <div class="flex-row order-item-row">
-                            <img src="{{asset('img/store/' ~ item.img_link)}}">
-                            <p style="margin-left:10px;">{{item.name}}</p>
-                            <p style="margin-left:auto;margin-right:10px;opacity:.6">{{item.quantity > 1 ? 'x' ~ item.quantity : ''}}</p>
-                            </div>
-                        {% endfor %}
-                        </div>
-                    </div>
-                    <hr class="dark-grey-line" style="margin-top:auto;">
-                    <p style="width:65vw;font-style:italic;font-weight:normal;margin-top:20px;">Making music has always been my passion, and now you are part of the reason I get to keep doing it, so thank you!<br> <br> Every order is hand-packed and shipped by me personally so I look forward to sending you yours! Keep on keeping on :) <br><br><span style="font-family:script;float:right;margin-right:10vw;font-size:150%;">- Isaac</span> </p>
-                    <hr class="dark-grey-line" style="margin-top:20px;margin-bottom:25px;">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="background sd-white-back">
+		<div class="mobile_content white">
+			<div class="y-scroll-div full_screen_scroll_footer">
+				<div class="flex-column order-columns">
+					<h1>Congratulations!</h1>
+					<h2>Your order has been placed!</h2>
+					<hr class="dark-grey-line">
+					<h3>Thank you
+						{{order.first_name}}
+						for your support!</h3>
+					<hr class="dark-grey-line">
+					<p>Save this page as confirmation.
+					</p>
+					<div class="order-summary flex-column">
+						<p>Order #:
+							{{order.order_number}}</p>
+						<p>Total: ${{order.amount}}</p>
+						<br>
+						<p>Items:
+						</p>
+						<div class="y-scroll-div" style="max-height:30vh">
+							{% for item in order_items %}
+								<div class="flex-row order-item-row">
+									<img src="{{asset('img/store/' ~ item.img_link)}}">
+									<p style="margin-left:10px;">{{item.name}}</p>
+									<p style="margin-left:auto;margin-right:10px;opacity:.6">{{item.quantity > 1 ? 'x' ~ item.quantity : ''}}</p>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+					<hr class="dark-grey-line" style="margin-top:auto;">
+					<p style="width:85vw;font-style:italic;font-weight:normal;margin-top:20px;">Making music has always been my passion, and now you are part of the reason I get to keep doing it, so thank you!<br>
+						<br>
+						Every order is hand-packed and shipped by me personally so I look forward to sending you yours! Keep on keeping on :)
+						<br><br><span style="font-family:script;float:right;margin-right:10vw;font-size:150%;">- Isaac</span>
+					</p>
+					<hr class="dark-grey-line" style="margin-top:20px;margin-bottom:25px;">
+                    <div class="socials flex-row">
+							<p style="margin-right:10px;font-style:italic;opacity:.3">Stay Connected with me!</p>
+							<a target="_blank" href="{{config('links.instagram')}}">d</a>
+							<a target="_blank" href="{{config('links.facebook')}}">c</a>
+							<a target="_blank" href="{{config('links.youtube')}}">w</a>
+							<a target="_blank" href="{{config('links.spotify')}}">
+								<svg viewbox="0 0 2903 2903" width="26" height="26">
+									<style>
+										.st0 {
+											fill: rgba(0, 0, 0, 0.809);
+										}
+									</style><path class="st0" d="M1465.5 0C656.1 0 0 656.1 0 1465.5S656.1 2931 1465.5 2931 2931 2274.9 2931 1465.5C2931 656.2 2274.9.1 1465.5 0zm672.1 2113.6c-26.3 43.2-82.6 56.7-125.6 30.4-344.1-210.3-777.3-257.8-1287.4-141.3-49.2 11.3-98.2-19.5-109.4-68.7-11.3-49.2 19.4-98.2 68.7-109.4C1242.1 1697.1 1721 1752 2107.3 1988c43 26.5 56.7 82.6 30.3 125.6zm179.3-398.9c-33.1 53.8-103.5 70.6-157.2 37.6-393.8-242.1-994.4-312.2-1460.3-170.8-60.4 18.3-124.2-15.8-142.6-76.1-18.2-60.4 15.9-124.1 76.2-142.5 532.2-161.5 1193.9-83.3 1646.2 194.7 53.8 33.1 70.8 103.4 37.7 157.1zm15.4-415.6c-472.4-280.5-1251.6-306.3-1702.6-169.5-72.4 22-149-18.9-170.9-91.3-21.9-72.4 18.9-149 91.4-171 517.7-157.1 1378.2-126.8 1922 196 65.1 38.7 86.5 122.8 47.9 187.8-38.5 65.2-122.8 86.7-187.8 48z"/></svg>
+							</a>
+							<a target="_blank" href="{{config('links.itunes')}}">h</a>
+							<a target="_blank" href="{{config('links.twitter')}}">o</a>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="desktop_content back-white">
+			<img class="back_img" src="{{asset('img/backgrounds/sd-back-rainbow.png')}}">
+			<div class="desktop-scroll">
+				<div class="y-scroll-div order_info_div">
+					<div class="flex-column order-columns">
+						<h1>Congratulations!</h1>
+						<h2>Your order has been placed!</h2>
+						<hr class="dark-grey-line">
+						<h3>Thank you
+							{{order.first_name}}
+							for your support!</h3>
+						<hr class="dark-grey-line">
+						<p>Save this page as confirmation.
+						</p>
+						<div class="order-summary flex-column">
+							<p>Order #:
+								{{order.order_number}}</p>
+							<p>Total: ${{order.amount}}</p>
+							<br>
+							<p>Items:
+							</p>
+							<div class="y-scroll-div" style="max-height:30vh">
+								{% for item in order_items %}
+									<div class="flex-row order-item-row">
+										<img src="{{asset('img/store/' ~ item.img_link)}}">
+										<p style="margin-left:10px;">{{item.name}}</p>
+										<p style="margin-left:auto;margin-right:10px;opacity:.6">{{item.quantity > 1 ? 'x' ~ item.quantity : ''}}</p>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+						<hr class="dark-grey-line" style="margin-top:auto;">
+						<p style="width:65vw;font-style:italic;font-weight:normal;margin-top:20px;">Making music has always been my passion, and now you are part of the reason I get to keep doing it, so thank you!<br>
+							<br>
+							Every order is hand-packed and shipped by me personally so I look forward to sending you yours! Keep on keeping on :)
+							<br><br><span style="font-family:script;float:right;margin-right:10vw;font-size:150%;">- Isaac</span>
+						</p>
+						<hr class="dark-grey-line" style="margin-top:20px;margin-bottom:25px;">
+
+						<div class="socials flex-row">
+							<p style="margin-right:10px;font-style:italic;opacity:.3">Stay Connected with me!</p>
+							<a target="_blank" href="{{config('links.instagram')}}">d</a>
+							<a target="_blank" href="{{config('links.facebook')}}">c</a>
+							<a target="_blank" href="{{config('links.youtube')}}">w</a>
+							<a target="_blank" href="{{config('links.spotify')}}">
+								<svg viewbox="0 0 2903 2903" width="26" height="26">
+									<style>
+										.st0 {
+											fill: rgba(0, 0, 0, 0.809);
+										}
+									</style><path class="st0" d="M1465.5 0C656.1 0 0 656.1 0 1465.5S656.1 2931 1465.5 2931 2931 2274.9 2931 1465.5C2931 656.2 2274.9.1 1465.5 0zm672.1 2113.6c-26.3 43.2-82.6 56.7-125.6 30.4-344.1-210.3-777.3-257.8-1287.4-141.3-49.2 11.3-98.2-19.5-109.4-68.7-11.3-49.2 19.4-98.2 68.7-109.4C1242.1 1697.1 1721 1752 2107.3 1988c43 26.5 56.7 82.6 30.3 125.6zm179.3-398.9c-33.1 53.8-103.5 70.6-157.2 37.6-393.8-242.1-994.4-312.2-1460.3-170.8-60.4 18.3-124.2-15.8-142.6-76.1-18.2-60.4 15.9-124.1 76.2-142.5 532.2-161.5 1193.9-83.3 1646.2 194.7 53.8 33.1 70.8 103.4 37.7 157.1zm15.4-415.6c-472.4-280.5-1251.6-306.3-1702.6-169.5-72.4 22-149-18.9-170.9-91.3-21.9-72.4 18.9-149 91.4-171 517.7-157.1 1378.2-126.8 1922 196 65.1 38.7 86.5 122.8 47.9 187.8-38.5 65.2-122.8 86.7-187.8 48z"/></svg>
+							</a>
+							<a target="_blank" href="{{config('links.itunes')}}">h</a>
+							<a target="_blank" href="{{config('links.twitter')}}">o</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

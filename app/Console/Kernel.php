@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function() {
             DB::table('carts')->whereRaw("time_held < DATE_SUB(NOW(), INTERVAL '2' HOUR)")
             ->delete();
-        })->everyFourHours();
+        })->cron('0 */4 * * *');
     }
 
     /**

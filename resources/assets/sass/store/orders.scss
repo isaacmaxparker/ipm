@@ -37,9 +37,11 @@
           }
 
           .order-item-row{
-            width:calc(80vw - 50px);
+            width:calc(65vw - 50px);
             padding:10px 25px;
             border: 1px solid;
+            border-right:none;
+            border-left:none;
             border-top-color: black;
             border-bottom-color:black;
         }
@@ -55,4 +57,20 @@
         min-height: calc(80vh - 100px);
     }
     
+}
+
+.socials a{
+    font-family: 'rifficons';
+    opacity: .7;
+    color:rgba(0, 0, 0, 0.849);
+    text-decoration: none;
+    cursor: pointer;
+    width:34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socials a:hover{
+    opacity:.85;
 }

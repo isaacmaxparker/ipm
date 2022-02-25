@@ -79,7 +79,7 @@ class StoreController extends Controller
         else if($catalog_item->amount_left < $catalog_item->warning_level){
             $warning_alert = new StdClass();
 
-            $warning_alert->type = 'warning';
+            $warning_alert->type = 'error';
             $warning_alert->title = 'ONLY ' . $catalog_item->amount_left . ' LEFT!' ;
             $warning_alert->message = '';
             array_push($alerts,$warning_alert);
