@@ -135,9 +135,6 @@ class StoreController extends Controller
 
         $request->session()->push('cart', $cart_item);
 
-
-
-
         DB::table('carts')->insert(
             [
             'cart_id'=>$cart_item->cart_item_id,
@@ -152,10 +149,23 @@ class StoreController extends Controller
         return redirect('/store/checkout');
     }
 
-    public function viewOrder(Request $request, $order_id){
-        $order = DB::table('orders')->join('customers','customers.id','orders.customer_id')->where('order_id','=',$order_id)->first();
-        $order_items = DB::table('orders_items')->where('order_id','=','orders.id');
+    public function viewOrder(Request $request, $order_number){
+        $order = DB::table('orders')
+        ->selectRaw('orders.*, customers.first_name')
+        ->join('customers','customers.id','orders.customer_id')
+        ->where('order_number','=',$order_number)->first();
+
+        $order_items = DB::table('order_items')
+        ->join('product_sizes','order_items.product_size_id','product_sizes.id')
+        ->join('product_catalog','product_catalog.id','product_sizes.product_catalog_id')
+        ->join('products','products.id','product_catalog.product_id')
+        ->where('order_items.order_id','=',$order->id)
+        ->get();
         
+        foreach($order_items as $product){
+            $product->img_link = $product->type . "/" . DB::table('product_images')->where('product_id','=',$product->product_id)->orderBy('sort_order', 'desc')->first()->img_link;
+        }
+
         $this->addTemplateVariables(compact('order','order_items'));
         return view('store.order', $this->template_vars);
     }
@@ -321,7 +331,7 @@ class StoreController extends Controller
 
         DB::table('orders')->insert(
             [
-                'order_id'=>$this->generateRandomString(),
+                'order_number'=>$this->generateRandomString(),
                 'paypal_order_id'=>$data->id,
                 'transaction_id'=>$payment_data->id,
                 'amount'=>$purchase_data->amount->value,
@@ -367,7 +377,7 @@ class StoreController extends Controller
         $request->session()->pull('promo');
         $request->session()->pull('shipping');
 
-        return ['Success', $order->order_id];
+        return ['Success', $order->order_number];
     }
 
     // HELPER FUNCTIONS 

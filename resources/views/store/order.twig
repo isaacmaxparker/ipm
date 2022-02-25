@@ -6,10 +6,66 @@
 
 {% block content %}
 <div class="background sd-white-back">
-    <div class="mobile_content back-white">
+    <div class="mobile_content white">
         <div class="y-scroll-div full_screen_scroll_footer">
-            <div class="flex-column">
-
+            <div class="flex-column order-columns">
+                <h1>Congratulations!</h1>
+                <h2>Your order has been placed!</h2>
+                <hr class="dark-grey-line">
+                <h3>Thank You {{order.first_name}} for your support!</h3>
+                <hr class="dark-grey-line">
+                <p>Save this page as confirmation. </p>
+                <div class="order-summary flex-column">
+                    <p>Order #: {{order.order_number}}</p>
+                    <p>Total: ${{order.amount}}</p>
+                    <br>
+                    <p>Items: </p>
+                    <div class="y-scroll-div" style="max-height:30vh">
+                    {% for item in order_items %}
+                         <div class="flex-row order-item-row">
+                         <img src="{{asset('img/store/' ~ item.img_link)}}">
+                         <p style="margin-left:10px;">{{item.name}}</p>
+                         <p style="margin-left:auto;margin-right:10px;opacity:.6">{{item.quantity > 1 ? 'x' ~ item.quantity : ''}}</p>
+                         </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                <hr class="dark-grey-line" style="margin-top:auto;">
+                <p style="width:85vw;font-style:italic;font-weight:normal;margin-top:20px;">Making music has always been my passion, and now you are part of the reason I get to keep doing it, so thank you!<br> <br> Every order is hand-packed and shipped by me personally so I look forward to sending you yours! Keep on keeping on :) <br><br><span style="font-family:script;float:right;margin-right:10vw;font-size:150%;">- Isaac</span> </p>
+                <hr class="dark-grey-line" style="margin-top:20px;margin-bottom:25px;">
+            </div>
+        </div>
+    </div>
+    <div class="desktop_content back-white">
+    	<img class="back_img" src="{{asset('img/backgrounds/sd-back-rainbow.png')}}">
+        <div class="desktop-scroll">
+            <div class="y-scroll-div order_info_div">
+                <div class="flex-column order-columns">
+                    <h1>Congratulations!</h1>
+                    <h2>Your order has been placed!</h2>
+                    <hr class="dark-grey-line">
+                    <h3>Thank You {{order.first_name}} for your support!</h3>
+                    <hr class="dark-grey-line">
+                    <p>Save this page as confirmation. </p>
+                    <div class="order-summary flex-column">
+                        <p>Order #: {{order.order_number}}</p>
+                        <p>Total: ${{order.amount}}</p>
+                        <br>
+                        <p>Items: </p>
+                        <div class="y-scroll-div" style="max-height:30vh">
+                        {% for item in order_items %}
+                            <div class="flex-row order-item-row">
+                            <img src="{{asset('img/store/' ~ item.img_link)}}">
+                            <p style="margin-left:10px;">{{item.name}}</p>
+                            <p style="margin-left:auto;margin-right:10px;opacity:.6">{{item.quantity > 1 ? 'x' ~ item.quantity : ''}}</p>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <hr class="dark-grey-line" style="margin-top:auto;">
+                    <p style="width:65vw;font-style:italic;font-weight:normal;margin-top:20px;">Making music has always been my passion, and now you are part of the reason I get to keep doing it, so thank you!<br> <br> Every order is hand-packed and shipped by me personally so I look forward to sending you yours! Keep on keeping on :) <br><br><span style="font-family:script;float:right;margin-right:10vw;font-size:150%;">- Isaac</span> </p>
+                    <hr class="dark-grey-line" style="margin-top:20px;margin-bottom:25px;">
+                </div>
             </div>
         </div>
     </div>

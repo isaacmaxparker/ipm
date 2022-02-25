@@ -2142,3 +2142,57 @@ hr.dark-grey-line {
           box-shadow: none;
 }
 
+.order-columns {
+  min-height: calc(100vh - 100px);
+}
+
+.order-columns h1 {
+  margin-bottom: 0px;
+  color: #076807;
+  font-size: 3rem;
+}
+
+.order-summary p {
+  font-weight: bold;
+  margin: 4px;
+}
+
+.order-summary img {
+  width: 10vw;
+  max-width: 100px;
+}
+
+.order-item-row {
+  width: calc(100vw - 25px);
+  padding: 10px 25px;
+  border: 1px solid;
+  border-top-color: black;
+  border-bottom-color: black;
+}
+
+.desktop_content .order_info_div {
+  background-color: rgba(255, 255, 255, 0.975);
+}
+
+.desktop_content .order_info_div h1 {
+  margin-bottom: 0px;
+  color: #078807;
+  font-size: 5rem;
+}
+
+.desktop_content .order_info_div .order-item-row {
+  width: calc(80vw - 50px);
+  padding: 10px 25px;
+  border: 1px solid;
+  border-top-color: black;
+  border-bottom-color: black;
+}
+
+.desktop_content .dark-grey-line {
+  width: 65vw;
+}
+
+.desktop_content .order-columns {
+  min-height: calc(80vh - 100px);
+}
+
