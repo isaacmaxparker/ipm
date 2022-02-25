@@ -15,7 +15,7 @@
                 {% if cart_items|length > 0 %}
                 <div class="checkout-cart-items-div">
                     {% for item in cart_items %}
-                        <div data-viewmode="-mobile" data-module="deletecart" data-id="{{item.cart_item_id}}" id="cart_item-{{item.cart_item_id}}-mobile" class="checkout-cart-item flex-row">
+                        <div data-viewmode="-mobile" data-module="deletecart" data-id="{{item.cart_item_id}}" data-quant="{{item.quantity}}" id="cart_item-{{item.cart_item_id}}-mobile" class="checkout-cart-item flex-row">
                             <div class="checkout-cart-item-buttons">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/></svg>
                             </div>
@@ -68,6 +68,7 @@
                     <p>No items in cart</p>
                     <a href="{{route('store::catalog')}}">Browse Shop</a>
                  {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +83,7 @@
                         <div class="top_border"></div>
                         <div class="checkout-cart-items-div y-scroll-div">
                             {% for item in cart_items %}
-                                <div data-viewmode="-desktop" data-module="deletecart" data-id="{{item.cart_item_id}}" id="cart_item-{{item.cart_item_id}}-desktop" class="checkout-cart-item flex-row">
+                                <div data-viewmode="-desktop" data-module="deletecart" data-quant="{{item.quantity}}" data-id="{{item.cart_item_id}}" id="cart_item-{{item.cart_item_id}}-desktop" class="checkout-cart-item flex-row">
                                     <div class="checkout-cart-item-buttons">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/></svg>
                                     </div>
@@ -120,7 +121,7 @@
                                 <p id="checkout-promos-applied-message-desktop" class="checkout-promos-message">Code: {{promo}} has been applied</p>
                             </div>
                             <div id="checkout-promos-div-desktop" class="{{promo ? 'hidden' : ''}} checkout-promos-div flex-row">
-                                <input id="checkout-cart-promo" type="text" placeholder="Enter Promo Code"><div data-viewmode="-desktop" class="product-button flex-row" data-inputid="checkout-cart-promo"><p>Add Promo</p></div>
+                                <input id="checkout-cart-promo-desktop" type="text" placeholder="Enter Promo Code"><div data-viewmode="-desktop" class="product-button flex-row" data-inputid="checkout-cart-promo-desktop"><p>Add Promo</p></div>
                             </div>
                             <div class="checkout-promos-message-div-desktop flex-row hidden">
                                 <p id="checkout-promos-message-desktop" class="checkout-promos-message"></p>
@@ -133,8 +134,10 @@
                     </div>
                 </div>
                {% else %}
-                <p>No items in cart</p>
-                <a href="{{route('store::catalog')}}">Browse Shop</a>
+               <div class="flex-column" style="margin-top:20px; margin-bottom:40vh">
+                    <p>No items in cart</p>
+                    <a href="{{route('store::catalog')}}">Browse Shop</a>
+                </div
                 {% endif %}
             </div>
         </div>

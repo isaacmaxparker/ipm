@@ -6,139 +6,201 @@
 {% extends "_layout/site.twig" %}
 
 {% block content %}
-<div class="background sd-white-back">
-    <div class="mobile_content back-white">
-        <div class="y-scroll-div full_screen_scroll_footer">
-            <div>
-                <div class="product-div flex-column">
-                    <div class="product-image-div flex-row">
-                        <div class="product-images">
-                            {% for image in images %}
-                                {% if images[0].id == image.id %}
-                                    <img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image" data-image-id="{{image.id}}">        
-                                {% else %}
-                                    <img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image hidden-image" data-image-id="{{image.id}}"> 
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                        <div class="product-thumbnails">
-                            {% for image in images %}
-                                <img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}"> 
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <p class="product-name">{{product.name}}{{product.type == 'cd' ? ' CD' : ''}}</p>
-                    <p class="product-price">${{product.price}}</p>
-                </div>
-                <hr class="grey-line">
-                <div class="details-div">
-                    <p class="product-description">{{product.description|raw}}</p>
-                </div>
-                <hr class="grey-line">
-                <div class="product-alerts flex-column">
-                    {% for alert in alerts %}
-                        <div class="product-alert alert-{{alert.type}}">
-                            <p><b><i>{{alert.title}}</b></i> {{alert.message}}</p>
-                        </div>
-                    {% endfor %}
-                </div>
+	<div class="background sd-white-back">
+		<div class="mobile_content back-white">
+			<div class="y-scroll-div full_screen_scroll_footer">
+				<a class="cart_link" href="{{route('store::checkout')}}">C</a>
+				<div>
+					<div class="product-div flex-column">
+						<div class="product-image-div flex-row">
+							<div class="product-images">
+								{% for image in images %}
+									{% if images[0].id == image.id %}
+										<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image" data-image-id="{{image.id}}">
+									{% else %}
+										<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image hidden-image" data-image-id="{{image.id}}">
+									{% endif %}
+								{% endfor %}
+							</div>
+							<div class="product-thumbnails">
+								{% for image in images %}
+									<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}">
+								{% endfor %}
+							</div>
+						</div>
+						<p class="product-name">{{product.name}}{{product.type == 'cd' ? ' CD' : ''}}</p>
+						<p class="product-price">${{product.price}}</p>
+					</div>
+					<hr class="grey-line">
+					{% if sold_out %}
+						<div class="product-alerts flex-column">
+							<div class="product-alert alert-error">
+								<p>
+											<b>
+												<i>SOLD OUT</i></b>
+												{% if held > 0 %}
+													<br>{{held}} are currently in a cart<br><span style="font-size:80%;font-style:italic">
+														(Will be released in 2 hours if not purchased)</span>
+												</p>
+											{% else %}
+												<br>Check back soon for restocks!
+											{% endif %}
+										</p>
+							</i>
+						</div>
+					</div>
+					<div class="footer product-buttons flex-row"></div>
+				{% else %}
+					<div class="product-alerts flex-column">
+						{% for alert in alerts %}
+							<div class="product-alert alert-{{alert.type}}">
+								<p>
+									<b>
+										<i>{{alert.title}}</b>
+									</i>
+									{{alert.message}}</p>
+							</div>
+						{% endfor %}
+					</div>
 
-                <hr class="grey-line">
-                <div class="footer product-buttons flex-row">
-                    <div class="product-quantity-buttons flex-row">
-                        <div onclick="incrementQuantity(this.parentElement.children[1],false)" class="flex-column"><p>-</p></div>
-                        <input id="quantity_input" type="number" value="1" min="1" max="{{catalog_item.amount_left}}" onchange="validateQuantity(this)">
-                        <div onclick="incrementQuantity(this.parentElement.children[1],true)" class="flex-column"><p>+</p></div>
-                    </div>
-                    <div onclick="addToCart('')" class="product-button flex-row">
-                        <p >Add To Cart</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="desktop_content back-white">
-        <div class="y-scroll-div full_screen_scroll_footer">
-            <div>
-            <div class="flex-row horizontal_div">
-                <div class="product-div flex-column">
-                    <div class="product-image-div flex-row">
-                        <div class="product-images">
-                            {% for image in images %}
-                                {% if images[0].id == image.id %}
-                                    <img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image" data-image-id="{{image.id}}">        
-                                {% else %}
-                                    <img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image hidden-image" data-image-id="{{image.id}}"> 
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                        <div class="product-thumbnails">
-                            {% for image in images %}
-                                <img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}"> 
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                <div class="flex-column desktop-product-description-div">
-                    <p class="product-name">{{product.name}}{{product.type == 'cd' ? ' CD' : ''}}</p>
-                    <p class="product-price">${{product.price}}</p>
-                     <div class="product-alerts flex-column">
-                        {% for alert in alerts %}
-                            <div class="product-alert alert-{{alert.type}}">
-                                <p><b><i>{{alert.title}}</b></i> {{alert.message}}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <hr class="grey-line">
-                    <div class="product-buttons-description flex-row">
-                        <div class="product-quantity-buttons flex-row">
-                            <div onclick="incrementQuantity(this.parentElement.children[1],false)" class="flex-column"><p>-</p></div>
-                            <input id="quantity_input_desktop" type="number" value="1" min="1" max="{{catalog_item.amount_left}}" onchange="validateQuantity(this)">
-                            <div onclick="incrementQuantity(this.parentElement.children[1],true)" class="flex-column"><p>+</p></div>
-                        </div>
-                        <div class="product-button flex-row" onclick="addToCart('_desktop')">
-                            <p >Add To Cart</p>
-                        </div>
-                    </div>
-                    <hr class="grey-line">
-                    <div class="details-div">
-                        <p class="product-description">{{product.description|raw}}</p>
-                    </div>
-                    <hr class="grey-line">
-                   
-                </div>
-            <div>
-                <div class="footer product-buttons flex-row">
-                   <p>© I.E.M.G 2022 | All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    function addToCart(string=null){;
-        let quantity = document.getElementById('quantity_input'+string).value;
-        let url = window.location.href.replace('product','addtocart') + `?quantity=${quantity}`;
-        window.location = url;
-    }
-    function validateQuantity(input){
-        let newval = parseInt(input.value);
+					<hr class="grey-line">
+					<div class="footer product-buttons flex-row">
+						<div class="product-quantity-buttons flex-row">
+							<div onclick="incrementQuantity(this.parentElement.children[1],false)" class="flex-column">
+								<p>-</p>
+							</div>
+							<input id="quantity_input" type="number" value="1" min="1" max="{{catalog_item.amount_left}}" onchange="validateQuantity(this)">
+							<div onclick="incrementQuantity(this.parentElement.children[1],true)" class="flex-column">
+								<p>+</p>
+							</div>
+						</div>
+						<div onclick="addToCart('')" class="product-button flex-row">
+							<p>Add To Cart</p>
+						</div>
+					</div>
+				{% endif %}
+				<hr class="grey-line">
+				<div class="details-div">
+					<p class="product-description">{{product.description|raw}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="desktop_content checkout_desktop">
+		<img class="back_img" src="{{asset('img/backgrounds/sd-back-rainbow.png')}}">
+		<div class="desktop-scroll">
+			<div class="y-scroll-div product_info_div">
+				<a class="cart_link" href="{{route('store::checkout')}}">C</a>
+				<div class="">
+					<div class="flex-row horizontal_div">
+						<div class="product-div flex-column">
+							<div class="product-image-div flex-row">
+								<div class="product-images">
+									{% for image in images %}
+										{% if images[0].id == image.id %}
+											<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image" data-image-id="{{image.id}}">
+										{% else %}
+											<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image hidden-image" data-image-id="{{image.id}}">
+										{% endif %}
+									{% endfor %}
+								</div>
+								<div class="product-thumbnails">
+									{% for image in images %}
+										<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}">
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+						<div class="flex-column desktop-product-description-div">
+							<p class="product-name">{{product.name}}{{product.type == 'cd' ? ' CD' : ''}}</p>
+							<p class="product-price">${{product.price}}</p>
+							{% if sold_out %}
+								<div class="product-alerts flex-column">
+									<div class="product-alert alert-error">
+										<p>
+											<b>
+												<i>SOLD OUT</i></b>
+												{% if held > 0 %}
+													<br>{{held}}
+													are in a customer's cart<br><span style="font-size:80%;font-style:italic">
+														(Will be released in 2 hours if not purchased)</span>
+												</p>
+											{% else %}
+												<br>Check back soon for restocks!
+											{% endif %}
+										</p>
+								</div>
+							</div>
+						{% else %}
+							<div class="product-alerts flex-column">
+								{% for alert in alerts %}
+									<div class="product-alert alert-{{alert.type}}">
+										<p>
+											<b>
+												<i>{{alert.title}}</b>
+											</i>
+											{{alert.message}}</p>
+									</div>
+								{% endfor %}
+							</div>
+							<hr class="grey-line">
 
-        if(newval > input.getAttribute('max')){
-            input.value = parseInt(input.getAttribute('max'));
-        }else if (newval < 1){
-            input.value = 1;
-        }
-    }
-    function incrementQuantity(input,adding){
-        let newval = parseInt(input.value);
-        if(adding){
-            newval = newval + 1;
-        }else{
-            newval = newval - 1;
-        }
-        input.value = newval;
-        validateQuantity(input)
-    }
-</script>
+							<div class="product-buttons-description flex-row">
+								<div class="product-quantity-buttons flex-row">
+									<div onclick="incrementQuantity(this.parentElement.children[1],false)" class="flex-column">
+										<p>-</p>
+									</div>
+									<input id="quantity_input_desktop" type="number" value="1" min="1" max="{{catalog_item.amount_left}}" onchange="validateQuantity(this)">
+									<div onclick="incrementQuantity(this.parentElement.children[1],true)" class="flex-column">
+										<p>+</p>
+									</div>
+								</div>
+								<div class="product-button flex-row" onclick="addToCart('_desktop')">
+									<p>Add To Cart</p>
+								</div>
+							</div>
+							<hr class="grey-line">
+						{% endif %}
+
+
+						<div class="details-div">
+							<p class="product-description">{{product.description|raw}}</p>
+						</div>
+						<hr class="grey-line">
+
+					</div>
+					<div>
+						<div class="footer product-buttons flex-row">
+							<p>© I.E.M.G 2022 | All Rights Reserved</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function addToCart(string = null) {;
+let quantity = document.getElementById('quantity_input' + string).value;
+let url = window.location.href.replace('product', 'addtocart') + `?quantity=${quantity}`;
+window.location = url;
+}
+function validateQuantity(input) {
+let newval = parseInt(input.value);
+
+if (newval > input.getAttribute('max')) {
+input.value = parseInt(input.getAttribute('max'));
+} else if (newval < 1) {
+input.value = 1;
+}
+}
+function incrementQuantity(input, adding) {
+let newval = parseInt(input.value);
+if (adding) {
+newval = newval + 1;
+} else {
+newval = newval - 1;
+} input.value = newval;
+validateQuantity(input)
+}
+	</script>
 {% endblock %}

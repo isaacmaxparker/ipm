@@ -26,6 +26,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->call(function() {
+            DB::table('carts')->whereRaw("time_held < DATE_SUB(NOW(), INTERVAL '2' HOUR)")
+            ->delete();
+        })->everyFourHours();
     }
 
     /**

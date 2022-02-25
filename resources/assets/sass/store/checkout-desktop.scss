@@ -86,7 +86,7 @@
     .promo_section{
         width:80vw;
     }
-    #checkout-cart-promo{
+    #checkout-cart-promo-desktop{
         max-width: 300px;
         width:40vh;
         min-width: 100px;
@@ -95,6 +95,15 @@
         border:rgba(128, 128, 128, 0.788) solid 1px;
         margin-left:auto;
         
+    }
+    .checkout-cart-item-buttons{
+        height:unset;
+    }
+    #checkout-promos-applied-message-desktop{
+        margin-bottom: 0px;
+    }
+    #checkout-promos-applied-desktop{
+        align-items: center;
     }
     .checkout-promos-div {
         align-items: flex-end;

@@ -43,11 +43,13 @@ class StoreController extends Controller
         $product = DB::table('products')->where('id','=',$id)->first();
 
         $catalog_item = DB::table('product_catalog')
-        ->selectRaw('product_catalog.*, product_sizes.*, quantity_left - quantity_held as amount_left')
+        ->selectRaw('product_catalog.*, product_sizes.id as product_size_id, product_sizes.*, quantity_left, quantity_left_warning_level as warning_level')
         ->join('product_sizes','product_catalog.id','product_sizes.product_catalog_id')
-        ->where('product_catalog.id','=',$id)
+        ->where('product_sizes.id','=',$id)
         ->first();
         ;
+
+        $catalog_item->amount_left = $this->getQuantityLeft($catalog_item->product_size_id);
 
         $images = DB::table('product_images')
         ->where('product_id','=',$id)
@@ -55,14 +57,28 @@ class StoreController extends Controller
         ->get();
 
         $test_alert = new StdClass();
-
         $test_alert->type = 'sale';
         $test_alert->title = 'Limited Time Offer:';
         $test_alert->message = 'Recieve a FREE signed poster with purchase!';
 
         $alerts = [$test_alert];
 
-        $this->addTemplateVariables(compact('product', 'images', 'alerts','catalog_item'));
+        $sold_out = false;
+        $held = $this->getQuantityHeld($catalog_item->product_size_id);
+
+        if ($catalog_item->amount_left == 0) {
+            $sold_out = true;
+        }
+        else if($catalog_item->amount_left < $catalog_item->warning_level){
+            $warning_alert = new StdClass();
+
+            $warning_alert->type = 'warning';
+            $warning_alert->title = 'ONLY ' . $catalog_item->amount_left . ' LEFT!' ;
+            $warning_alert->message = '';
+            array_push($alerts,$warning_alert);
+        }
+
+        $this->addTemplateVariables(compact('product', 'images', 'alerts','catalog_item','sold_out','held'));
 
         return view('store.product', $this->template_vars);
     }
@@ -72,7 +88,9 @@ class StoreController extends Controller
         if(session('promo')){
             $this->validatePromo($request);
         }else{
-            session(['shipping'=>10]);
+            if(session('cart')){
+                session(['shipping'=>$this->getShipping()]);
+            }
         }
 
         $shipping = session('shipping');
@@ -86,6 +104,16 @@ class StoreController extends Controller
 
     public function addToCart(Request $request, $id){
         $quant = $request->input('quantity');
+        $product_size_id = $id;
+
+        $product_size_record = DB::table('product_sizes')->where('id','=',$product_size_id);
+
+        $quantity_left = $this->getQuantityLeft($product_size_id);
+
+        if($quant > $quantity_left){
+            return redirect()->back();
+        }
+
         $cart = session('cart');
         if(!$cart){
             session(['cart' => []]);
@@ -99,6 +127,21 @@ class StoreController extends Controller
         $cart_item->discount = 0;
 
         $request->session()->push('cart', $cart_item);
+
+
+
+
+        DB::table('carts')->insert(
+            [
+            'cart_id'=>$cart_item->cart_item_id,
+            'product_size_id'=>$product_size_id,
+            'quantity_held'=>$quant,
+            'time_held'=>NOW(),
+            'created_at'=>NOW(),
+            'updated_at'=>NOW()
+            ]
+        );
+
         return redirect('/store/checkout');
     }
 
@@ -113,6 +156,10 @@ class StoreController extends Controller
     //AJAX FUNCTIONS
     public function deleteFromCart(Request $request){
         $cart_obj_id = $request->input('id');
+        $quant = $request->input('quant');
+
+        DB::table('carts')->where('cart_id','=',$cart_obj_id)->where('quantity_held','=',$quant)->delete();
+
         $new_array = [];
         $cart = session('cart');
 
@@ -139,7 +186,7 @@ class StoreController extends Controller
         if(session('promo')){
             $this->validatePromo($request);
         }else{
-            session(['shipping'=>10]);
+            session(['shipping'=>$this->getShipping()]);
         }
 
         $shipping = session('shipping');
@@ -222,7 +269,7 @@ class StoreController extends Controller
     public function removePromo(Request $request){
         $response = new StdClass();
 
-        session(['shipping'=>10]);
+        session(['shipping'=>$this->getShipping()]);
 
         $request->session()->pull('promo');
 
@@ -286,17 +333,27 @@ class StoreController extends Controller
         $order = DB::table('orders')->where('paypal_order_id','=',$data->id)->where('transaction_id','=',$payment_data->id)->first();
         $cart = session('cart');
 
+
+
         foreach ($cart as $item){
             DB::table('order_items')->insert(
                 [
                     'order_id'=>$order->id,
-                    'product_catalog_id'=>$item->product_id,
+                    'product_size_id'=>$item->product_id,
                     'product_details'=>null,
                     'quantity'=>$item->quantity,
                     'created_at'=>now(),
                     'updated_at'=>now()   
                 ]
-                );
+            );
+
+            $quantity_left = $stock = DB::table('product_sizes')->where('id','=',$item->product_id)->first()->quantity_left;;
+
+            DB::table('carts')->where('cart_id','=',$item->cart_item_id)->where('product_size_id','=',$item->product_id)->delete();
+
+            DB::table('product_sizes')->where('product_catalog_id','=',$item->product_id)->update(
+                ['quantity_left'=>$quantity_left - $item->quantity]
+            );
         }
 
         $request->session()->pull('cart');
@@ -341,6 +398,30 @@ class StoreController extends Controller
 
         return [$cart_items,$cart_total,$discount_total];
     }
+
+    public function getShipping(){
+        $quantity = 0;
+        $cart = session('cart');
+        foreach ($cart as $item){
+            $quantity = $quantity + $item->quantity;
+        }
+        if($quantity > 1 && $quantity < 3 ){
+            return 12.50;
+        }else if ($quantity == 1) {
+            return 10;
+        }
+
+        return 10 + (($quantity / 5)  * 5);
+    }
+    public function getQuantityHeld($product_size_id){
+       return DB::table('carts')->selectRaw('SUM(quantity_held) as held')->where('product_size_id','=',$product_size_id)->first()->held;
+    }
+
+    public function getQuantityLeft($product_size_id){
+        $stock = DB::table('product_sizes')->where('id','=',$product_size_id)->first()->quantity_left;
+        $held = $this->getQuantityHeld($product_size_id);
+        return $stock - $held;
+     }
 
     public function generateRandomString($length = 5) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

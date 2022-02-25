@@ -99,6 +99,7 @@ var getTotal = () => {
   });
 }
  
+ 
 export default { init};
 
 
