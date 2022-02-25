@@ -3,9 +3,7 @@
 }
 
 .checkout-cart-item{
-    margin:15px;
-    margin-top:0px;
-    margin-bottom:0px;
+margin:0px;
     border-top: 1px solid rgba(0, 0, 0, 0.214);;
 }
 
@@ -22,6 +20,12 @@
     padding-top: 15px;
     padding-right:15px;
 }
+.checkout-cart-item-total-div{
+    padding:0px;
+    padding-top: 15px;
+    margin-right:5px;
+}
+
 .checkout-cart-total-div{
     padding-right: 0px;
 }
@@ -60,17 +64,19 @@
 #checkout-promos-applied-message-mobile{
     margin-bottom:0px;
 }
-
+.checkout-cart-totals-div,.checkout-shipping-totals-div,.checkout-full-total-div{
+    width:85vw;
+}
 .checkout-cart-totals-div p, .checkout-shipping-totals-div p,.checkout-full-total-div p {
     margin:5px;
+    width:100%;
+    text-align: right;
 }
 
 .checkout-cart-totals-div{
     justify-content: flex-end;
     align-items: flex-end;
     margin-top:0px;
-    margin-right:30px;
-    width: calc(100% - 30px);
     margin-bottom:0px;
 }
 .checkout-shipping-totals-div{
@@ -78,16 +84,12 @@
     align-items: flex-end;
     margin-top:0px;
     margin-bottom:0px;
-    margin-right:30px;
-    width: calc(100% - 30px);
     color:rgba(54, 54, 54, 0.74)
 }
 .checkout-full-total-div{
     justify-content: flex-end;
     align-items: flex-end;
     margin-top:0px;
-    margin-right:30px;
-    width: calc(100% - 30px);
     color:rgba(0, 0, 0, 0.918)
 }
 hr.dark-grey-line{
@@ -109,7 +111,9 @@ font-size: 14px;
 font-style:italic;
 min-width: 40vw;
 }
-
+.checkout-cart-item-total-div{
+    margin-left:auto;
+}
 .checkout-promos-div .product-button{
     margin-left:5px;
     width: 100%;
@@ -127,6 +131,7 @@ min-width: 40vw;
 .checkout-cart-items-div {
     max-height: 45vh;
     overflow-y: auto;
+    width: 85vw;
 }
 
 #checkout-promos-message-mobile{
@@ -136,14 +141,22 @@ min-width: 40vw;
 .checkout_div{
     min-height:calc(100vh - 100px);
 }
-
+.checkout-cart-item-total-div p{
+    white-space: nowrap;
+    width:100%;
+    text-align: right;
+}
 
 /* PAYMENT */
 .checkout-billing-div{
-    padding:20px;
     width:100vw;
     margin-top:auto;
+    bottom: 65px;
+    left:0;
 }
 #paypal-button-container{
     width:90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

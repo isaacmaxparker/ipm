@@ -1,0 +1,129 @@
+
+.checkout_desktop{
+    padding:0px;
+    min-height: calc(100vh - 100px);
+    max-height: calc(100vh - 100px);
+}
+.desktop_content{
+
+    font-size: 130%;
+    width:100vw;
+
+    .checkout_div{
+        background-color: rgba(255, 255, 255, 0.975);
+    }
+
+    .checkout-cart-name-div{
+        margin-bottom:auto;
+    }
+
+    .checkout-cart-items-div{
+        align-items: flex-start;
+        width: 75vw;
+        overflow-x: hidden;
+    }
+
+    .checkout-cart-item{
+        width: 100%;
+        padding:10px;
+        justify-content: flex-start;
+        overflow-x: hidden;
+    }
+
+    .checkout-cart-item img{
+        max-height:205px;
+        height:8vh;
+    }
+
+    .desktop-cart-div{
+        width:80vw;
+    }
+
+    .back_img{
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center;
+        position: absolute;
+        z-index:0;
+        filter: brightness(110%)
+    }
+
+    .desktop-scroll{
+        width:100vw;
+        height:100vh;
+        padding:10vh 10vw;
+        z-index: 100;
+        position: absolute;
+        top:0;
+        left:0;
+    }
+
+    .desktop-scroll>.y-scroll-div{
+        width:80%;
+        height:80%;
+        box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.733);
+    }
+    
+    .checkout-cart-items-div{
+        width:90% !important;
+    }
+
+    .checkout-cart-totals-div, .checkout-shipping-totals-div, .checkout-full-total-div{
+        width:90% !important;
+    }
+    .checkout_div{
+        min-height:80vh;
+        max-height:80vh;
+        box-shadow: 10px 10px 27px 0px rgb(0, 0, 0);
+    }
+    .checkout-cart-div{
+        margin-top:50px;
+    }
+    .checkout-cart-item-total-div{
+        margin-right:15px;
+    }
+    .promo_section{
+        width:80vw;
+    }
+    #checkout-cart-promo{
+        max-width: 300px;
+        width:40vh;
+        min-width: 100px;
+        height:34px;
+        font-size: 80%;
+        border:rgba(128, 128, 128, 0.788) solid 1px;
+        margin-left:auto;
+        
+    }
+    .checkout-promos-div {
+        align-items: flex-end;
+        padding-right: 4vw;
+    }
+    .checkout-promos-div .product-button{
+        max-width: 75px;
+        width:20vh;
+        min-width: 50px;
+        height:38px;
+        
+    }
+    .checkout-billing-div{
+        width:90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: auto;
+        margin-bottom: 25px;
+    }
+    #paypal-button-container-desktop{
+        width:80%;
+        margin-top:50px;
+        max-width: 500px;
+        box-shadow: none;
+
+    }
+
+    .checkout-billing-div iframe{
+        box-shadow: none;
+    }
+}

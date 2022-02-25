@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Controllers\Controller;
 use DB;
 use stdClass;
+use App\Http\Models\Customer;
 use DateTime;
 
 use Illuminate\Http\Request;
@@ -101,6 +102,14 @@ class StoreController extends Controller
         return redirect('/store/checkout');
     }
 
+    public function viewOrder(Request $request, $order_id){
+        $order = DB::table('orders')->join('customers','customers.id','orders.customer_id')->where('order_id','=',$order_id)->first();
+        $order_items = DB::table('orders_items')->where('order_id','=','orders.id');
+        
+        $this->addTemplateVariables(compact('order','order_items'));
+        return view('store.order', $this->template_vars);
+    }
+
     //AJAX FUNCTIONS
     public function deleteFromCart(Request $request){
         $cart_obj_id = $request->input('id');
@@ -126,6 +135,21 @@ class StoreController extends Controller
         return redirect::back();
     }
 
+    public function getOrderTotal(Request $request){
+        if(session('promo')){
+            $this->validatePromo($request);
+        }else{
+            session(['shipping'=>10]);
+        }
+
+        $shipping = session('shipping');
+        $cart_items = $this->createCartItems()[0];
+        $cart_total = $this->createCartItems()[1];
+        $total_discount = $this->createCartItems()[2];
+
+        return [$cart_total + $shipping];
+    }
+
     public function validatePromo(Request $request){
         $promocode = strtolower($request->input('code'));
         $response = new StdClass();
@@ -135,7 +159,7 @@ class StoreController extends Controller
             $response->message = 'Code: ' . strtoupper($promocode) . ' Applied';
             $response->type = 'Success';
             session(['promo'=>strtoupper($promocode)]);
-            return [$response, session('cart'), session('shipping')];
+            return [$response, $this->createCartItems()[0], session('shipping')];
         }else{
             if(!$promocode){
                 $promocode = session('promo');
@@ -213,6 +237,73 @@ class StoreController extends Controller
         $response->type = 'Success';
 
         return [$response, $cart_items, session('shipping')];
+    }
+
+    public function saveOrder(Request $request){
+
+        $data = json_decode($_POST['data']);
+        
+        $purchase_data = $data->purchase_units[0];
+        $payment_data = $data->purchase_units[0]->payments->captures[0];
+
+        // return array($data);
+        $customer = Customer::updateOrCreate(
+            ['first_name'=>$data->payer->name->given_name,
+             'last_name'=>$data->payer->name->surname,
+             'email'=>$data->payer->email_address],
+            [
+                'first_name'=>$data->payer->name->given_name,
+                'last_name'=>$data->payer->name->surname,
+                'email'=>$data->payer->email_address,
+                'address_1'=>$purchase_data->shipping->address->address_line_1,
+                'address_2'=>property_exists($purchase_data->shipping->address,'address_line_2') ? $purchase_data->shipping->address->address_line_2 : null,
+                'city'=>$purchase_data->shipping->address->admin_area_2,
+                'state'=>$purchase_data->shipping->address->admin_area_1,
+                'zip'=>$purchase_data->shipping->address->postal_code,
+                'country'=>$purchase_data->shipping->address->country_code,
+                'updated_at'=>now()
+            ]
+        );
+
+        DB::table('orders')->insert(
+            [
+                'order_id'=>$this->generateRandomString(),
+                'paypal_order_id'=>$data->id,
+                'transaction_id'=>$payment_data->id,
+                'amount'=>$purchase_data->amount->value,
+                'customer_id'=>$customer->id,
+                'ship_address_1'=>$purchase_data->shipping->address->address_line_1,
+                'ship_address_2'=>property_exists($purchase_data->shipping->address,'address_line_2') ? $purchase_data->shipping->address->address_line_2 : null,
+                'ship_city'=>$purchase_data->shipping->address->admin_area_2,
+                'ship_state'=>$purchase_data->shipping->address->admin_area_1,
+                'ship_zip'=>$purchase_data->shipping->address->postal_code,
+                'ship_country'=>$purchase_data->shipping->address->country_code,    
+                'status'=>'P',
+                'created_at'=>now(),
+                'updated_at'=>now()   
+            ]
+        );
+        $order = DB::table('orders')->where('paypal_order_id','=',$data->id)->where('transaction_id','=',$payment_data->id)->first();
+        $cart = session('cart');
+
+        foreach ($cart as $item){
+            DB::table('order_items')->insert(
+                [
+                    'order_id'=>$order->id,
+                    'product_catalog_id'=>$item->product_id,
+                    'product_details'=>null,
+                    'quantity'=>$item->quantity,
+                    'created_at'=>now(),
+                    'updated_at'=>now()   
+                ]
+                );
+        }
+
+        $request->session()->pull('cart');
+        $request->session()->pull('promo');
+        $request->session()->pull('shipping');
+
+        return ['Success', $order->order_id];
     }
 
     // HELPER FUNCTIONS 

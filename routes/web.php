@@ -42,4 +42,7 @@ Route::group([
     Route::get('removepromo', ['as' => 'removedpromo', 'uses' => 'StoreController@RemovePromo']);
     Route::get('removefromcart', ['as' => 'removefromcart', 'uses' => 'StoreController@deleteFromCart']);
     Route::get('deletecart', ['as' => 'deletecart', 'uses' => 'StoreController@deleteCart']);
+    Route::get('ordertotal', ['as' => 'ordertotal', 'uses' => 'StoreController@getOrderTotal']);
+    Route::post('saveorder', ['as' => 'saveorder', 'uses' => 'StoreController@saveOrder']);
+    Route::get('order/{order_id}', ['as' => 'order', 'uses' => 'StoreController@viewOrder']);
 });

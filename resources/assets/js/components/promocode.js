@@ -19,7 +19,6 @@ var checkPromos = (selector) => {
 
     if(code){
         let url = window.location.href.replace('checkout','addpromo') + '?code=' + code;
-        console.log(url);
         $.get(url, function(data, status){
             let message = data[0];
             if(message.type == 'Success'){
@@ -48,7 +47,6 @@ var removePromos = (selector) =>{
     var code = document.getElementById(button.getAttribute('data-inputid')).value;
     $.get(url, function(data, status){
         let message = data[0];
-        console.log(data)
         if(message.type == 'Success'){
             document.getElementById('shipping' + viewMode).innerHTML = 
                 `<p><b>Shipping: </b><span class="cart_total-mobile">$${parseFloat(data[2]).toFixed(2)}</span></p>`;
@@ -68,6 +66,7 @@ var removePromos = (selector) =>{
 var updateCart = (cart_items,shipping, viewMode) =>{
     let total_html = 0;
     cart_items.forEach(element => {
+
         let cart_row = document.getElementById('cart_item-' + element.cart_item_id + viewMode);
        
         element.product_price = element.price + element.discount;
@@ -76,21 +75,29 @@ var updateCart = (cart_items,shipping, viewMode) =>{
         if(element.discount > 0 ){
             price_html += `<p>-$${(element.discount * element.quantity).toFixed(2)}</p>`
         }
-        console.log("CART ROW:");
-        console.log(cart_row);
+
         cart_row.querySelector('.checkout-cart-item-total-div').innerHTML = price_html;
 
         let total = (element.price * element.quantity);
-        console.log(total)
         total_html = total_html + total;
-
-        console.log("TOTAL: " + total_html);
     });
-    console.log(total_html);
+
     document.querySelector('.cart_total' + viewMode).innerHTML = '$' + parseFloat(total_html).toFixed(2);
     let order_total = total_html + shipping;
     document.querySelector('.order_total' + viewMode).innerHTML = '$' + order_total.toFixed(2);
+
+    getTotal();
+
 }
+var getTotal = () => {
+    let total = 0.01;
+
+    let url = window.location.href.replace('checkout','ordertotal')
+        $.get(url, function(data, status){
+          document.getElementById('order-total').value = data[0].toFixed(2);
+    });
+  }
+
 export default { init};
 
 
