@@ -60,8 +60,15 @@ class StoreController extends Controller
         $test_alert->type = 'sale';
         $test_alert->title = 'Limited Time Offer:';
         $test_alert->message = 'Recieve a FREE signed poster with purchase!';
-
         $alerts = [$test_alert];
+
+        if(NOW() < new DateTime('03/06/2022')){
+            $presale_alert = new StdClass();
+            $presale_alert->type = 'warning';
+            $presale_alert->title = 'Presale Only:';
+            $presale_alert->message = 'Items will ship March 10th';
+            array_push($alerts,$presale_alert);
+        }
 
         $sold_out = false;
         $held = $this->getQuantityHeld($catalog_item->product_size_id);
