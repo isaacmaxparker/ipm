@@ -39,5 +39,12 @@ class MusicController extends Controller
         return view('music.release', $this->template_vars);
     }
 
+    public function viewLatest(Request $request){
+
+        $latest = DB::table('releases')->orderBy('release_date','desc')->limit(1)->get();
+
+        return redirect('/msuic/release/' . $latest->id);
+    }
+
 }
 

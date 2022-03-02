@@ -33,6 +33,6 @@ class IndexController extends Controller
         $this->addTemplateVariables(compact('latest','featured'));
 
         return view('index.home', $this->template_vars);
-    }
+    }    
 }
 

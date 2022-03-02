@@ -124,7 +124,7 @@
 			</div>
 	    </div>
     </div>
-    <div class="desktop_content">
+    <div class="desktop_content" data-module="slowload">
         <div id="main-content" class="main-content-release-desktop {{release.back_img_link}} scroll-x-view">
             <div class="left-side-release">
                 <div class="albumArtContainer">
@@ -253,16 +253,4 @@
                 {% endif %}
         </div>
     </div>
-    <script>
-
-    var slowload = document.getElementsByClassName('slowload');
-    var arr = Array.from(slowload);
-
-    arr.forEach(element => {
-        element.onloadeddata = function() {
-            element.classList.remove('invisible')
-        };
-    });
-
-    </script>
 	{% endblock %}

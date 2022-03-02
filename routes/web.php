@@ -22,6 +22,7 @@ Route::group([
 ], function () {
 
     Route::get('catalog', ['as' => 'catalog', 'uses' => 'MusicController@viewAll']);
+    Route::get('latest', ['as' => 'latest', 'uses' => 'MusicController@viewLatest']);
     Route::get('release/{id}', ['as' => 'release', 'uses' => 'MusicController@viewRelease']);
 });
 

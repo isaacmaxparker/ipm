@@ -20,7 +20,6 @@ class StoreController extends Controller
     public function viewCatalog(Request $request){
 
         //TAKE OUT LATER THIS IS JUST FOR VERSION 1.0 SINCE THERE IS ONLY ONE PRODUCT
-
         return redirect('/store/product/1');
 
         $products = DB::select(DB::raw("SELECT products.*, img.img_link, img.product_id as prod_id

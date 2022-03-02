@@ -28891,9 +28891,27 @@ var getTotal = function getTotal() {
 /***/ }),
 
 /***/ 52:
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 
+var init = function init(selector) {
+
+    var slowload = document.getElementsByClassName('slowload');
+    var arr = Array.from(slowload);
+
+    arr.forEach(function (element) {
+        element.onloadeddata = function () {
+            element.classList.remove('invisible');
+        };
+    });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({ init: init });
 
 /***/ }),
 
