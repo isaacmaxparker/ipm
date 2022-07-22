@@ -123,13 +123,15 @@
         justify-content: center;
         margin-top: auto;
         margin-bottom: 25px;
+        max-height: 50vh;
     }
     #paypal-button-container-desktop{
         width:80%;
         margin-top:50px;
         max-width: 500px;
         box-shadow: none;
-
+        height: 100%;
+        overflow: auto;
     }
 
     .checkout-billing-div iframe{

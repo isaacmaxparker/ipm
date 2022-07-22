@@ -1,0 +1,23 @@
+{% set pageTitle = "Admin Login" %}
+
+{% extends "_layout/site.twig" %}
+
+{% block content %}
+	<div class="header_content slowload" data-module="slowload">
+    <div class="back_img"><img src="{{config('links.s3_img_link')}}releases/backgrounds/sd-back.png"></div>
+    <div class="admin_div">
+		<form class="admin_form" method="POST" action="{{route('admin::loginsubmit')}}">
+        {{ csrf_field() }}
+			<div class="form_input_with_label flex-row">
+                <p>Admin Username:</p>
+                <input name="username">
+            </div>
+			<div class="form_input_with_label flex-row">
+                <p>Admin Password:</p>
+                <input name="password" type="password">
+            </div>
+			<button type="submit" class="white_border_button">Login</button>
+		</form>
+        </div>
+	</div>
+{% endblock %}

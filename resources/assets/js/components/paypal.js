@@ -2,9 +2,10 @@ import $ from 'jquery';
 import { loadScript } from "@paypal/paypal-js";
 
 var init = function (selector) {
-
+  var sandbox_ID = 'AUEml5vTR3kDWwv3LjQkgLA1KP6ISueJoXxyqAps-dZd0MwtBbkhN1qwXNjyd89JizzAmJSVlIctFtl_'
+var live_ID = 'AXoptNOM3gcXWPumQJiql945Hq3PDbZBr0jmtUQf8H7Fyua7H7PZxDJaCW-s8p4GkfcHe-Xcd_wvw7j4';
   getTotal();
-    loadScript({ "client-id": 'AUEml5vTR3kDWwv3LjQkgLA1KP6ISueJoXxyqAps-dZd0MwtBbkhN1qwXNjyd89JizzAmJSVlIctFtl_',
+    loadScript({ "client-id": sandbox_ID,
                 "disable-funding":'credit'
                 })
     .then((paypal) => {
@@ -24,8 +25,8 @@ var init = function (selector) {
             // Finalize the transaction after payer approval
             onApprove: function(data, actions) {
               return actions.order.capture().then(function(orderData) {
+                console.log(JSON.stringify(orderData));
                     let url = window.location.href.replace('checkout','saveorder')
-
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -63,7 +64,7 @@ var init = function (selector) {
               onApprove: function(data, actions) {
                 return actions.order.capture().then(function(orderData) {
                       let url = window.location.href.replace('checkout','saveorder')
-  
+                    console.log(JSON.stringify(orderData));
                       $.ajaxSetup({
                           headers: {
                               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

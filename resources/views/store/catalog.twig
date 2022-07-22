@@ -10,7 +10,7 @@
                 {% for product in products %}
                     <div class="product_tile">
                         <a href="{{route('store::product',[product.prod_id])}}" class="first-child">
-                            <img src="{{asset('img/store/' ~ product.type ~ '/' ~ product.img_link)}}">
+                            <img src="{{config('links.s3_img_link') ~ 'store/' ~ product.type ~ '/' ~ product.img_link}}">
                             <p>{{product.name}}{{product.type == 'tshirt' ? ' Shirt' : ''}}</p>
                         </a>
                     </div>

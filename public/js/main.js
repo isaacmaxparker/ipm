@@ -28363,7 +28363,8 @@ var removeFromCart = function removeFromCart(selector) {
 };
 
 var updateCart = function updateCart(cart_items, shipping, viewMode, code) {
-
+    window.location.reload();
+    return;
     if (cart_items.length == 0) {
         window.location.reload();
     } else {
@@ -28375,7 +28376,11 @@ var updateCart = function updateCart(cart_items, shipping, viewMode, code) {
         } else {
             var total_html = 0;
             cart_items.forEach(function (element) {
+                console.log(total_html);
+                console.log(element);
                 total_html = (element.price * element.quantity).toFixed(2) + total_html;
+                console.log(total_html);
+                console.log('0---------------------------------------0');
             });
             document.querySelector('.cart_total' + viewMode).innerHTML = '$' + parseFloat(total_html).toFixed(2);
             var order_total = total_html + shipping;
@@ -28400,9 +28405,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var init = function init(selector) {
-
+  var sandbox_ID = 'AUEml5vTR3kDWwv3LjQkgLA1KP6ISueJoXxyqAps-dZd0MwtBbkhN1qwXNjyd89JizzAmJSVlIctFtl_';
+  var live_ID = 'AXoptNOM3gcXWPumQJiql945Hq3PDbZBr0jmtUQf8H7Fyua7H7PZxDJaCW-s8p4GkfcHe-Xcd_wvw7j4';
   getTotal();
-  Object(__WEBPACK_IMPORTED_MODULE_1__paypal_paypal_js__["a" /* loadScript */])({ "client-id": 'AUEml5vTR3kDWwv3LjQkgLA1KP6ISueJoXxyqAps-dZd0MwtBbkhN1qwXNjyd89JizzAmJSVlIctFtl_',
+  Object(__WEBPACK_IMPORTED_MODULE_1__paypal_paypal_js__["a" /* loadScript */])({ "client-id": sandbox_ID,
     "disable-funding": 'credit'
   }).then(function (paypal) {
     paypal.Buttons({
@@ -28421,8 +28427,8 @@ var init = function init(selector) {
       // Finalize the transaction after payer approval
       onApprove: function onApprove(data, actions) {
         return actions.order.capture().then(function (orderData) {
+          console.log(JSON.stringify(orderData));
           var url = window.location.href.replace('checkout', 'saveorder');
-
           __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajaxSetup({
             headers: {
               'X-CSRF-TOKEN': __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content')
@@ -28460,7 +28466,7 @@ var init = function init(selector) {
       onApprove: function onApprove(data, actions) {
         return actions.order.capture().then(function (orderData) {
           var url = window.location.href.replace('checkout', 'saveorder');
-
+          console.log(JSON.stringify(orderData));
           __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajaxSetup({
             headers: {
               'X-CSRF-TOKEN': __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content')

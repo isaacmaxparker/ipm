@@ -10,7 +10,7 @@
                 {% for release in releases %}
                     <a href="{{route('music::release',[release.id])}}">
                         <div class="catalog_grid_card">
-                            <img src="{{asset('img/releases/album_arts/' ~ release.img_link)}}">
+                            <img src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ release.img_link}}">
                             <div class="card_spacer {{release.theme_color}}-dark-back"></div>
                             <p class="label">{{release.title}} <span class="{{release.theme_color}}-text">({{release.release_date|slice(0,4)}})</span></p>
                         </div>
@@ -25,7 +25,7 @@
                 {% for release in releases %}
                     <a href="{{route('music::release',[release.id])}}">
                         <div class="catalog_grid_card">
-                            <img src="{{asset('img/releases/album_arts/' ~ release.img_link)}}">
+                            <img src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ release.img_link}}">
                             <div class="card_spacer {{release.theme_color}}-dark-back"></div>
                             <p class="label">{{release.title}} <span class="{{release.theme_color}}-text">({{release.release_date|slice(0,4)}})</span></p>
                             <div class="catalog_desc {{release.theme_color}}-dark-back">

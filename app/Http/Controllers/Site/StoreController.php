@@ -231,13 +231,14 @@ class StoreController extends Controller
             $code = DB::table('promos')
             ->where('code','=',$promocode)
             ->first();
-    
-
-            if(count($code) < 1){
+            
+            if(!$code){
                 $response->message = 'Promo Code is not valid';
                 $response->type = 'Error';
                 return [$response];
             }
+    
+
     
             $date_now = new DateTime();
             $start_date = new DateTime($code->start_date);
@@ -303,9 +304,8 @@ class StoreController extends Controller
     }
 
     public function saveOrder(Request $request){
-
-        $data = json_decode($_POST['data']);
         
+        $data = json_decode($_POST['data']);
         $purchase_data = $data->purchase_units[0];
         $payment_data = $data->purchase_units[0]->payments->captures[0];
 
@@ -350,6 +350,9 @@ class StoreController extends Controller
         $cart = session('cart');
 
 
+        if(!$cart){
+            $cart = json_decode($_POST['cart']);
+        }
 
         foreach ($cart as $item){
             DB::table('order_items')->insert(
@@ -447,6 +450,13 @@ class StoreController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString . time();
+    }
+
+    public function clearHeld(){
+        DB::table('carts')->whereRaw("time_held < DATE_SUB(NOW(), INTERVAL '2' HOUR)")
+        ->delete();
+
+        return ['Sucess'];
     }
 }
 

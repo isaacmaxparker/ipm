@@ -24,7 +24,8 @@ var removeFromCart = (selector) => {
 }
 
 var updateCart = (cart_items,shipping, viewMode,code) =>{
-
+    window.location.reload()
+    return;
     if(cart_items.length == 0){
         window.location.reload();
     }else{
@@ -38,7 +39,11 @@ var updateCart = (cart_items,shipping, viewMode,code) =>{
         else{
             let total_html = 0;
             cart_items.forEach(element => {
-                total_html = (element.price * element.quantity).toFixed(2) + total_html;
+                console.log(total_html)
+                console.log(element)
+                total_html = ((element.price * element.quantity).toFixed(2)) + total_html;
+                console.log(total_html)
+                console.log('0---------------------------------------0')
             });
             document.querySelector('.cart_total' + viewMode).innerHTML = '$' + parseFloat(total_html).toFixed(2);
             let order_total = total_html + shipping;

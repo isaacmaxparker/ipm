@@ -34,6 +34,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
+    padding-bottom:15vh;
 }
 
 /* OTHER RELEASES */
@@ -55,7 +56,7 @@ padding-left:2.5vw;
     margin: 2.5vw;}
 
 .scroll-view{
-    height:calc(85vh - 50px);
+    height:calc(85% - 50px);
 }
 
 

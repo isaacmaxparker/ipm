@@ -1,0 +1,122 @@
+.form_input_with_label{
+    p{
+        margin-right: 25px;
+    }
+}
+
+.admin_form{
+    color:rgba(255, 255, 255, 0.588);
+    background-color:rgba(0, 0, 0, 0.625);
+    padding:50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 130%;
+
+    input{
+        border:rgba(255, 255, 255, 0.602) solid 2px;
+        background-color: rgba(0, 0, 0, 0.625);
+        font-family: 'Renner';
+        border-radius: 5px;
+        padding:10px;
+        color:white;
+    }
+
+    button{
+        cursor: pointer;
+        border-radius: 5px;
+        height:27px;
+        background-color: rgba(0, 0, 0, 0.349);
+        border: solid 1px white;
+        color:white;
+        padding-left:33px;
+        padding-right:33px;
+        font-family: 'Renner';
+    }
+
+}
+
+.edit_form{
+    color:rgba(0, 0, 0, 0.588);
+    background-color:rgba(255, 255, 255, 0.425);
+    padding:50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 130%;
+    max-height:80vh;
+
+    input, textarea, select{
+        border:none;
+        border-bottom:rgba(123, 123, 123, 0.602) solid 2px;
+        background: none;
+        font-family: 'Renner';
+        padding:10px;
+        color:rgb(0, 0, 0);
+        width:40%;
+        font-size:150%;
+    }
+textarea{
+    width:70%;
+    max-width: 70%;
+    max-height: 400px;
+    height: 150px;
+    font-size: 125%;
+}
+select{
+    font-size: 125%;
+    width:calc(40% + 20px);
+    text-transform: capitalize;
+}
+
+    .form_input_with_label{
+        width:100%;
+        text-align: left;
+        align-items: center;
+        justify-content: flex-start;
+        margin:10px;
+
+        p{
+            margin:0px;
+            margin-right: 25px;
+            font-size:115%;
+            font-style: italic;
+            width:25%;
+        }
+    }
+    option {
+        text-transform: capitalize;
+    }
+
+    .form-buttons{
+        width:100%;
+        justify-content: flex-end;
+
+        .button{
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: rgba(0, 99, 23, 0.349);
+            border: solid 2px rgba(255, 255, 255, 0.536);
+            color:rgba(255, 255, 255, 0.612);
+            padding-left:33px;
+            padding-right:33px;
+            font-family: 'Renner';
+            margin:15px;
+            margin-right:0px;
+            margin-left:5px;
+            padding:15px;
+            text-decoration: none;
+        }
+
+        button{
+            font-size:100%;
+            height: unset;
+        }
+
+        .back-button{
+            background-color: rgba(66, 66, 66, 0.349) !important;
+        }
+    }
+}

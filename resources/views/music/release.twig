@@ -6,8 +6,8 @@
     <div class="background {{release.background_type == 'image' ? release.back_img_link: ''}}">
     {% if release.background_type == 'video' %}
         <video id="gallery_video" autoplay loop muted playsinline class="{{release.theme_color}}-border invisible slowload">
-            <source src="{{asset('img/releases/gallery/' ~ release.back_img_link)}}.webm" type="video/webm">
-            <source src="{{asset('img/releases/gallery/' ~ release.back_img_link)}}.mp4" type="video/mp4">
+            <source src="{{config('links.s3_img_link') ~ 'releases/gallery/' ~ release.back_img_link}}.webm" type="video/webm">
+            <source src="{{config('links.s3_img_link') ~ 'releases/gallery/' ~ release.back_img_link}}.mp4" type="video/mp4">
         </video>
     {% endif %}
     </div>
@@ -16,7 +16,7 @@
 			<div class="scroll-view">
 				<div class="albumContainer">
 					<div class="albumArtContainer">
-						<img id="albumartImg" data-js="lowresimageload" class="albumArtImg" src="{{asset('img/releases/album_arts/' ~ release.img_link)}}">
+						<img id="albumartImg" data-js="lowresimageload" class="albumArtImg" src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ release.img_link}}">
 					</div>
 					<div id="previewsDiv" class="previews">
 						{% for song in songs %}
@@ -24,7 +24,7 @@
 								<div class="songPreviewButtonsDiv {{release.theme_color}}-border" data-module="audio">
 									<div style="display: none;">
 										<audio controls="" class="songPreviewAudio">
-											<source src="{{asset('audio/previews/' ~ song.audio_link)}}" type="audio/mpeg">
+											<source src="{{config('links.s3_audio_link') ~ 'audio/previews/' ~ song.audio_link}}" type="audio/mpeg">
 											Your browser does not support the audio element.
 										</audio>
 									</div>
@@ -68,7 +68,7 @@
 								<div id="other_releases_grid">
 									{% for item in other_releases %}
 										<div class="other_release_grid_item">
-											<a href="{{route('music::release',[item.id])}}"><img src="{{asset('img/releases/album_arts/' ~ item.img_link)}}"></a>
+											<a href="{{route('music::release',[item.id])}}"><img src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ item.img_link}}"></a>
 										</div>
 									{% endfor %}
 								</div>
@@ -84,28 +84,28 @@
 					<div id="storeLinksDiv" class="storesList">
 						<div class="storeLink">
 							<a class="storeImage" href="{{release.spotify_link}}" target="_blank">
-								<img style="width:100%" src="{{asset('img/releases/store_logos/spotify.png')}}">
+								<img style="width:100%" src="{{config('links.s3_img_link') ~ 'releases/store_logos/spotify.png'}}">
 							</a>
 							<div class="storeText">Spotify</div>
 						</div>
 
 						<div class="storeLink">
 							<a class="storeImage" href="{{release.itunes_link}}" target="_blank">
-								<img style="width:100%" src="{{asset('img/releases/store_logos/appleMusic.png')}}">
+								<img style="width:100%" src="{{config('links.s3_img_link') ~ 'releases/store_logos/appleMusic.png'}}">
 							</a>
 							<div class="storeText">Apple Music</div>
 						</div>
 
 						<div class="storeLink">
 							<a class="storeImage" href="{{release.youtube_music_link}}" target="_blank">
-								<img style="width:100%" src="{{asset('img/releases/store_logos/youtubeMusic.png')}}">
+								<img style="width:100%" src="{{config('links.s3_img_link') ~ 'releases/store_logos/youtubeMusic.png'}}">
 							</a>
 							<div class="storeText">Youtube</div>
 						</div>
 
 						<div class="storeLink">
 							<a class="storeImage" href="{{release.amazon_link}}" target="_blank">
-								<img style="width:100%" src="{{asset('img/releases/store_logos/amazon.png')}}">
+								<img style="width:100%" src="{{config('links.s3_img_link') ~ 'releases/store_logos/amazon.png'}}">
 							</a>
 							<div class="storeText">Amazon Music</div>
 						</div>
@@ -128,7 +128,7 @@
         <div id="main-content" class="main-content-release-desktop {{release.back_img_link}} scroll-x-view">
             <div class="left-side-release">
                 <div class="albumArtContainer">
-                    <img id="albumartImg" data-js="lowresimageload" class="albumArtImg" src="{{asset('img/releases/album_arts/' ~ release.img_link)}}">
+                    <img id="albumartImg" data-js="lowresimageload" class="albumArtImg" src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ release.img_link}}">
                     <div class="storeText">{{release.title}}</div>
                     <div class="storeText {{release.theme_color}}-text" style="font-size:100%;margin:10px;">{{release.subtitle}}</div>
                 </div>
@@ -148,7 +148,7 @@
                                 <div class="songPreviewButtonsDiv {{release.theme_color}}-border" data-module="audio">
                                     <div style="display: none;">
                                         <audio controls="" class="songPreviewAudio">
-                                            <source src="{{asset('audio/previews/' ~ song.audio_link)}}" type="audio/mpeg">
+                                            <source src="{{config('links.s3_audio_link') ~'audio/previews/' ~ song.audio_link}}" type="audio/mpeg">
                                             Your browser does not support the audio element.
                                         </audio>
                                     </div>
@@ -185,28 +185,28 @@
                             <div id="storeLinksDiv" class="storesList">
                                 <div class="storeLink">
                                     <a class="storeImage" href="{{release.spotify_link}}" target="_blank">
-                                        <img style="width:100%" src="{{asset('img/releases/store_logos/spotify.png')}}">
+                                        <img style="width:100%" src="{{config('links.s3_img_link') ~ 'releases/store_logos/spotify.png'}}">
                                     </a>
                                      <a class="storeText {{release.theme_color}}-text" href="{{release.spotify_link}}" target="_blank">Spotify</a>
                                 </div>
 
                                 <div class="storeLink">
                                     <a class="storeImage" href="{{release.itunes_link}}" target="_blank">
-                                        <img style="width:100%" src="{{asset('img/releases/store_logos/appleMusic.png')}}">
+                                        <img style="width:100%" src="{{config('links.s3_img_link') ~ 'releases/store_logos/appleMusic.png'}}">
                                     </a>
                                     <a class="storeText {{release.theme_color}}-text" href="{{release.itunes_link}}" target="_blank">Apple Music</a>
                                 </div>
 
                                 <div class="storeLink">
                                     <a class="storeImage" href="{{release.youtube_music_link}}" target="_blank">
-                                        <img style="width:100%" src="{{asset('img/releases/store_logos/youtubeMusic.png')}}">
+                                        <img style="width:100%" src="{{config('links.s3_img_link') ~ 'releases/store_logos/youtubeMusic.png'}}">
                                     </a>
                                     <a class="storeText {{release.theme_color}}-text" href="{{release.youtube_music_link}}" target="_blank">Youtube Music</a>
                                 </div>
 
                                 <div class="storeLink">
                                     <a class="storeImage" href="{{release.amazon_link}}" target="_blank">
-                                        <img style="width:100%" src="{{asset('img/releases/store_logos/amazon.png')}}">
+                                        <img style="width:100%" src="{{config('links.s3_img_link') ~ 'releases/store_logos/amazon.png'}}">
                                     </a>
                                     <a class="storeText {{release.theme_color}}-text" href="{{release.amazon_link}}" target="_blank">Amazon</a>
                                 </div>
@@ -232,8 +232,8 @@
                 {% else %}
                     <div id="youtube_cont_id">
                         <video id="gallery_video" autoplay loop muted playsinline class="{{release.theme_color}}-border invisible slowload"  width="100%" height="100%">
-                            <source src="{{asset('img/releases/gallery/' ~ release.gallery_img_link)}}.webm" type="video/webm">
-                            <source src="{{asset('img/releases/gallery/' ~ release.gallery_img_link)}}.mp4" type="video/mp4">
+                            <source src="{{config('links.s3_img_link') ~ 'releases/gallery/' ~ release.gallery_img_link}}.webm" type="video/webm">
+                            <source src="{{config('links.s3_img_link') ~ 'releases/gallery/' ~ release.gallery_img_link}}.mp4" type="video/mp4">
                         </video>
                     </div>
                 {% endif %}
@@ -244,7 +244,7 @@
                             <div id="other_releases_grid">
                                 {% for item in other_releases %}
                                     <div class="other_release_grid_item">
-                                        <a href="{{route('music::release',[item.id])}}"><img src="{{asset('img/releases/album_arts/' ~ item.img_link)}}" class="invisible visible" onload="this.classList.remove('invisible')"></a>
+                                        <a href="{{route('music::release',[item.id])}}"><img src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ item.img_link}}" class="invisible visible" onload="this.classList.remove('invisible')"></a>
                                     </div>
                                 {% endfor %}
                             </div>

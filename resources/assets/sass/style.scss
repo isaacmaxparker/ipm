@@ -3,6 +3,8 @@
 @import 'global.scss';
 @import 'devices.scss';
 
+@import '_snippets/forms.scss';
+
 // Index
 @import 'index/index.scss';
 @import 'index/index-desktop.scss';
@@ -20,3 +22,9 @@
 @import 'store/checkout.scss';
 @import 'store/checkout-desktop.scss';
 @import 'store/orders.scss';
+
+// Admin
+@import 'admin/login.scss';
+@import 'admin/dashboard.scss';
+@import 'admin/lists.scss';
+@import 'admin/_snippets/table.scss';

@@ -28,7 +28,7 @@
 						<div class="y-scroll-div" style="max-height:30vh">
 							{% for item in order_items %}
 								<div class="flex-row order-item-row">
-									<img src="{{asset('img/store/' ~ item.img_link)}}">
+									<img src="{{config('links.s3_img_link') ~ 'store/' ~ item.img_link}}">
 									<p style="margin-left:10px;">{{item.name}}</p>
 									<p style="margin-left:auto;margin-right:10px;opacity:.6">{{item.quantity > 1 ? 'x' ~ item.quantity : ''}}</p>
 								</div>
@@ -62,7 +62,7 @@
 			</div>
 		</div>
 		<div class="desktop_content back-white">
-			<img class="back_img" src="{{asset('img/backgrounds/sd-back-rainbow.png')}}">
+			<img class="back_img" src="{{config('links.s3_img_link') ~ 'backgrounds/sd-back-rainbow.png'}}">
 			<div class="desktop-scroll">
 				<div class="y-scroll-div order_info_div">
 					<div class="flex-column order-columns">
@@ -85,7 +85,7 @@
 							<div class="y-scroll-div" style="max-height:30vh">
 								{% for item in order_items %}
 									<div class="flex-row order-item-row">
-										<img src="{{asset('img/store/' ~ item.img_link)}}">
+										<img src="{{config('links.s3_img_link') ~ 'store/' ~ item.img_link)}}">
 										<p style="margin-left:10px;">{{item.name}}</p>
 										<p style="margin-left:auto;margin-right:10px;opacity:.6">{{item.quantity > 1 ? 'x' ~ item.quantity : ''}}</p>
 									</div>

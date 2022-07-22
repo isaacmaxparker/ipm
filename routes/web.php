@@ -47,3 +47,30 @@ Route::group([
     Route::post('saveorder', ['as' => 'saveorder', 'uses' => 'StoreController@saveOrder']);
     Route::get('order/{order_id}', ['as' => 'order', 'uses' => 'StoreController@viewOrder']);
 });
+
+Route::group([
+ 
+    'prefix' => 'admin',
+    'as' => 'admin::',
+    'namespace'=>'Admin',
+
+], function () {
+
+    Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@viewAdminDashboard']);
+    Route::get('/login', ['as' => 'login', 'uses' => 'AdminController@viewLogin']);
+    Route::post('/login', ['as' => 'loginsubmit', 'uses' => 'AdminController@login']);
+    Route::get('/logout', ['as' => 'logout', 'uses' => 'AdminController@logout']);
+    Route::get('/releases', ['as' => 'releases', 'uses' => 'AdminController@viewReleases']);
+    Route::get('/newrelease', ['as' => 'newrelease', 'uses' => 'AdminController@newRelease']);
+    Route::get('/deleterelease', ['as' => 'deleterelease', 'uses' => 'AdminController@deleteRelease']);
+    Route::post('/saverelease', ['as' => 'savenewrelease', 'uses' => 'AdminController@saveNewRelease']);
+    Route::post('/saverelease/{id}', ['as' => 'saverelease', 'uses' => 'AdminController@saveRelease']);
+    Route::get('/release/{id}', ['as' => 'editrelease', 'uses' => 'AdminController@editRelease']);
+    Route::get('/songs', ['as' => 'songs', 'uses' => 'AdminController@viewSongs']);
+    Route::get('/products', ['as' => 'products', 'uses' => 'AdminController@viewProducts']);
+    Route::get('/orders', ['as' => 'orders', 'uses' => 'AdminController@viewOrders']);
+    Route::get('/promos', ['as' => 'promos', 'uses' => 'AdminController@viewPromos']);
+    Route::get('/customers', ['as' => 'customers', 'uses' => 'AdminController@viewCustomers']);
+    Route::get('/tiles', ['as' => 'tiles', 'uses' => 'AdminController@viewTiles']);
+
+});

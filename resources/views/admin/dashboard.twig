@@ -1,0 +1,52 @@
+{% set pageTitle = "Admin Dashboard" %}
+
+{% extends "_layout/adminsite.twig" %}
+
+{% block content %}
+	<div class="header_content slowload" data-module="slowload">
+		<div class="back_img"><img src="{{config('links.s3_img_link')}}releases/backgrounds/cn-back.png"></div>
+		<div class="admin_div">
+			<div class="flex-column y-scroll-div">
+				<a href="{{route('admin::releases')}}" class="dashboard_link">
+					<div class="dashboard_item">
+						Manage Releases
+					</div>
+				</a>
+				<a href="{{route('admin::songs')}}" class="dashboard_link">
+					<div class="dashboard_item">
+						Manage Songs
+					</div>
+				</a>
+				<a href="{{route('admin::products')}}" class="dashboard_link">
+					<div class="dashboard_item">
+						Manage Products
+					</div>
+				</a>
+				<a href="{{route('admin::orders')}}" class="dashboard_link">
+					<div class="dashboard_item">
+						Manage Orders
+					</div>
+				</a>
+				<a href="{{route('admin::customers')}}" class="dashboard_link">
+					<div class="dashboard_item">
+						Manage Customers
+					</div>
+				</a>
+				<a href="{{route('admin::promos')}}" class="dashboard_link">
+					<div class="dashboard_item">
+						Manage Promos
+					</div>
+				</a>
+				<a href="{{route('admin::tiles')}}" class="dashboard_link">
+					<div class="dashboard_item">
+						Manage Home Tiles
+					</div>
+				</a>
+                <a href="{{route('admin::logout')}}" class="dashboard_link">
+					<div class="dashboard_item">
+						Log Out
+					</div>
+				</a>
+			</div>
+		</div>
+	{% endblock %}

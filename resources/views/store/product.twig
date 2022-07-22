@@ -16,15 +16,15 @@
 							<div class="product-images">
 								{% for image in images %}
 									{% if images[0].id == image.id %}
-										<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image" data-image-id="{{image.id}}">
+										<img src="{{config('links.s3_img_link') ~ 'store/' ~ product.type ~ '/' ~ image.img_link}}" class="product-image" data-image-id="{{image.id}}">
 									{% else %}
-										<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image hidden-image" data-image-id="{{image.id}}">
+										<img src="{{config('links.s3_img_link') ~ 'store/' ~ product.type ~ '/' ~ image.img_link}}" class="product-image hidden-image" data-image-id="{{image.id}}">
 									{% endif %}
 								{% endfor %}
 							</div>
 							<div class="product-thumbnails">
 								{% for image in images %}
-									<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}">
+									<img src="{{config('links.s3_img_link') ~  'store/' ~ product.type ~ '/' ~ image.img_link}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}">
 								{% endfor %}
 							</div>
 						</div>
@@ -87,7 +87,7 @@
 		</div>
 	</div>
 	<div class="desktop_content checkout_desktop">
-		<img class="back_img" src="{{asset('img/backgrounds/sd-back-rainbow.png')}}">
+		<img class="back_img" src="{{config('links.s3_img_link') ~  'backgrounds/sd-back-rainbow.png'}}">
 		<div class="desktop-scroll">
 			<div class="y-scroll-div product_info_div">
 				<a class="cart_link" href="{{route('store::checkout')}}">C</a>
@@ -98,15 +98,15 @@
 								<div class="product-images">
 									{% for image in images %}
 										{% if images[0].id == image.id %}
-											<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image" data-image-id="{{image.id}}">
+											<img src="{{config('links.s3_img_link') ~  'store/' ~ product.type ~ '/' ~ image.img_link}}" class="product-image" data-image-id="{{image.id}}">
 										{% else %}
-											<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-image hidden-image" data-image-id="{{image.id}}">
+											<img src="{{config('links.s3_img_link') ~  'store/' ~ product.type ~ '/' ~ image.img_link}}" class="product-image hidden-image" data-image-id="{{image.id}}">
 										{% endif %}
 									{% endfor %}
 								</div>
 								<div class="product-thumbnails">
 									{% for image in images %}
-										<img src="{{asset('img/store/' ~ product.type ~ '/' ~ image.img_link)}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}">
+										<img src="{{config('links.s3_img_link') ~  '/store/' ~ product.type ~ '/' ~ image.img_link}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}">
 									{% endfor %}
 								</div>
 							</div>

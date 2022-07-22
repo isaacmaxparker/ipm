@@ -43,7 +43,7 @@ class MusicController extends Controller
 
         $latest = DB::table('releases')->orderBy('release_date','desc')->limit(1)->get();
 
-        return redirect('/msuic/release/' . $latest->id);
+        return redirect('/music/release/' . $latest->id);
     }
 
 }
