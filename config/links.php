@@ -1,6 +1,9 @@
 <?php
 
 return [
+    's3_img_link'=>env('S3_IMAGE_BASE_LINK', 'https://ipmsite.s3.us-west-1.amazonaws.com/img/'),
+    's3_audio_link'=>env('S3_AUDIO_BASE_LINK', 'https://ipmsite.s3.us-west-1.amazonaws.com/audio/'),
+
     'facebook' => env('SOCIALS_FACEBOOK_LINK', 'https://www.facebook.com/isaacparkermusic/'),
     'instagram' => env('SOCIALS_INSTA_LINK', 'https://www.instagram.com/isaacparkermusic/'),
     'youtube' => env('SOCIALS_YOUTUBE_LINK', 'https://www.youtube.com/isaacparkermusic'),
