@@ -51,8 +51,10 @@ $navColor:rgba(0, 0, 0, 0.884);
 }
 
 .back_img img{
-    width:100%;
-    height:100%;
+    min-width: 100vw;
+    min-height: 100vh;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
 
 div{
@@ -170,7 +172,7 @@ div{
 
 .background{
     min-width: 100vw;
-    min-height: 100%;
+    min-height: 100vh;
     top:0px;
     left:0;
     position: absolute;
@@ -185,8 +187,7 @@ div{
 
 .back_link{
     float:left;
-    transform: translate(0,-50%);
-    margin-top:23px;
+
     margin-left:5px;
 }
 
@@ -250,9 +251,9 @@ nav .menu{
   }
 
   .dropdownMenu{
-    max-height: 0px;
+    max-height: 0;
     overflow-y: hidden;
-    transition: height .5s ease-in-out;
+    transition: max-height 0.5s ease-out;
     display: flex;
     left:0;
     width:100vw;
@@ -260,9 +261,9 @@ nav .menu{
     background-color: $navColor;
   }
   .mobile-content.clicked .dropdownMenu{
-     max-height:100%;
+     max-height:100vh;
      overflow-y: auto;
-     transition: max-height .8s ease-in-out;
+     transition: max-height .5s ease-in-out;
   }
 
   .dropdownMenu a.menuLink{
@@ -456,17 +457,48 @@ nav .menu{
     stroke: rgb(255, 255, 255);
 }
 .burntred-text{
-    color: rgb(224, 227, 255);
+    color: #b65353;
 }
 .burntred-fill{
-    fill: rgb(224, 227, 255);
+    fill: #b65353;
 }
 .burntred-dark-back{
     background-color:rgba(37, 37, 37, 0.664);
 }
 .burntred-border{
-    border-color: rgb(224, 227, 255) !important;
+    border-color: #b65353 !important;
 }
 .burntred-stroke{
-    stroke: rgb(255, 255, 255);
+    stroke: #b65353;
+}
+
+#loadingScreen{
+    background-color: black;
+    position: absolute;
+    z-index:10000;
+    width: 100vw;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color:white;
+}
+
+#loadingScreen img{
+    width:100px;
+}
+
+.loadingTitle{
+    font-size: 7rem;
+    margin-bottom:50px;
+}
+
+.loading_parg{
+    font-size: 2rem;
+    padding:50px;
+    margin-top:5px;
+    max-width: 80%;
+    margin-bottom:50px;
+    color:white;
 }

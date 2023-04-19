@@ -34,7 +34,10 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
-    padding-bottom:15vh;
+}
+
+.release-scroll-view {
+    height: calc(85vh - 50px) !important;
 }
 
 /* OTHER RELEASES */
@@ -165,7 +168,6 @@ padding-left:2.5vw;
     display: flex;
     flex-direction: row;
     overflow-x: auto;
-    padding-right: 20px;
     height:100%;
 }
 
@@ -175,11 +177,11 @@ padding-left:2.5vw;
     color:white;
     align-items: center;
     justify-content: center;
-    min-width: 12vh;
+    min-width: 9vh;
 }
 
 .storeImage{
-   width: 17vw;
+   width:6vh;
    max-width: 100px;
 }
 

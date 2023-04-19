@@ -9,11 +9,13 @@
             <source src="{{config('links.s3_img_link') ~ 'releases/gallery/' ~ release.back_img_link}}.webm" type="video/webm">
             <source src="{{config('links.s3_img_link') ~ 'releases/gallery/' ~ release.back_img_link}}.mp4" type="video/mp4">
         </video>
+    {% else %}
+    <div class="back_img"><img src="{{config('links.s3_img_link')}}releases/backgrounds/{{release.back_img_link}}"></div>
     {% endif %}
     </div>
 	<div class="mobile_content">
 		<div id="main-content" class="main-content ">
-			<div class="scroll-view">
+			<div class="scroll-view release-scroll-view" >
 				<div class="albumContainer">
 					<div class="albumArtContainer">
 						<img id="albumartImg" data-js="lowresimageload" class="albumArtImg" src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ release.img_link}}">
@@ -118,7 +120,6 @@
 							</a>
 							<div class="storeText">More</div>
 						</div>
-						<div style="width:5px;margin-right:10px">&nbsp;</div>
 					</div>
 				</div>
 			</div>

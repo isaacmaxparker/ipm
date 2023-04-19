@@ -3,6 +3,7 @@
 return [
     's3_img_link'=>env('S3_IMAGE_BASE_LINK', 'https://ipmsite.s3.us-west-1.amazonaws.com/img/'),
     's3_audio_link'=>env('S3_AUDIO_BASE_LINK', 'https://ipmsite.s3.us-west-1.amazonaws.com/audio/'),
+    's3_portfolio_link'=>env('S3_PORTFOLIO_BASE_LINK', 'https://ipmsite.s3.us-west-1.amazonaws.com/portfolio/'),
 
     'facebook' => env('SOCIALS_FACEBOOK_LINK', 'https://www.facebook.com/isaacparkermusic/'),
     'instagram' => env('SOCIALS_INSTA_LINK', 'https://www.instagram.com/isaacparkermusic/'),

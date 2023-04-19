@@ -63,9 +63,9 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 44);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 1:
+/******/ ([
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10953,8 +10953,7 @@ return jQuery;
 
 
 /***/ }),
-
-/***/ 2:
+/* 2 */
 /***/ (function(module, exports) {
 
 var g;
@@ -10981,8 +10980,7 @@ module.exports = g;
 
 
 /***/ }),
-
-/***/ 3:
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -28199,8 +28197,7 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(4)(module)))
 
 /***/ }),
-
-/***/ 4:
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -28228,16 +28225,53 @@ module.exports = function(module) {
 
 
 /***/ }),
-
-/***/ 44:
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(45);
 
 
 /***/ }),
-
-/***/ 45:
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var modules = Array.from(document.querySelectorAll('[data-module]'));
@@ -28249,17 +28283,18 @@ modules.forEach(function (module) {
 });
 
 /***/ }),
-
-/***/ 46:
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"./audio.js": 47,
-	"./deletecart.js": 48,
-	"./paypal.js": 49,
-	"./promocode.js": 51,
-	"./slowload.js": 52,
-	"./thumbnail.js": 53
+	"./carousel.js": 48,
+	"./deletecart.js": 49,
+	"./loader.js": 50,
+	"./paypal.js": 51,
+	"./promocode.js": 53,
+	"./slowload.js": 54,
+	"./thumbnail.js": 55
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -28278,8 +28313,7 @@ module.exports = webpackContext;
 webpackContext.id = 46;
 
 /***/ }),
-
-/***/ 47:
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28327,8 +28361,58 @@ var stopPreview = function stopPreview(songDiv) {
 /* harmony default export */ __webpack_exports__["default"] = ({ init: init });
 
 /***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/***/ 48:
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
+
+window.showSlides = showSlides;
+window.currentSlide = currentSlide;
+window.plusSlides = plusSlides;
+var init = function init(selector) {};
+
+var slideIndex = 1;
+
+// Next/previous controls
+function plusSlides(n, parent) {
+    showSlides(slideIndex += n, parent);
+}
+
+// Thumbnail image controls
+function currentSlide(n, parent) {
+    showSlides(slideIndex = n, parent);
+}
+
+function showSlides(n, parent) {
+    var i = void 0;
+    console.log(parent);
+    var slides = parent.querySelectorAll(".mySlides");
+    var dots = parent.querySelectorAll(".dot");
+    console.log(slides);
+    console.log(dots);
+
+    if (n > slides.length) {
+        slideIndex = 1;
+    }
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+}
+/* harmony default export */ __webpack_exports__["default"] = ({ init: init, currentSlide: currentSlide, plusSlides: plusSlides, showSlides: showSlides });
+
+/***/ }),
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28392,15 +28476,70 @@ var updateCart = function updateCart(cart_items, shipping, viewMode, code) {
 /* harmony default export */ __webpack_exports__["default"] = ({ init: init });
 
 /***/ }),
-
-/***/ 49:
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__paypal_paypal_js__ = __webpack_require__(50);
+
+window.checkImages = checkImages;
+var init = function init(selector) {};
+
+function IsImageOk(img) {
+    // During the onload event, IE correctly identifies any images that
+    // weren’t downloaded as not complete. Others should too. Gecko-based
+    // browsers act like NS4 in that they report this incorrectly.
+    if (!img.complete) {
+        return false;
+    }
+
+    // However, they do have two very useful properties: naturalWidth and
+    // naturalHeight. These give the true size of the image. If it failed
+    // to load, either of these should be zero.
+    if (img.naturalWidth === 0) {
+        return false;
+    }
+
+    // No other way of checking: assume it’s ok.
+    return true;
+}
+
+function checkImages(element) {
+    if (element) {
+        element.classList.remove('unloaded');
+    } else {
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('img').each(function (index, img) {
+            if (IsImageOk(img)) {
+                checkImages(img);
+            }
+        });
+    }
+    var unloadeds = document.getElementsByClassName('unloaded');
+    console.log(unloadeds);
+    if (unloadeds.length == 0) {
+        var carousels = document.getElementsByClassName('slide_1');
+        for (var i = 0; i < carousels.length; i++) {
+            carousels[i].style.display = "block";
+        }
+        document.getElementById('loadingScreen').classList.add('invisible');
+        setTimeout(function () {
+            document.getElementById('loadingScreen').classList.add('hidden');
+        }, 500);
+    }
+}
+/* harmony default export */ __webpack_exports__["default"] = ({ init: init, checkImages: checkImages });
+
+/***/ }),
+/* 51 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__paypal_paypal_js__ = __webpack_require__(52);
 
 
 
@@ -28503,8 +28642,7 @@ var getTotal = function getTotal() {
 /* harmony default export */ __webpack_exports__["default"] = ({ init: init });
 
 /***/ }),
-
-/***/ 50:
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28785,8 +28923,7 @@ var version = "5.0.2";
 
 
 /***/ }),
-
-/***/ 51:
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28895,8 +29032,7 @@ var getTotal = function getTotal() {
 /* harmony default export */ __webpack_exports__["default"] = ({ init: init });
 
 /***/ }),
-
-/***/ 52:
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28920,8 +29056,7 @@ var init = function init(selector) {
 /* harmony default export */ __webpack_exports__["default"] = ({ init: init });
 
 /***/ }),
-
-/***/ 53:
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28955,5 +29090,4 @@ var switchImage = function switchImage(thumbnail) {
 /* harmony default export */ __webpack_exports__["default"] = ({ init: init });
 
 /***/ })
-
-/******/ });
+/******/ ]);

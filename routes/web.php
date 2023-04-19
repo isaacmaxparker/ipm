@@ -74,3 +74,14 @@ Route::group([
     Route::get('/tiles', ['as' => 'tiles', 'uses' => 'AdminController@viewTiles']);
 
 });
+
+Route::group([
+ 
+    'prefix' => 'portfolio',
+    'as' => 'portfolio::',
+    'namespace'=>'Site',
+
+], function () {
+
+    Route::get('/', ['as' => 'index', 'uses' => 'PortfolioController@view']);
+});

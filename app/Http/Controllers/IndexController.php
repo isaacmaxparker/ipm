@@ -32,6 +32,14 @@ class IndexController extends Controller
 
         $this->addTemplateVariables(compact('latest','featured'));
 
+
+        $disabled = true;
+
+        if($disabled){
+            $latest = DB::table('releases')->orderBy('release_date','desc')->limit(1)->first();
+            return redirect('/music/release/' . $latest->id);
+        }
+
         return view('index.home', $this->template_vars);
     }    
 }

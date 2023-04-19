@@ -106,7 +106,7 @@
 								</div>
 								<div class="product-thumbnails">
 									{% for image in images %}
-										<img src="{{config('links.s3_img_link') ~  '/store/' ~ product.type ~ '/' ~ image.img_link}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}">
+										<img src="{{config('links.s3_img_link') ~  'store/' ~ product.type ~ '/' ~ image.img_link}}" class="product-thumbnail" data-module="thumbnail" data-image-id="{{image.id}}">
 									{% endfor %}
 								</div>
 							</div>

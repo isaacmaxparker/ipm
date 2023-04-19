@@ -6,7 +6,7 @@
         height: 100vh;
     }
     .left-side-release{
-        width: calc(35vw - 50px);
+        width: calc(15vw - 50px);
         padding-left:calc(5vw - 50px);;
         min-width: 25vw;
         max-width: 350px;
@@ -16,7 +16,7 @@
     }
     
     .middle-side-release{
-        width:350px;
+        width: calc(10vw - 50px);
         min-width: 350px;
         display: flex;
         flex-direction: column;
@@ -24,7 +24,7 @@
     }
     
     .right-side-release{
-        max-width: calc(60vw - 350px);
+        max-width: calc(55vw);
         display: flex;
         flex-direction: column;
         align-items: center;
