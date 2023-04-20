@@ -1,0 +1,109 @@
+{% if release %}
+	{% set pageTitle = "Edit Release" %}
+{% else %}
+	{% set pageTitle = "New Release" %}
+{% endif %}
+{% extends "_layout/adminsite.twig" %}
+
+{% block content %}
+	<div class="header_content slowload" data-module="slowload">
+		<div class="back_img"><img src="{{config('links.s3_img_link')}}releases/backgrounds/cn-back.png"></div>
+		<div class="admin_div edit_div flex-column">
+
+			<div class="table">
+				<form class="edit_form" method="POST" action="{{route('admin::saverelease',[release.id])}}">
+					        {{ csrf_field()}}
+                    <div class="y-scroll-div">
+						<div class="form_input_with_label flex-row">
+							<p>Release Title:<sup style="color:#b31010b8">*</sup>
+							</p>
+							<input name="title" required value='{{release.title}}'>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Subtitle:</p>
+							<input name="subtitle" value='{{release.subtitle}}'>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Description:<sup style="color:#b31010b8">*</sup>
+							</p>
+							<textarea name="description" required>{{release.description}}</textarea>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Release Date: (YYYY-MM-DD)<sup style="color:#b31010b8">*</sup>
+							</p>
+							<input name="release_date" required placeholder="YYYY-MM-DD" value={{release.release_date}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Album Art Img Name:<sup style="color:#b31010b8">*</sup>
+							</p>
+							<input name="img_link" required value={{release.img_link}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Background Type:<sup style="color:#b31010b8">*</sup>
+							</p>
+							<select name="background_type" required value={{release.background_type}}>
+								<option value="video">Video</option>
+								<option value="image">Image</option>
+							</select>
+
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Background Image Name:<sup style="color:#b31010b8">*</sup>
+							</p>
+							<input name="back_img_link" required value={{release.back_img_link}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Gallery Img Link:</p>
+							<input name="gallery_img_link" value={{release.gallery_img_link}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Theme Color:<sup style="color:#b31010b8">*</sup>
+							</p>
+							<select name="theme_color" required>
+								{% for color in colors %}
+									{% set selected = '' %}
+									{% if release.theme_color == color %}
+										{% set selected = 'selected' %}
+									{% endif %}
+									<option value="{{color}}" {{ selected }}>{{color}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Youtube Link:</p>
+							<input name="youtube_link" value={{release.youtube_link}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Spotify Link:</p>
+							<input name="spotify_link" value={{release.spotify_link}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>iTunes Link:</p>
+							<input name="itunes_link" value={{release.itunes_link}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Youtube Music Link:</p>
+							<input name="youtube_music_link" value={{release.youtube_link}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Amazon Link:</p>
+							<input name="amazon_link" value={{release.amazon_link}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>iHeartRadio Link:</p>
+							<input name="iheartradio_link" value={{release.iheartradio_link}}>
+						</div>
+						<div class="form_input_with_label flex-row">
+							<p>Youtube Link:</p>
+							<input name="distrokid_link" value={{release.distrokid_link}}>
+						</div>
+
+					</div>
+					<div class="flex-row form-buttons">
+						<button class="button" type="submit">Save</button>
+                        <a href="{{route('admin::releases')}}" class="button back-button">Back</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	{% endblock %}

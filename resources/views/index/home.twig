@@ -1,0 +1,61 @@
+{% set pageTitle = "Isaac Parker Music" %}
+
+{% extends "_layout/site.twig" %}
+
+{% block content %}
+	<div class="background sd-back slowload" data-module="slowload">
+		<div class="mobile_content full_screen_scroll_footer">
+		</div>
+		<div class="desktop_content full_screen_scroll_footer" data-module="slowload">
+			<div class="y-scroll-div fullscreen">
+				<div class="homepage_cards flex-column">
+					<div class="homepage_card flex-row">
+						<img src="{{config('links.s3_img_link')}}backgrounds/ice-cream-card-back-left.png" class="back_img"/>
+						<a href="{{route('music::release',[latest[0].id])}}">
+							<div class="card_title">
+								Listen
+							</div>
+						</a>
+						<div class="listen_images flex-row">
+							<a href="{{route('music::release',[latest[1].id])}}" class="first-child"><img src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ latest[1].img_link}}"></a>
+							<a href="{{route('music::release',[latest[0].id])}}"><img src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ latest[0].img_link}}"></a>
+							<a href="{{route('music::release',[latest[2].id])}}" class="last-child"><img src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ latest[2].img_link}}"></a>
+						</div>
+					</div>
+					<div class="homepage_card flex-row right_card">
+						<img src="{{config('links.s3_img_link')}}backgrounds/cb-card-back-right.png}}" class="back_img">
+						<div
+							class="listen_images">
+							{# <a href="{{route('music::release',[latest[1].id])}}" class="first-child"><img src="{{asset('img/releases/album_arts/' ~ latest[1].img_link)}}"></a> #}
+							<a href="{{route('store::product',[featured[0].id])}}"><img src="{{asset('img/store/' ~ featured[0].type ~ '/' ~ featured[0].img_link)}}"></a>
+							{# <a href="{{route('music::release',[latest[2].id])}}" class="last-child"><img src="{{asset('img/releases/album_arts/' ~ latest[2].img_link)}}"> #}
+						</div>
+						<a href="{{route('store::catalog')}}">
+							<div class="card_title_right">
+								Shop
+							</div>
+						</a>
+					</div>
+					<div class="homepage_card flex-row">
+						<img src="{{config('links.s3_img_link')}}backgrounds/corn-card-back-left.png}}" class="back_img"/>
+						<a href="https://www.youtube.com/watch?v=n3SxiyciHak&list=PLjRMKXXyQLKu5f-as4CA5iGTbb59pTOAw">
+							<div class="card_title">
+								Watch
+							</div>
+						</a>
+						<div class="flex-row watch_card_video_div">
+							<a href="https://www.youtube.com/watch?v=n3SxiyciHak&list=PLjRMKXXyQLKu5f-as4CA5iGTbb59pTOAw">
+								<div class="watch_card_video">
+									<video id="gallery_video" autoplay loop muted playsinline class="{{release.theme_color}}-border invisible slowload" width="100%" height="100%">
+										<source src="{{asset('img/videos/homepage_yt_summary.webm')}}" type="video/webm">
+										<source src="{{asset('img/videos/homepage_yt_summary.mp4')}}" type="video/mp4">
+									</video>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

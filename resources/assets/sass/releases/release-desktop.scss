@@ -1,0 +1,266 @@
+.desktop_content {
+    .main-content-release-desktop{
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 100vh;
+    }
+    .left-side-release{
+        width: calc(15vw - 50px);
+        padding-left:calc(5vw - 50px);;
+        min-width: 25vw;
+        max-width: 350px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .middle-side-release{
+        width: calc(10vw - 50px);
+        min-width: 350px;
+        display: flex;
+        flex-direction: column;
+        padding-right:5vw;
+    }
+    
+    .right-side-release{
+        max-width: calc(55vw);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-height: 100vh;
+        padding-bottom: 25px;
+    }
+
+    .left-side-description{
+        margin-top:-5%;
+        padding-top: 7.5%;
+        padding-bottom:15%;
+        color:rgb(207, 207, 207);
+        font-size:125%;
+        line-height: 1.25;
+        width: 85%;
+        overflow-y: scroll;
+        margin-left: 7.5%;
+        margin-bottom:125px;
+        -webkit-mask-image: linear-gradient(180deg, transparent 1%, black 10%, black 87%, transparent 99%);
+    }
+
+    .left-side-description p:last-child{
+        font-size:70%;
+        text-align: center;
+        width:100%;
+        opacity: .7;
+    }
+
+    .left-side-description-title{
+        width: 100%;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .left-side-description::-webkit-scrollbar{
+        display: none;
+    }
+
+    .albumArtContainer{
+        margin-top: 7vh;
+    }
+
+    .scroll::-webkit-scrollbar {
+        display: none;
+    }
+    .x-scroll-container.scroll::-webkit-scrollbar {
+        background-color: black;
+        display: block;
+    }
+
+        /* width */
+    ::-webkit-scrollbar {
+        width: 5px;
+        height:5px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: rgb(92, 92, 92); 
+        border-radius: 10px;
+    }
+
+    .songPreviewDiv:first-child{
+        border-top:2px #272727 solid;
+    }
+    
+    .songPreviewDiv{
+        border-right: 2px #272727 solid;
+        border-left: 2px #272727 solid;
+    }
+
+    .songPreviewDiv:last-child{
+        border-bottom:2px #272727 solid;
+    }
+
+    .scroll-y-view.scroll{
+        height: unset;
+        width:calc(100% + 4px);
+        margin-top: calc(7vh - 5%);
+        position: relative;
+        padding-top:5%;
+        padding-top:5%;
+        //border:2px #272727 solid;
+        -webkit-mask-image: linear-gradient(180deg, transparent 1%, black 4%, black 93%, transparent 99%);
+    }
+
+    .previews{
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.322) 15px 15px 20px 5px;
+        width: calc(100% - 0px);
+        border:unset;
+        margin-bottom:10%;
+    }
+    
+
+    
+    .storeText{
+        font-size: 35px;
+    }
+    
+    a.storeText{
+        font-size: 22px !important;
+        text-decoration: none;
+        margin:0px;
+        margin-left:25px;
+        text-align: left;
+    }
+    
+    .songPreviewTextDiv{
+        font-size: 25px !important;
+    }
+    
+    .songPreviewDiv{
+        padding:7px;
+        border-bottom: 2px black solid;
+    }
+    
+    .previewsDiv{
+        margin-bottom:25px;
+    }
+    
+    .songPreviewButtonsDiv{
+        min-width: 25px;
+        max-width: 25px;
+        min-height: 25px;
+        max-height: 25px;
+        border: 2px solid;
+    }
+
+    .playingCircle{
+        min-width: 34px;
+        min-height: 34px;
+        max-width: 34px;
+        max-height: 34px;
+    }
+    
+    
+    .songPreviewPlayButton{
+        padding:0px;
+        padding-left:2.5px;
+    }
+    .songPreviewStopButton{
+        padding:0px;
+    }
+    
+    .storesDiv{
+        //margin-top: auto;
+        margin-top: 10px;
+        margin-bottom:25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: unset;
+        width: 100%;
+        box-shadow: unset;
+        position: relative;
+        background-color: rgba(22, 22, 22, 0.788);
+        box-shadow: rgba(0, 0, 0, 0.322) 15px 15px 20px 5px;
+        border:2px #272727 solid;
+        max-height: 40vh;
+    }
+    
+    .storesList{
+        flex-direction: column;
+    }
+    
+    .storeImage{
+        max-width: 50px;
+        padding-bottom: 5px;
+    }
+    
+    .storeLink{
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top:10px;
+        padding:5px;
+        border-bottom: solid black 2px;
+    }
+    
+    .top-row{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    #youtube_cont_id{
+        width:100%;
+        max-height: 50vh;
+        aspect-ratio:  16 / 9;
+        padding:5vh;
+        padding-top:vh;
+        margin: 0px;
+    }
+
+     #youtube_cont_id video{
+        border-style: solid;
+        border-width: 10px;
+        object-fit: cover;
+        box-shadow: rgba(0, 0, 0, 0.322) 15px 15px 20px 5px;
+     }
+
+    iframe{
+        box-shadow: rgba(0, 0, 0, 0.322) 15px 15px 20px 5px;
+    }
+
+    #other_releases_div{
+        width: 100%;
+    }
+    
+    .other_release_grid_item img {
+        width: 10vw;
+        margin: 0.5vw;
+        box-shadow: rgba(0, 0, 0, 0.322) 15px 15px 20px 5px;
+    }
+    #other_releases_grid{
+        padding:0px;
+        margin-left:4%;
+       
+    }
+    .other_release_grid_item:last-child{
+        margin-right:100px;
+    }
+    .x-scroll-container.scroll{
+        -webkit-mask-image: linear-gradient(90deg, transparent 1%, black 8%, black 95%, transparent 100%);
+    }
+    .albumArtContainer .storeText{
+        margin-top:15px;
+    }
+}

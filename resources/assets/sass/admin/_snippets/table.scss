@@ -1,0 +1,50 @@
+.admin_div{
+    .table{
+        width: 90%;
+        background-color: rgba(255, 255, 255, 0.822);
+        max-height:90%;
+    }
+
+    tr{
+        height: 50px;
+    }
+
+    th{
+        background-color: rgba(0, 0, 0, 0.136);
+    }
+
+    td{
+        text-align: center;
+    }
+
+    button{
+        cursor: pointer;
+        border-radius: 5px;
+        height:27px;
+        background-color: rgba(0, 0, 0, 0.349);
+        border: solid 1px black;
+        color:black;
+        padding-left:33px;
+        padding-right:33px;
+        font-family: 'Renner';
+        margin:5px;
+    }
+
+    table, th, td {
+        border: 3px solid rgba(0, 0, 0, 0.512);
+        border-collapse: collapse;
+    }
+
+    .unreleased{
+        background-color: grey;
+    }
+}
+
+.edit_div{
+    .table{
+        width: 90%;
+        background-color: rgba(255, 255, 255, 0.822);
+        max-height:100%;
+        margin-top:2.5%;
+    }
+}

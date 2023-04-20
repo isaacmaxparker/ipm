@@ -1,0 +1,35 @@
+
+//Global
+@import 'global.scss';
+@import 'devices.scss';
+
+@import '_snippets/forms.scss';
+
+// Index
+@import 'index/index.scss';
+@import 'index/index-desktop.scss';
+
+// Music
+@import 'releases/release-mobile.scss';
+@import 'releases/release-desktop.scss';
+@import 'releases/catalog.scss';
+@import 'releases/catalog-desktop.scss';
+
+// Store
+@import 'store/catalog.scss';
+@import 'store/product.scss';
+@import 'store/product-desktop.scss';
+@import 'store/checkout.scss';
+@import 'store/checkout-desktop.scss';
+@import 'store/orders.scss';
+
+// Admin
+@import 'admin/login.scss';
+@import 'admin/dashboard.scss';
+@import 'admin/lists.scss';
+@import 'admin/_snippets/table.scss';
+
+
+//Portfolio
+@import 'portfolio/portfolio.scss';
+@import 'portfolio/portfolio-mobile.scss';

@@ -1,0 +1,41 @@
+{% set pageTitle = "Releases" %}
+
+{% extends "_layout/adminsite.twig" %}
+
+{% block content %}
+	<div class="header_content slowload" data-module="slowload">
+		<div class="back_img"><img src="{{config('links.s3_img_link')}}releases/backgrounds/cn-back.png"></div>
+		<div class="admin_div flex-column">
+            <div class="action_buttons">
+                <a class="button" href="{{route('admin::newrelease')}}">+ Add New</a>
+            </div>
+            <div class="table">
+                <table class="x-scroll-div y-scroll-div">
+                    <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th>Release Date</th>
+                        <th>Number of Songs</th>
+                        <th>Actions</th>
+                    </tr>
+                        {% for row in rows %}
+                        
+                            <tr class="{{row.date|date("Y-m-d") > "now"|date("Y-m-d") ? 'unreleased'}}">
+                                <td>{{row.name}}{{row.date|date("Y-m-d") > "now"|date("Y-m-d") ? ' (unreleased)'}}</td>
+                                <td>{{row.date |date("F jS Y")}}</td>
+                                <td>{{row.song_count}}</td>
+                                <td>
+                                {% if row.date|date("Y-m-d") < "now"|date("Y-m-d") %}
+                                    <a href="{{route('music::release',[row.id])}}" target="_blank"><button>View</button></a>
+                                {% endif %}
+                                    <a href="{{route('admin::editrelease',[row.id])}}"><button>Edit</button></a>
+                                    <button>Delete</button>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+		</div>
+	{% endblock %}

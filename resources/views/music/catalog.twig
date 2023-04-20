@@ -1,0 +1,47 @@
+{% set pageTitle = "Discography" %}
+{% set customFooter = true %}
+{% extends "_layout/site.twig" %}
+
+{% block content %}
+<div class="background sd-back">
+    <div class="mobile_content fullscreen">
+        <div class="y-scroll-div">
+            <div class="catalog_grid">
+                {% for release in releases %}
+                    <a href="{{route('music::release',[release.id])}}">
+                        <div class="catalog_grid_card">
+                            <img src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ release.img_link}}">
+                            <div class="card_spacer {{release.theme_color}}-dark-back"></div>
+                            <p class="label">{{release.title}} <span class="{{release.theme_color}}-text">({{release.release_date|slice(0,4)}})</span></p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+     <div class="desktop_content fullscreen">
+        <div class="y-scroll-div">
+            <div class="catalog_grid">
+                {% for release in releases %}
+                    <a href="{{route('music::release',[release.id])}}">
+                        <div class="catalog_grid_card">
+                            <img src="{{config('links.s3_img_link') ~ 'releases/album_arts/' ~ release.img_link}}">
+                            <div class="card_spacer {{release.theme_color}}-dark-back"></div>
+                            <p class="label">{{release.title}} <span class="{{release.theme_color}}-text">({{release.release_date|slice(0,4)}})</span></p>
+                            <div class="catalog_desc {{release.theme_color}}-dark-back">
+                                <p>{{release.title}}</p>
+                                <hr>
+                                {% if release.description|length > 200 %}
+                                    <p>{{release.description|slice(0,200)|raw}}...</p>
+                                {% else %}
+                                     <p>{{release.description|raw}}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

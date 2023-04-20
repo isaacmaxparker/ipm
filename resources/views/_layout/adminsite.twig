@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% spaceless %}
+<html lang="en">
+<head>
+        {% include "_layout/_snippets/head.twig" %}
+</head>
+<body>
+    <header>
+        {% include "index/_snippets/_adminnav.twig" %}
+    </header>
+    <div class = "layout">
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+</body>
+<footer>
+{% include "_layout/_snippets/footer.twig" %}
+</footer>
+</html>
+{% endspaceless %}

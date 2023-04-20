@@ -1,0 +1,207 @@
+{% set pageTitle = "IEMG Creative Catalog" %}
+{% set customFooter = true %}
+{% extends "_layout/site.twig" %}
+
+{% block content %}
+	<div class="background" data-module="loader">
+		<div data-module="carousel"></div>
+		<div id="loadingScreen">
+			<p class="loadingTitle">IEMG Creations Catalog</p>
+			<p class="loading_parg">I believe that when releasing music, visual elements are just as important as the audio elements to create the full mood. You've spent so much time and money making a great song, why would you skip the last step?
+				<br><br>Over the course of my music career I've learned to make lots of different types of supplementary visuals for my music, and now I want to help make some for you too! Here are some examples of what I can do for you:</p>
+			<p>Please wait while the images load :)</p>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/YouTube_loading_symbol_3_%28transparent%29.gif"/>
+		</div>
+		<div class="back_img"><img src="{{config('links.s3_img_link')}}releases/backgrounds/cn-back.png"></div>
+		<div class="mobile_content fullscreen"></div>
+		<div class="desktop_content fullscreen">
+			<div class="y-scroll-div">
+				<div class="portfolio_item" style="margin-top:20px;">
+					<div class="portfolio_albumart_grid">
+						{% for item in album_art_images %}
+							<div class="portfolio_albumart_grid_card">
+								<a href="{{config('links.s3_portfolio_link') ~ 'album_arts/' ~ item.asset_link}}" target="_blank">
+									<img onload="checkImages(this)" class="unloaded" src="{{config('links.s3_portfolio_link') ~ 'album_arts/' ~ item.asset_link}}">
+								</a>
+							</div>
+						{% endfor %}
+					</div>
+					<div class="portfolio_section_heading">
+						<p>Album<br>Art<br>Design</p>
+					</div>
+				</div>
+				<hr style="margin-bottom:25px">
+				{% for item in album_art_examples %}
+					{% set i = 0 %}
+					<div class="portfolio_item_example">
+						<div class="portfolio_section_decription">
+							<p class="portfolio_section_decription_title">{{item.title}}</p>
+							<p></p>
+							<p class="portfolio_section_decription_text">{{item.description}}</p>
+							<p></p>
+							<p class="portfolio_section_decription_price">{{item.price}}</p>
+							<p></p>
+						</div>
+						<div class="portfolio_examples_gallery">
+							<div class="slideshow-container">
+								{% set length = item.images|length %}
+								{% for image in item.images %}
+									{% set i = i + 1 %}
+									<div class="mySlides fade slide_{{i}}">
+										<div class="numbertext">{{i}}/{{length}}</div>
+										<img onload="checkImages(this)" onerror="this.remove()" class="unloaded" src="{{config('links.s3_portfolio_link') ~ 'album_arts/' ~ image.asset_link}}">
+										<div class="text">{{image.description}}</div>
+									</div>
+								{% endfor %}
+								<!-- Next and previous buttons -->
+								<a class="prev" onclick="plusSlides(-1, this.parentElement.parentElement)">&#10094;</a>
+								<a class="next" onclick="plusSlides(1, this.parentElement.parentElement)">&#10095;</a>
+							</div>
+							<br>
+							<!-- The dots/circles -->
+							<div style="text-align:center">
+								{% set i = 0 %}
+								{% for image in item.images %}
+									{% set i = i + 1 %}
+									<span class="dot" onclick="currentSlide({{i}}, this.parentElement.parentElement)"></span>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<hr style="opacity:.2">
+				{% endfor %}
+
+				<div class="portfolio_item">
+					<div class="portfolio_albumart_grid">
+						{% for item in visuazlier_heading_images %}
+							<div class="portfolio_albumart_grid_card">
+								<a href="{{item.description}}" target="_blank">
+									<img onload="checkImages(this)" class="unloaded" src="{{config('links.s3_portfolio_link') ~ 'Visualizers/' ~ item.asset_link}}">
+								</a>
+							</div>
+						{% endfor %}
+					</div>
+					<div class="portfolio_section_heading">
+						<p>Audio-<br>Visual-<br>izers</p>
+					</div>
+				</div>
+				<hr>
+				{% for item in visualizer_examples %}
+					{% set i = 0 %}
+					<div class="portfolio_item_example">
+						<div class="portfolio_section_decription">
+							<p class="portfolio_section_decription_title">{{item.title}}</p>
+							<p></p>
+							<p class="portfolio_section_decription_text">{{item.description}}</p>
+							<p></p>
+							<p class="portfolio_section_decription_price">{{item.price}}</p>
+							<p></p>
+						</div>
+						<div class="portfolio_examples_gallery">
+							<div class="slideshow-container">
+								{% set length = item.images|length %}
+								{% for image in item.images %}
+									{% set i = i + 1 %}
+									<div class="mySlides fade slide_{{i}}">
+										<div class="numbertext">{{i}}/{{length}}</div>
+										<div id="youtube_cont_id">
+											<iframe width="100%" height="100%" src="{{image.asset_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+										</div>
+										<div class="text">{{image.description}}</div>
+									</div>
+								{% endfor %}
+								<!-- Next and previous buttons -->
+								<a class="prev" onclick="plusSlides(-1, this.parentElement.parentElement)">&#10094;</a>
+								<a class="next" onclick="plusSlides(1, this.parentElement.parentElement)">&#10095;</a>
+							</div>
+							<br>
+							<!-- The dots/circles -->
+							<div style="text-align:center">
+								{% set i = 0 %}
+								{% for image in item.images %}
+									{% set i = i + 1 %}
+									<span class="dot" onclick="currentSlide({{i}}, this.parentElement.parentElement)"></span>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<hr style="opacity:.2">
+				{% endfor %}
+{#  
+				<div class="portfolio_item">
+					<div class="portfolio_albumart_grid">
+						{% for item in visuazlier_heading_images %}
+							<div class="portfolio_albumart_grid_card">
+								<a href="{{item.description}}" target="_blank">
+									<img onload="checkImages(this)" class="unloaded" src="{{config('links.s3_portfolio_link') ~ 'Visualizers/' ~ item.asset_link}}">
+								</a>
+							</div>
+						{% endfor %}
+					</div>
+					<div class="portfolio_section_heading">
+						<p>Promo<br>Graphics</p>
+					</div>
+				</div>
+				<hr>
+				{% for item in promo_examples %}
+					{% set i = 0 %}
+					<div class="portfolio_item_example">
+						<div class="portfolio_section_decription">
+							<p class="portfolio_section_decription_title">{{item.title}}</p>
+							<p></p>
+							<p class="portfolio_section_decription_text">{{item.description}}</p>
+							<p></p>
+							<p class="portfolio_section_decription_price">{{item.price}}</p>
+							<p></p>
+						</div>
+						<div class="portfolio_examples_gallery">
+							<div class="slideshow-container">
+								{% set length = item.images|length %}
+								{% for image in item.images %}
+									{% set i = i + 1 %}
+									<div class="mySlides fade slide_{{i}}">
+										<div class="numbertext">{{i}}/{{length}}</div>
+										<a><img onload="checkImages(this)" class="unloaded" src="{{config('links.s3_portfolio_link') ~ 'graphics/' ~ item.asset_link}}"></a>
+										<div class="text">{{image.description}}</div>
+									</div>
+								{% endfor %}
+								<!-- Next and previous buttons -->
+								<a class="prev" onclick="plusSlides(-1, this.parentElement.parentElement)">&#10094;</a>
+								<a class="next" onclick="plusSlides(1, this.parentElement.parentElement)">&#10095;</a>
+							</div>
+							<br>
+							<!-- The dots/circles -->
+							<div style="text-align:center">
+								{% set i = 0 %}
+								{% for image in item.images %}
+									{% set i = i + 1 %}
+									<span class="dot" onclick="currentSlide({{i}}, this.parentElement.parentElement)"></span>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<hr style="opacity:.2">
+					
+				{% endfor %}#}
+
+				<div class="portfolio_section_heading" >
+					<p style="margin:50px;width:100%;text-align:center;font-size: 5rem;">& More Coming soon!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+
+		document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+            checkImages(false)
+            }, 500);
+            setTimeout(() => {
+            checkImages(false)
+            }, 1500);
+            setTimeout(() => {
+            checkImages(false)
+            }, 2000);
+            });
+	</script>
+{% endblock %}
